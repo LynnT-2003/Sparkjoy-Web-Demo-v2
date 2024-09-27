@@ -1,4 +1,12 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js + Tailwind CSS + TypeScript Starter
+
+This is a starter template for building a type-safe React application using Next.js, Tailwind CSS, and TypeScript. It leverages the power of Next.js for server-side rendering, the flexibility of Tailwind CSS for styling, and the robustness of TypeScript for type-checking and ensuring code quality.
+
+## Features
+
+- **Next.js**: Provides server-side rendering, API routes, and routing.
+- **Tailwind CSS**: A utility-first CSS framework for building modern and responsive designs.
+- **TypeScript**: A statically typed superset of JavaScript that enhances code quality and maintainability.
 
 ## Getting Started
 
