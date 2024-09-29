@@ -85,7 +85,7 @@ const InputSection = () => {
       console.log("Saving response to MongoDB...", mongoBody);
 
       try {
-        const mongoResponse = await fetch("/api/saveImageResponse", {
+        const mongoResponse = await fetch("/api/savedImages", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

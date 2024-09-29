@@ -31,3 +31,26 @@ export async function POST(req) {
     );
   }
 }
+
+export async function GET(req, res) {
+  try {
+    await connectMongoDB(); // Ensure MongoDB is connected
+
+    // Fetch all documents and project only the "images" field
+    const allResponses = await imageResponseModel.find(
+      {},
+      { images: 1, _id: 0 }
+    );
+
+    // Extract the "images" from each document
+    const imagesArray = allResponses.flatMap((doc) => doc.images);
+
+    return NextResponse.json(imagesArray, { status: 200 });
+  } catch (error) {
+    console.error("Failed to fetch images:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch images." },
+      { status: 500 }
+    );
+  }
+}
