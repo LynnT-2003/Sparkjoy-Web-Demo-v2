@@ -52,8 +52,8 @@ const HistoryImagesSection = () => {
         </div>
       ) : images.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pb-24 gap-6">
-          {images.map((image, index) => (
-            <CardContainer className="inter-var">
+          {images.map((image) => (
+            <CardContainer className="inter-var" key={image}>
               <CardBody className="relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-full rounded-xl p-6 px-2 border  ">
                 {/* <CardItem
                   translateZ="50"
