@@ -16,8 +16,8 @@ const InputSection = () => {
   const [cfgScale, setCfgScale] = useState("5");
   const [width, setWidth] = useState("512");
   const [height, setHeight] = useState("512");
-  const [image, setImage] = useState<string | null>(null); // State to hold the Base64 image
-  const [loading, setLoading] = useState(false); // Loading state for API request
+  const [image, setImage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value);
@@ -109,8 +109,13 @@ const InputSection = () => {
   return (
     <div className="h-screen flex flex-col justify-center ">
       <div className=" w-[25vw] mt-12">
-        <Input type="text" placeholder="Prompt" onChange={handlePromptChange} />
-        <div className="flex w-full gap-6">
+        <Input
+          type="text"
+          placeholder="Example Prompt"
+          onChange={handlePromptChange}
+          className="text-lg py-6 my-2"
+        />
+        <div className="flex w-full gap-6 ">
           <div className="w-1/2 mt-4">
             <Popover>
               <PopoverTrigger asChild>
@@ -191,6 +196,7 @@ const InputSection = () => {
       {/* Display loading progress bar */}
       {loading && (
         <div className="mt-4">
+          <h1 className="mt-4 mb-6">Generating image for prompt {prompt}:</h1>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div
               className="bg-blue-500 h-2 rounded-full animate-pulse"
@@ -202,7 +208,7 @@ const InputSection = () => {
 
       {/* Display the Base64 image if it exists */}
       {!loading && image && (
-        <div className="mt-4">
+        <div className="mt-8">
           <img
             src={`data:image/png;base64,${image}`} // Update the format if needed
             alt="Generated"

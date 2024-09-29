@@ -55,15 +55,17 @@ export default function Home() {
         ) : (
           <motion.div
             key="content"
-            className="flex flex-col w-screen items-center justify-center"
+            className="flex flex-col w-screen items-center justify-center "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
             <HeroSection images={images} />
-            <InputSection />
-            <HistoryImagesSection />
+            <div className="flex flex-col w-full w-screen items-center justify-center bg-grid-gray-900 bg-black">
+              <InputSection />
+              <HistoryImagesSection />
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
