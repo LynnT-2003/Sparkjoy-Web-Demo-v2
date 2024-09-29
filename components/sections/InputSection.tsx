@@ -17,6 +17,7 @@ const InputSection = () => {
   const [width, setWidth] = useState("512");
   const [height, setHeight] = useState("512");
   const [image, setImage] = useState<string | null>(null); // State to hold the Base64 image
+  const [loading, setLoading] = useState(false); // Loading state for API request
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value);
@@ -43,10 +44,11 @@ const InputSection = () => {
   };
 
   const handleSubmitClick = async () => {
+    setLoading(true); // Set loading state to true when the request starts
     const body = {
       input: {
-        prompt: prompt || "1girl, anime, best quality, good quality", // Default if no prompt is provided
-        negative_prompt: "animals", // Set to "animals" as per the provided example
+        prompt: prompt || "1girl, anime, best quality, good quality",
+        negative_prompt: "animals",
         sampler_name: sampler,
         steps: parseInt(steps, 10),
         cfg_scale: parseInt(cfgScale, 10),
@@ -82,7 +84,6 @@ const InputSection = () => {
         images: data.output.images, // The images array
         info: data.output.info, // The info string
       };
-      console.log("Saving response to MongoDB...", mongoBody);
 
       try {
         const mongoResponse = await fetch("/api/savedImages", {
@@ -100,12 +101,14 @@ const InputSection = () => {
       }
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setLoading(false); // Set loading state to false after request completes
     }
   };
 
   return (
     <div>
-      <div className="w-[25vw]">
+      <div className="w-[25vw] mt-12">
         <Input type="text" placeholder="Prompt" onChange={handlePromptChange} />
         <Popover>
           <PopoverTrigger asChild>
@@ -179,8 +182,20 @@ const InputSection = () => {
         </button>
       </div>
 
+      {/* Display loading progress bar */}
+      {loading && (
+        <div className="mt-4">
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            <div
+              className="bg-blue-500 h-2 rounded-full animate-pulse"
+              style={{ width: "100%" }}
+            />
+          </div>
+        </div>
+      )}
+
       {/* Display the Base64 image if it exists */}
-      {image && (
+      {!loading && image && (
         <div className="mt-4">
           <img
             src={`data:image/png;base64,${image}`} // Update the format if needed
