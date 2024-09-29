@@ -107,79 +107,85 @@ const InputSection = () => {
   };
 
   return (
-    <div>
-      <div className="w-[25vw] mt-12">
+    <div className="h-screen flex flex-col justify-center ">
+      <div className=" w-[25vw] mt-12">
         <Input type="text" placeholder="Prompt" onChange={handlePromptChange} />
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button variant="outline" className="text-md">
-              Customize
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-80">
-            <div className="grid gap-4">
-              <div className="space-y-2">
-                <h4 className="font-medium leading-none">Customize</h4>
-                <p className="text-sm text-muted-foreground">
-                  Set additional settings for the generated image.
-                </p>
-              </div>
-              <div className="grid gap-2">
-                <div className="grid grid-cols-3 items-center gap-4">
-                  <Label htmlFor="sampler_name">Sampler</Label>
-                  <Input
-                    id="sampler_name"
-                    value={sampler}
-                    onChange={handleSamplerChange}
-                    className="col-span-2 h-8"
-                  />
+        <div className="flex w-full gap-6">
+          <div className="w-1/2 mt-4">
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline" className="text-md w-full">
+                  Customize
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-full">
+                <div className="grid gap-4">
+                  <div className="space-y-2">
+                    <h4 className="font-medium leading-none">Customize</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Set additional settings for the generated image.
+                    </p>
+                  </div>
+                  <div className="grid gap-2">
+                    <div className="grid grid-cols-3 items-center gap-4">
+                      <Label htmlFor="sampler_name">Sampler</Label>
+                      <Input
+                        id="sampler_name"
+                        value={sampler}
+                        onChange={handleSamplerChange}
+                        className="col-span-2 h-8"
+                      />
+                    </div>
+                    <div className="grid grid-cols-3 items-center gap-4">
+                      <Label htmlFor="steps">Steps</Label>
+                      <Input
+                        id="steps"
+                        value={steps}
+                        onChange={handleStepsChange}
+                        className="col-span-2 h-8"
+                      />
+                    </div>
+                    <div className="grid grid-cols-3 items-center gap-4">
+                      <Label htmlFor="cfg_scale">Cfg Scale</Label>
+                      <Input
+                        id="cfg_scale"
+                        value={cfgScale}
+                        onChange={handleCfgScaleChange}
+                        className="col-span-2 h-8"
+                      />
+                    </div>
+                    <div className="grid grid-cols-3 items-center gap-4">
+                      <Label htmlFor="width">Width</Label>
+                      <Input
+                        id="width"
+                        value={width}
+                        onChange={handleWidthChange}
+                        className="col-span-2 h-8"
+                      />
+                    </div>
+                    <div className="grid grid-cols-3 items-center gap-4">
+                      <Label htmlFor="height">Height</Label>
+                      <Input
+                        id="height"
+                        value={height}
+                        onChange={handleHeightChange}
+                        className="col-span-2 h-8"
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className="grid grid-cols-3 items-center gap-4">
-                  <Label htmlFor="steps">Steps</Label>
-                  <Input
-                    id="steps"
-                    value={steps}
-                    onChange={handleStepsChange}
-                    className="col-span-2 h-8"
-                  />
-                </div>
-                <div className="grid grid-cols-3 items-center gap-4">
-                  <Label htmlFor="cfg_scale">Cfg Scale</Label>
-                  <Input
-                    id="cfg_scale"
-                    value={cfgScale}
-                    onChange={handleCfgScaleChange}
-                    className="col-span-2 h-8"
-                  />
-                </div>
-                <div className="grid grid-cols-3 items-center gap-4">
-                  <Label htmlFor="width">Width</Label>
-                  <Input
-                    id="width"
-                    value={width}
-                    onChange={handleWidthChange}
-                    className="col-span-2 h-8"
-                  />
-                </div>
-                <div className="grid grid-cols-3 items-center gap-4">
-                  <Label htmlFor="height">Height</Label>
-                  <Input
-                    id="height"
-                    value={height}
-                    onChange={handleHeightChange}
-                    className="col-span-2 h-8"
-                  />
-                </div>
-              </div>
-            </div>
-          </PopoverContent>
-        </Popover>
-        <button
-          onClick={handleSubmitClick}
-          className="mt-4 mx-4 px-6 py-1.5 bg-blue-500 text-white text-md rounded"
-        >
-          Submit
-        </button>
+              </PopoverContent>
+            </Popover>
+          </div>
+
+          <Button
+            variant="outline"
+            onClick={handleSubmitClick}
+            className="border-blue-500 w-1/2 mt-4 px-6 py-1.5 bg-blue-500 text-white text-md rounded"
+          >
+            Submit
+          </Button>
+        </div>
       </div>
 
       {/* Display loading progress bar */}
