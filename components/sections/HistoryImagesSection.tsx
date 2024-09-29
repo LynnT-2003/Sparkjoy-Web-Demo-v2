@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
@@ -11,8 +11,6 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
   homeImages,
 }) => {
   console.log("Home Images", homeImages);
-  const [images, setImages] = useState<string[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
 
   return (
     <div className="px-24">
@@ -31,7 +29,7 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
       ) : homeImages.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pb-24 gap-6">
           {homeImages
-            .slice(0, 6)
+            .slice()
             .reverse()
             .map((image) => (
               <CardContainer className="inter-var" key={image}>
