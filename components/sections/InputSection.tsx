@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import connectMongoDB from "@/lib/mongodb";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -63,7 +62,7 @@ const InputSection = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${process.env.RUNPOD_API_KEY}`, // Include Bearer token
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_RUNPOD_API_KEY}`, // Include Bearer token
           },
           body: JSON.stringify(body),
         }
