@@ -14,21 +14,33 @@ export default function Home() {
   useEffect(() => {
     const fetchSavedImages = async () => {
       try {
-        const response = await fetch("/api/savedImages", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        // Check localStorage for cached images
+        const cachedImages = localStorage.getItem("savedImages");
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch saved images");
+        if (cachedImages) {
+          setImages(JSON.parse(cachedImages)); // Use cached images
+          setLoading(false); // Stop loading
+        } else {
+          console.log(
+            "Fetching from API because there is no localstorage cache"
+          );
+          const response = await fetch("/api/savedImages", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error("Failed to fetch saved images");
+          }
+
+          const data = await response.json();
+          setImages(data || []);
+          localStorage.setItem("savedImages", JSON.stringify(data));
+          setLoading(false);
+          console.log("Fetched images:", data);
         }
-
-        const data = await response.json();
-        setImages(data || []); // Assuming data contains an array of base64-encoded images
-        setLoading(false); // Stop loading once images are fetched
-        console.log("Fetched images:", data);
       } catch (error) {
         console.error("Error fetching saved images:", error);
         setLoading(false); // Stop loading even if there's an error
@@ -64,7 +76,7 @@ export default function Home() {
             <HeroSection images={images} />
             <div className="flex flex-col w-full w-screen items-center justify-center bg-grid-gray-900 bg-black">
               <InputSection />
-              <HistoryImagesSection />
+              <HistoryImagesSection homeImages={images} />
             </div>
           </motion.div>
         )}
