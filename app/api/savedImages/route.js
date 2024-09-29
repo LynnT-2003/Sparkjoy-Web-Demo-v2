@@ -32,7 +32,7 @@ export async function POST(req) {
   }
 }
 
-export async function GET(req, res) {
+export async function GET() {
   try {
     await connectMongoDB(); // Ensure MongoDB is connected
 
