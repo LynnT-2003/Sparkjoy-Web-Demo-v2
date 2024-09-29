@@ -19,9 +19,6 @@ const InputSection = () => {
   const [height, setHeight] = useState("512");
   const [image, setImage] = useState<string | null>(null); // State to hold the Base64 image
 
-  // Add your bearer token here
-  const bearerToken = "YOUR_BEARER_TOKEN_HERE";
-
   const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value);
   };
@@ -66,7 +63,7 @@ const InputSection = () => {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer 4M4HNI6YH9DGHF2UUISZ6FPYRC24Z3L4I6LISBZ8`, // Include Bearer token
+            Authorization: `Bearer ${process.env.RUNPOD_API_KEY}`, // Include Bearer token
           },
           body: JSON.stringify(body),
         }
