@@ -207,8 +207,10 @@ const InputSection = () => {
       {/* Display loading progress bar */}
       {loading && (
         <div className="mt-4">
-          <h1 className="mt-4 mb-6">Generating image for prompt {prompt}:</h1>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <h1 className="mt-4 mb-6">
+            Generating image for prompt: {prompt}...
+          </h1>
+          <div className="w-full bg-gray-100 rounded-full h-2">
             <div
               className="bg-blue-500 h-2 rounded-full animate-pulse"
               style={{ width: "100%" }}
