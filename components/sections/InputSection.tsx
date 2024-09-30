@@ -48,7 +48,7 @@ const InputSection = () => {
     const body = {
       input: {
         prompt: prompt || "1girl, anime, best quality, good quality",
-        negative_prompt: "animals",
+        negative_prompt: "animals, nsfw",
         sampler_name: sampler,
         steps: parseInt(steps, 10),
         cfg_scale: parseInt(cfgScale, 10),
@@ -83,6 +83,7 @@ const InputSection = () => {
         executionTime: data.executionTime,
         images: data.output.images, // The images array
         info: data.output.info, // The info string
+        prompt: body.input.prompt,
       };
 
       try {

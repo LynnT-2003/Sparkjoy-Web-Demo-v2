@@ -5,8 +5,9 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   try {
     const body = await req.json(); // Parse the request body
+    console.log("Received body:", body); // Log the body to check
 
-    const { delayTime, executionTime, images, info } = body;
+    const { delayTime, executionTime, images, info, prompt } = body;
 
     await connectMongoDB(); // Ensure MongoDB is connected
 
@@ -15,6 +16,7 @@ export async function POST(req) {
       executionTime,
       images,
       info,
+      prompt,
     });
 
     await newResponse.save();
@@ -37,15 +39,9 @@ export async function GET() {
     await connectMongoDB(); // Ensure MongoDB is connected
 
     // Fetch all documents and project only the "images" field
-    const allResponses = await imageResponseModel.find(
-      {},
-      { images: 1, _id: 0 }
-    );
+    const allResponses = await imageResponseModel.find({});
 
-    // Extract the "images" from each document
-    const imagesArray = allResponses.flatMap((doc) => doc.images);
-
-    return NextResponse.json(imagesArray, { status: 200 });
+    return NextResponse.json(allResponses, { status: 200 });
   } catch (error) {
     console.error("Failed to fetch images:", error);
     return NextResponse.json(

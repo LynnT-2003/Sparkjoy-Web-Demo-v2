@@ -3,8 +3,14 @@ import React from "react";
 import Image from "next/image";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
+interface ImageObject {
+  images: string[]; // base64-encoded image string
+  info: string;
+  prompt: string;
+}
+
 interface HistoryImagesSectionProps {
-  homeImages: string[]; // Array of base64-encoded image strings
+  homeImages: ImageObject[]; // Array of image objects
 }
 
 const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
@@ -31,30 +37,21 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
           {homeImages
             .slice()
             .reverse()
-            .map((image) => (
-              <CardContainer className="inter-var" key={image}>
-                <CardBody className="relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-full rounded-xl p-6 px-2 border  ">
-                  {/* <CardItem
-                  translateZ="50"
-                  className="text-xl font-bold text-white dark:text-white"
-                >
-                  Make things float in air
-                </CardItem>
-                <CardItem
-                  as="p"
-                  translateZ="60"
-                  className="text-white text-sm max-w-sm mt-2 dark:text-neutral-300"
-                >
-                  Hover over this card to unleash the power of CSS perspective
-                </CardItem> */}
+            .map(({ images, info, prompt }, index) => (
+              <CardContainer className="inter-var" key={index}>
+                <CardBody className="relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-full rounded-xl p-6 px-2 border">
                   <CardItem translateZ="100" className="w-full mt-0">
                     <Image
-                      src={`data:image/png;base64,${image}`} // Use base64 string
+                      src={`data:image/png;base64,${images[0]}`} // Use base64 string from image object
                       height={1000}
                       width={1000}
                       className="object-cover rounded-xl group-hover/card:shadow-xl"
-                      alt="thumbnail"
+                      alt={`Image with prompt: ${prompt}`}
                     />
+                  </CardItem>
+                  <CardItem translateZ="50" className="mt-4 text-white">
+                    <p className="font-bold">Prompt: {prompt}</p>
+                    <p className="text-sm text-gray-400">{info}</p>
                   </CardItem>
                 </CardBody>
               </CardContainer>

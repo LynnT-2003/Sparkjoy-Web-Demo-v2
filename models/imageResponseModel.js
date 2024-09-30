@@ -4,11 +4,12 @@ const ResponseSchema = new mongoose.Schema(
   {
     delayTime: { type: Number, required: true },
     executionTime: { type: Number, required: true },
-    images: { type: [String], required: true }, // Array of strings for images
-    info: { type: String, required: true }, // String for info
+    images: { type: [String], required: true },
+    info: { type: String, required: true },
+    prompt: { type: String, required: true },
   },
   { timestamps: true }
 );
 
-export default mongoose.models.Response ||
-  mongoose.model("Response", ResponseSchema);
+export default mongoose.models.SavedImages ||
+  mongoose.model("SavedImages", ResponseSchema);

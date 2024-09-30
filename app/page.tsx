@@ -7,40 +7,35 @@ import HeroSection from "@/components/sections/HeroSection";
 import InputSection from "@/components/sections/InputSection";
 import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
 
+interface ImageObject {
+  images: string[]; // Base64-encoded image string
+  info: string; // Information about the image
+  prompt: string; // Image generation prompt
+}
+
 export default function Home() {
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<ImageObject[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchSavedImages = async () => {
       try {
-        // Check localStorage for cached images
-        const cachedImages = localStorage.getItem("savedImages");
+        console.log("Fetching from API because there is no localstorage cache");
+        const response = await fetch("/api/savedImages", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
 
-        if (cachedImages) {
-          setImages(JSON.parse(cachedImages)); // Use cached images
-          setLoading(false); // Stop loading
-        } else {
-          console.log(
-            "Fetching from API because there is no localstorage cache"
-          );
-          const response = await fetch("/api/savedImages", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-            },
-          });
-
-          if (!response.ok) {
-            throw new Error("Failed to fetch saved images");
-          }
-
-          const data = await response.json();
-          setImages(data || []);
-          localStorage.setItem("savedImages", JSON.stringify(data));
-          setLoading(false);
-          console.log("Fetched images:", data);
+        if (!response.ok) {
+          throw new Error("Failed to fetch saved images");
         }
+
+        const data = await response.json();
+        setImages(data || []); // Now expecting array of image objects
+        setLoading(false);
+        console.log("Fetched images:", data);
       } catch (error) {
         console.error("Error fetching saved images:", error);
         setLoading(false); // Stop loading even if there's an error
