@@ -119,7 +119,7 @@ const InputSection = () => {
       <div className="flex flex-col justify-center w-[600px] mt-8">
         <Input
           type="text"
-          placeholder="Example Prompt . . ."
+          placeholder="Enter a Prompt . . ."
           onChange={handlePromptChange}
           className="text-lg py-9 pl-9 mb-2"
         />
