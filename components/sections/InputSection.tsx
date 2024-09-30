@@ -108,19 +108,29 @@ const InputSection = () => {
   };
 
   return (
-    <div className="h-screen flex flex-col justify-center ">
-      <div className=" w-[25vw] mt-12">
+    <div className="h-[120vh] w-screen flex flex-col items-center justify-center ">
+      {!image && (
+        <div className="">
+          <div className="text-8xl text-center font-bold font-sans relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 pb-4">
+            <div className="">Start Creating</div>
+          </div>
+        </div>
+      )}
+      <div className="flex flex-col justify-center w-[600px] mt-8">
         <Input
           type="text"
-          placeholder="Example Prompt"
+          placeholder="Example Prompt . . ."
           onChange={handlePromptChange}
-          className="text-lg py-6 my-2"
+          className="text-lg py-9 pl-9 mb-2"
         />
         <div className="flex w-full gap-6 ">
           <div className="w-1/2 mt-4">
             <Popover>
               <PopoverTrigger asChild>
-                <Button variant="outline" className="text-md w-full">
+                <Button
+                  variant="outline"
+                  className="text-md w-full p-6 hover:bg-slate-800 hover:border-slate-800 hover:text-white"
+                >
                   Customize
                 </Button>
               </PopoverTrigger>
@@ -187,7 +197,7 @@ const InputSection = () => {
           <Button
             variant="outline"
             onClick={handleSubmitClick}
-            className="border-blue-500 w-1/2 mt-4 px-6 py-1.5 bg-blue-500 text-white text-md rounded"
+            className="hover:bg-no-repeat hover:border-none hover:text-xl hover:bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 hover:text-white w-1/2 mt-4 px-6 py-1.5 bg-white text-black text-md rounded p-6"
           >
             Submit
           </Button>
