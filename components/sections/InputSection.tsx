@@ -109,13 +109,20 @@ const InputSection = () => {
 
   return (
     <div className="h-[120vh] w-screen flex flex-col items-center justify-center ">
-      {!image && (
+      {!image ? (
         <div className="">
           <div className="text-8xl text-center font-bold font-sans relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 pb-4">
             <div className="">Start Creating</div>
           </div>
         </div>
+      ) : (
+        <div>
+          <div className="text-6xl text-center font-bold font-sans relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 pb-4">
+            <div className="">Create & Innovate . .</div>
+          </div>
+        </div>
       )}
+
       <div className="flex flex-col justify-center w-[600px] mt-8">
         <Input
           type="text"
@@ -206,7 +213,7 @@ const InputSection = () => {
 
       {/* Display loading progress bar */}
       {loading && (
-        <div className="mt-4">
+        <div className="mt-8">
           <h1 className="mt-4 mb-6">
             Generating image for prompt: {prompt}...
           </h1>
