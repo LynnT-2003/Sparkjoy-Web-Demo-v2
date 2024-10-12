@@ -1,0 +1,11 @@
+{
+  "input": {
+    "workflow": {},
+    "images": [
+      {
+        "name": "example_image_name.png",
+        "image": "base64_encoded_string"
+      }
+    ]
+  }
+}
