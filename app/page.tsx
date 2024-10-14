@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import LoadingSection from "@/components/sections/LoadingSection";
 import HeroSection from "@/components/sections/HeroSection";
 import InputSection from "@/components/sections/InputSection";
-import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
+// import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
 
 interface ImageObject {
   image: string; // Base64-encoded image string
