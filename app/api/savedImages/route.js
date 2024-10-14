@@ -49,3 +49,28 @@ export async function GET() {
     );
   }
 }
+
+export async function DELETE(req) {
+  try {
+    const { id } = await req.json();
+
+    await connectMongoDB();
+
+    const result = await imageResponseModel.findByIdAndDelete(id);
+
+    if (!result) {
+      return NextResponse.json({ error: "Image not found." }, { status: 404 });
+    }
+
+    return NextResponse.json(
+      { message: "Image deleted successfully!" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Failed to delete image:", error);
+    return NextResponse.json(
+      { error: "Failed to delete image." },
+      { status: 500 }
+    );
+  }
+}

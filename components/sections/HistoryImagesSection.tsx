@@ -1,10 +1,11 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
 interface ImageObject {
-  images: string[]; // base64-encoded image string
+  _id: string;
+  image: string; // base64-encoded image string
   prompt: string;
 }
 
@@ -13,9 +14,38 @@ interface HistoryImagesSectionProps {
 }
 
 const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
-  homeImages,
+  homeImages: initialImages,
 }) => {
-  console.log("Home Images", homeImages);
+  const [homeImages, setHomeImages] = useState<ImageObject[]>(initialImages);
+
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await fetch("/api/savedImages", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }), // Send the image ID in the body
+      });
+
+      if (response.ok) {
+        console.log("Image deleted successfully");
+        // Remove the image from the local state after deletion
+        setHomeImages((prevImages) =>
+          prevImages.filter((image) => image._id !== id)
+        );
+      } else {
+        console.error("Failed to delete image");
+      }
+    } catch (error) {
+      console.error("Error while deleting image:", error);
+    }
+  };
+
+  useEffect(() => {
+    // If you want to fetch the latest data from API, do it here.
+    setHomeImages(initialImages); // This will update the state if props change
+  }, [initialImages]);
 
   return (
     <div className="px-24">
@@ -25,7 +55,6 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
 
       {!homeImages ? (
         <div className="flex justify-center items-center h-20">
-          {/* Add loading bar or spinner here */}
           <div className="w-24 h-2 bg-gray-300 rounded-full overflow-hidden">
             <div className="h-full bg-blue-500 animate-pulse"></div>
           </div>
@@ -36,12 +65,12 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
           {homeImages
             .slice()
             .reverse()
-            .map(({ images, prompt }, index) => (
+            .map(({ _id, image, prompt }, index) => (
               <CardContainer className="inter-var" key={index}>
-                <CardBody className="relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-full rounded-xl p-6 px-2 border">
+                <CardBody className="relative group/card dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-full rounded-xl p-6 px-2 border">
                   <CardItem translateZ="100" className="w-full mt-0">
                     <Image
-                      src={`data:image/png;base64,${images[0]}`} // Use base64 string from image object
+                      src={`data:image/png;base64,${image}`} // Use base64 string from image object
                       height={1000}
                       width={1000}
                       className="object-cover rounded-xl group-hover/card:shadow-xl"
@@ -50,6 +79,12 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
                   </CardItem>
                   <CardItem translateZ="50" className="mt-4 text-white">
                     <p className="font-bold">Prompt: {prompt}</p>
+                    <button
+                      className="mt-4 text-red-500 hover:text-red-700"
+                      onClick={() => handleDelete(_id)}
+                    >
+                      Delete
+                    </button>
                   </CardItem>
                 </CardBody>
               </CardContainer>

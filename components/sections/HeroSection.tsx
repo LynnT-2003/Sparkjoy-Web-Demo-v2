@@ -3,6 +3,7 @@ import React from "react";
 import { HeroParallax } from "../ui/hero-parallax";
 
 interface ImageObject {
+  _id: string;
   image: string;
   prompt: string;
 }

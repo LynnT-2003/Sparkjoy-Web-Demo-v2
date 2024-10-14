@@ -51,8 +51,8 @@ const InputSection = () => {
         workflow: {
           "5": {
             inputs: {
-              width: 512,
-              height: 512,
+              width: 1024,
+              height: 1024,
               batch_size: 1,
             },
             class_type: "EmptyLatentImage",

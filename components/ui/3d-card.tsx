@@ -30,9 +30,9 @@ export const CardContainer = ({
     if (!containerRef.current) return;
     const { left, top, width, height } =
       containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) / 15;
-    const y = (e.clientY - top - height / 2) / -15;
-    containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+    const x = (e.clientX - left - width / 2) / 0;
+    const y = (e.clientY - top - height / 2) / 0;
+    // containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
   };
 
   const handleMouseEnter = () => {

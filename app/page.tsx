@@ -5,9 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import LoadingSection from "@/components/sections/LoadingSection";
 import HeroSection from "@/components/sections/HeroSection";
 import InputSection from "@/components/sections/InputSection";
-// import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
+import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
 
 interface ImageObject {
+  _id: string;
   image: string; // Base64-encoded image string
   prompt: string; // Image generation prompt
 }
@@ -70,7 +71,7 @@ export default function Home() {
             <HeroSection images={images} />
             <div className="flex flex-col w-full w-screen items-center justify-center bg-grid-gray-900 bg-black">
               <InputSection />
-              {/* <HistoryImagesSection homeImages={images} /> */}
+              <HistoryImagesSection homeImages={images} />
             </div>
           </motion.div>
         )}
