@@ -26,14 +26,14 @@ export const CardContainer = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!containerRef.current) return;
-    const { left, top, width, height } =
-      containerRef.current.getBoundingClientRect();
-    // const x = (e.clientX - left - width / 2) / 0;
-    // const y = (e.clientY - top - height / 2) / 0;
-    // containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-  };
+  // const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  //   // if (!containerRef.current) return;
+  //   // const { left, top, width, height } =
+  //   //   containerRef.current.getBoundingClientRect();
+  //   // // const x = (e.clientX - left - width / 2) / 0;
+  //   // // const y = (e.clientY - top - height / 2) / 0;
+  //   // // containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+  // };
 
   const handleMouseEnter = () => {
     setIsMouseEntered(true);
@@ -56,7 +56,7 @@ export const CardContainer = ({
         <div
           ref={containerRef}
           onMouseEnter={handleMouseEnter}
-          onMouseMove={handleMouseMove}
+          // onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className={cn(
             "flex items-center justify-center relative transition-all duration-200 ease-linear",
