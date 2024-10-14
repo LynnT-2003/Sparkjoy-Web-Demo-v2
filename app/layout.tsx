@@ -14,7 +14,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "SparkJoy.Ai",
+  title: "PrismaForge.Ai",
   description: "Create your own AI Characters",
 };
 

@@ -45,17 +45,139 @@ const InputSection = () => {
 
   const handleSubmitClick = async () => {
     setLoading(true); // Set loading state to true when the request starts
+
     const body = {
       input: {
-        prompt: prompt || "1girl, anime, best quality, good quality",
-        negative_prompt: "animals, nsfw",
-        sampler_name: sampler,
-        steps: parseInt(steps, 10),
-        cfg_scale: parseInt(cfgScale, 10),
-        width: parseInt(width, 10),
-        height: parseInt(height, 10),
+        workflow: {
+          "5": {
+            inputs: {
+              width: 512,
+              height: 512,
+              batch_size: 1,
+            },
+            class_type: "EmptyLatentImage",
+            _meta: {
+              title: "Empty Latent Image",
+            },
+          },
+          "6": {
+            inputs: {
+              text: prompt || "Default prompt here", // Set prompt dynamically
+              clip: ["11", 0],
+            },
+            class_type: "CLIPTextEncode",
+            _meta: {
+              title: "CLIP Text Encode (Prompt)",
+            },
+          },
+          "8": {
+            inputs: {
+              samples: ["13", 0],
+              vae: ["10", 0],
+            },
+            class_type: "VAEDecode",
+            _meta: {
+              title: "VAE Decode",
+            },
+          },
+          "9": {
+            inputs: {
+              filename_prefix: "ComfyUI",
+              images: ["8", 0],
+            },
+            class_type: "SaveImage",
+            _meta: {
+              title: "Save Image",
+            },
+          },
+          "10": {
+            inputs: {
+              vae_name: "ae.safetensors",
+            },
+            class_type: "VAELoader",
+            _meta: {
+              title: "Load VAE",
+            },
+          },
+          "11": {
+            inputs: {
+              clip_name1: "t5xxl_fp8_e4m3fn.safetensors",
+              clip_name2: "clip_l.safetensors",
+              type: "flux",
+            },
+            class_type: "DualCLIPLoader",
+            _meta: {
+              title: "DualCLIPLoader",
+            },
+          },
+          "12": {
+            inputs: {
+              unet_name: "flux1-dev.safetensors",
+              weight_dtype: "fp8_e4m3fn",
+            },
+            class_type: "UNETLoader",
+            _meta: {
+              title: "Load Diffusion Model",
+            },
+          },
+          "13": {
+            inputs: {
+              noise: ["25", 0],
+              guider: ["22", 0],
+              sampler: ["16", 0],
+              sigmas: ["17", 0],
+              latent_image: ["5", 0],
+            },
+            class_type: "SamplerCustomAdvanced",
+            _meta: {
+              title: "SamplerCustomAdvanced",
+            },
+          },
+          "16": {
+            inputs: {
+              sampler_name: "euler",
+            },
+            class_type: "KSamplerSelect",
+            _meta: {
+              title: "KSamplerSelect",
+            },
+          },
+          "17": {
+            inputs: {
+              scheduler: "sgm_uniform",
+              steps: 4,
+              denoise: 1,
+              model: ["12", 0],
+            },
+            class_type: "BasicScheduler",
+            _meta: {
+              title: "BasicScheduler",
+            },
+          },
+          "22": {
+            inputs: {
+              model: ["12", 0],
+              conditioning: ["6", 0],
+            },
+            class_type: "BasicGuider",
+            _meta: {
+              title: "BasicGuider",
+            },
+          },
+          "25": {
+            inputs: {
+              noise_seed: 108076821791990,
+            },
+            class_type: "RandomNoise",
+            _meta: {
+              title: "RandomNoise",
+            },
+          },
+        },
       },
     };
+
+    console.log("Body:", body);
 
     try {
       const response = await fetch(
@@ -73,19 +195,20 @@ const InputSection = () => {
       const data = await response.json();
       console.log("Parsed JSON data:", data);
 
-      if (data.output.images[0]) {
-        setImage(data.output.images[0]); // Set the Base64 image string
+      if (data.output.message) {
+        setImage(data.output.message); // Set the Base64 image string
       }
 
       // Save the response to MongoDB
       const mongoBody = {
         delayTime: data.delayTime,
         executionTime: data.executionTime,
-        images: data.output.images, // The images array
-        info: data.output.info, // The info string
-        prompt: body.input.prompt,
+        image: data.output.message,
+        prompt: prompt || "Default prompt here",
       };
 
+      // console.log("Lets post to MongoDB later:", data);
+      console.log("Posting", mongoBody);
       try {
         const mongoResponse = await fetch("/api/savedImages", {
           method: "POST",
@@ -136,6 +259,7 @@ const InputSection = () => {
               <PopoverTrigger asChild>
                 <Button
                   variant="outline"
+                  disabled={true}
                   className="text-md w-full p-6 hover:bg-slate-800 hover:border-slate-800 hover:text-white"
                 >
                   Customize
@@ -213,10 +337,8 @@ const InputSection = () => {
 
       {/* Display loading progress bar */}
       {loading && (
-        <div className="mt-8">
-          <h1 className="mt-4 mb-6">
-            Generating image for prompt: {prompt}...
-          </h1>
+        <div className="mt-8 w-[512px]">
+          <h1 className="mt-4 mb-6">Generating image for prompt: {prompt}</h1>
           <div className="w-full bg-gray-100 rounded-full h-2">
             <div
               className="bg-blue-500 h-2 rounded-full animate-pulse"
@@ -228,7 +350,7 @@ const InputSection = () => {
 
       {/* Display the Base64 image if it exists */}
       {!loading && image && (
-        <div className="mt-8">
+        <div className="mt-8 w-[512px]">
           <img
             src={`data:image/png;base64,${image}`} // Update the format if needed
             alt="Generated"

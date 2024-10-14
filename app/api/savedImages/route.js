@@ -7,15 +7,14 @@ export async function POST(req) {
     const body = await req.json(); // Parse the request body
     console.log("Received body:", body); // Log the body to check
 
-    const { delayTime, executionTime, images, info, prompt } = body;
+    const { delayTime, executionTime, image, prompt } = body;
 
     await connectMongoDB(); // Ensure MongoDB is connected
 
     const newResponse = new imageResponseModel({
       delayTime,
       executionTime,
-      images,
-      info,
+      image,
       prompt,
     });
 

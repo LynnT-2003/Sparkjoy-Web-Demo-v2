@@ -8,8 +8,7 @@ import InputSection from "@/components/sections/InputSection";
 import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
 
 interface ImageObject {
-  images: string[]; // Base64-encoded image string
-  info: string; // Information about the image
+  image: string; // Base64-encoded image string
   prompt: string; // Image generation prompt
 }
 
@@ -71,7 +70,7 @@ export default function Home() {
             <HeroSection images={images} />
             <div className="flex flex-col w-full w-screen items-center justify-center bg-grid-gray-900 bg-black">
               <InputSection />
-              <HistoryImagesSection homeImages={images} />
+              {/* <HistoryImagesSection homeImages={images} /> */}
             </div>
           </motion.div>
         )}

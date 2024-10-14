@@ -5,7 +5,6 @@ import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 
 interface ImageObject {
   images: string[]; // base64-encoded image string
-  info: string;
   prompt: string;
 }
 
@@ -37,7 +36,7 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
           {homeImages
             .slice()
             .reverse()
-            .map(({ images, info, prompt }, index) => (
+            .map(({ images, prompt }, index) => (
               <CardContainer className="inter-var" key={index}>
                 <CardBody className="relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-full rounded-xl p-6 px-2 border">
                   <CardItem translateZ="100" className="w-full mt-0">
@@ -51,7 +50,6 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
                   </CardItem>
                   <CardItem translateZ="50" className="mt-4 text-white">
                     <p className="font-bold">Prompt: {prompt}</p>
-                    <p className="text-sm text-gray-400">{info}</p>
                   </CardItem>
                 </CardBody>
               </CardContainer>
