@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { User } from "firebase/auth";
 import Image from "next/image";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
 

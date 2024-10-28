@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { onAuthStateChange } from "@/lib/firebase";
+import { User } from "firebase/auth";
 import { motion, AnimatePresence } from "framer-motion";
 import LoadingSection from "@/components/sections/LoadingSection";
 import HeroSection from "@/components/sections/HeroSection";
@@ -16,12 +18,30 @@ interface ImageObject {
 export default function Home() {
   const [images, setImages] = useState<ImageObject[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChange((user) => {
+      if (user) {
+        setUser(user);
+        console.log("User is now: ", user);
+      } else {
+        setUser(null);
+        setImages([]); // Clear images when user signs out
+        setLoading(false); // Stop loading if there's no user
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const fetchSavedImages = async () => {
+      console.log("Fetching..?");
+      if (!user) return; // Only fetch images if the user is logged in
+
       try {
-        console.log("Fetching from API because there is no localstorage cache");
-        const response = await fetch("/api/savedImages", {
+        console.log("Fetching from API for user:", user?.uid);
+        const response = await fetch(`/api/savedImages?userId=${user?.uid}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -33,7 +53,7 @@ export default function Home() {
         }
 
         const data = await response.json();
-        setImages(data || []); // Now expecting array of image objects
+        setImages(data || []); // Now expecting an array of image objects
         setLoading(false);
         console.log("Fetched images:", data);
       } catch (error) {
@@ -43,7 +63,7 @@ export default function Home() {
     };
 
     fetchSavedImages();
-  }, []);
+  }, [user]); // Fetch images when the user changes
 
   return (
     <div className="w-screen">

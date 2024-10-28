@@ -1,5 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { User } from "firebase/auth";
+import { onAuthStateChange } from "@/lib/firebase";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -9,7 +11,23 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 
+import { FileUpload } from "../ui/file-upload";
+
 const InputSection = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChange((user) => {
+      if (user) {
+        setUser(user);
+        console.log("User is now: ", user);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
   const [prompt, setPrompt] = useState("");
   const [sampler, setSampler] = useState("Euler");
   const [steps, setSteps] = useState("50");
@@ -18,6 +36,43 @@ const InputSection = () => {
   const [height, setHeight] = useState("512");
   const [image, setImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const [files, setFiles] = useState<File[]>();
+  const [file, setFile] = useState<File>();
+
+  const handleFileUpload = (files: File[]) => {
+    setFiles(files);
+    console.log(files);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setFile(e.target.files[0]);
+    }
+  };
+  const uploadImage = () => {
+    if (!files || files.length === 0) {
+      console.log("No file selected.");
+      return;
+    }
+
+    const file = files[0];
+    const reader = new FileReader();
+
+    // Convert the file to Base64
+    reader.onloadend = () => {
+      const base64String = reader.result as string; // Base64 encoded image
+
+      // Log the request body structure
+      const encodedData = {
+        image: base64String, // Base64 encoded image string
+      };
+
+      console.log("Sample Request Body:", JSON.stringify(encodedData, null, 2));
+    };
+
+    reader.readAsDataURL(file); // Trigger file to Base64 conversion
+  };
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value);
@@ -205,6 +260,8 @@ const InputSection = () => {
         executionTime: data.executionTime,
         image: data.output.message,
         prompt: prompt || "Default prompt here",
+        userId: user?.uid,
+        username: user?.displayName,
       };
 
       // console.log("Lets post to MongoDB later:", data);
@@ -245,6 +302,11 @@ const InputSection = () => {
           </div>
         </div>
       )}
+
+      {/* <div className="w-full mt-12 max-w-4xl mx-auto min-h-96 border border-dashed bg-black border-neutral-800 rounded-lg">
+        <FileUpload onChange={handleFileUpload} />
+        <button onClick={uploadImage}>Upload Image</button>
+      </div> */}
 
       <div className="flex flex-col justify-center w-[600px] mt-8">
         <Input

@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
+import { signInWithGoogle } from "@/lib/firebase";
 import {
   motion,
   useScroll,
@@ -8,6 +9,7 @@ import {
   MotionValue,
 } from "framer-motion";
 import Image from "next/image";
+import { Button } from "./button";
 
 export const HeroParallax = ({
   products,
@@ -111,6 +113,9 @@ export const Header = () => {
         high-quality visuals instantly. Perfect for designers, developers, and
         creatives looking for fast, tailored results.
       </p>
+      <Button onClick={signInWithGoogle} className="relative z-50">
+        Sign In with Google
+      </Button>
     </div>
   );
 };
