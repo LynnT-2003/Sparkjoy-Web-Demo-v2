@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { User } from "firebase/auth";
 import { onAuthStateChange } from "@/lib/firebase";
+import { Compare } from "../ui/compare";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -34,9 +35,11 @@ const InputSection = () => {
   const [cfgScale, setCfgScale] = useState("5");
   const [width, setWidth] = useState("512");
   const [height, setHeight] = useState("512");
+  const [originalImage, setOriginalImage] = useState<string | null>(null);
   const [image, setImage] = useState<string | null>(null);
+  const [transformedImage, setTransformedImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-
+  const [transformLoading, setTransformLoading] = useState(false);
   const [files, setFiles] = useState<File[]>();
   const [file, setFile] = useState<File>();
 
@@ -60,15 +63,231 @@ const InputSection = () => {
     const reader = new FileReader();
 
     // Convert the file to Base64
-    reader.onloadend = () => {
+    reader.onloadend = async () => {
       const base64String = reader.result as string; // Base64 encoded image
+      const base64Data = base64String.replace(
+        /^data:image\/[a-z]+;base64,/,
+        ""
+      );
 
-      // Log the request body structure
-      const encodedData = {
-        image: base64String, // Base64 encoded image string
+      console.log("Base64 Image String:", base64Data); // Log raw base64 string
+      setOriginalImage(base64Data);
+
+      const body = {
+        input: {
+          workflow: {
+            "6": {
+              inputs: {
+                text: "An extreme close up look of a person with a face like Moo Deng, baby pygmy hippo.The person's face has dark brown skin glistening with water just like Moo Deng, and has its mouth open wide, small, round ears are visible, and eyes are wide and alert. The person is wearing some clothes, have some hair and no sign of nudity or any kind of profanity.",
+                clip: ["11", 0],
+              },
+              class_type: "CLIPTextEncode",
+              _meta: {
+                title: "CLIP Text Encode (Prompt)",
+              },
+            },
+            "8": {
+              inputs: {
+                samples: ["13", 0],
+                vae: ["10", 0],
+              },
+              class_type: "VAEDecode",
+              _meta: {
+                title: "VAE Decode",
+              },
+            },
+            "9": {
+              inputs: {
+                filename_prefix: "ComfyUI",
+                images: ["8", 0],
+              },
+              class_type: "SaveImage",
+              _meta: {
+                title: "Save Image",
+              },
+            },
+            "10": {
+              inputs: {
+                vae_name: "ae.safetensors",
+              },
+              class_type: "VAELoader",
+              _meta: {
+                title: "Load VAE",
+              },
+            },
+            "11": {
+              inputs: {
+                clip_name1: "t5xxl_fp16.safetensors",
+                clip_name2: "clip_l.safetensors",
+                type: "flux",
+              },
+              class_type: "DualCLIPLoader",
+              _meta: {
+                title: "DualCLIPLoader",
+              },
+            },
+            "12": {
+              inputs: {
+                unet_name: "flux1-dev.safetensors",
+                weight_dtype: "default",
+              },
+              class_type: "UNETLoader",
+              _meta: {
+                title: "Load Diffusion Model",
+              },
+            },
+            "13": {
+              inputs: {
+                noise: ["25", 0],
+                guider: ["22", 0],
+                sampler: ["16", 0],
+                sigmas: ["17", 0],
+                latent_image: ["43", 0],
+              },
+              class_type: "SamplerCustomAdvanced",
+              _meta: {
+                title: "SamplerCustomAdvanced",
+              },
+            },
+            "16": {
+              inputs: {
+                sampler_name: "euler",
+              },
+              class_type: "KSamplerSelect",
+              _meta: {
+                title: "KSamplerSelect",
+              },
+            },
+            "17": {
+              inputs: {
+                scheduler: "beta",
+                steps: 6,
+                denoise: 0.61,
+                model: ["40", 0],
+              },
+              class_type: "BasicScheduler",
+              _meta: {
+                title: "BasicScheduler",
+              },
+            },
+            "22": {
+              inputs: {
+                model: ["40", 0],
+                conditioning: ["29", 0],
+              },
+              class_type: "BasicGuider",
+              _meta: {
+                title: "BasicGuider",
+              },
+            },
+            "25": {
+              inputs: {
+                noise_seed: Math.floor(Math.random() * 999999999999) + 1,
+              },
+              class_type: "RandomNoise",
+              _meta: {
+                title: "RandomNoise",
+              },
+            },
+            "29": {
+              inputs: {
+                guidance: 3.5,
+                conditioning: ["6", 0],
+              },
+              class_type: "FluxGuidance",
+              _meta: {
+                title: "FluxGuidance",
+              },
+            },
+            "30": {
+              inputs: {
+                image: "current.png",
+                upload: "current.png",
+              },
+              class_type: "LoadImage",
+              _meta: {
+                title: "Load Image",
+              },
+            },
+            "40": {
+              inputs: {
+                lora_name: "MooDeng.safetensors",
+                strength_model: 0.8,
+                strength_clip: 1,
+                model: ["12", 0],
+                clip: ["11", 0],
+              },
+              class_type: "LoraLoader",
+              _meta: {
+                title: "Load LoRA",
+              },
+            },
+            "42": {
+              inputs: {
+                upscale_method: "lanczos",
+                megapixels: 1,
+                image: ["30", 0],
+              },
+              class_type: "ImageScaleToTotalPixels",
+              _meta: {
+                title: "ImageScaleToTotalPixels",
+              },
+            },
+            "43": {
+              inputs: {
+                pixels: ["42", 0],
+                vae: ["10", 0],
+              },
+              class_type: "VAEEncode",
+              _meta: {
+                title: "VAE Encode",
+              },
+            },
+          },
+          images: [
+            {
+              name: "current.png",
+              image: base64Data,
+            },
+          ],
+        },
       };
 
-      console.log("Sample Request Body:", JSON.stringify(encodedData, null, 2));
+      console.log(
+        "Sample Request Body with Base64 Image:",
+        JSON.stringify(body, null, 2)
+      );
+
+      console.log("POSTING to endpoint...");
+      setTransformLoading(true);
+
+      try {
+        const response = await fetch(
+          "https://api.runpod.ai/v2/p9sesagtclzjrr/runsync",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_RUNPOD_API_KEY}`,
+            },
+            body: JSON.stringify(body),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("Success!");
+        console.log("API Response:", data);
+
+        setTransformedImage(data.output.message);
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setTransformLoading(false);
+      }
     };
 
     reader.readAsDataURL(file); // Trigger file to Base64 conversion
@@ -288,7 +507,7 @@ const InputSection = () => {
   };
 
   return (
-    <div className="h-[120vh] w-screen flex flex-col items-center justify-center ">
+    <div className="py-48 w-screen flex flex-col items-center justify-center">
       {!image ? (
         <div className="">
           <div className="text-8xl text-center font-bold font-sans relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 pb-4">
@@ -303,12 +522,16 @@ const InputSection = () => {
         </div>
       )}
 
-      {/* <div className="w-full mt-12 max-w-4xl mx-auto min-h-96 border border-dashed bg-black border-neutral-800 rounded-lg">
-        <FileUpload onChange={handleFileUpload} />
-        <button onClick={uploadImage}>Upload Image</button>
-      </div> */}
+      <div className="w-full mt-12 max-w-4xl mx-auto min-h-96 border border-dashed bg-black border-neutral-800 rounded-lg">
+        <FileUpload onChange={handleFileUpload} uploadImage={uploadImage} />
+        {/* <div className="w-full flex items-center justify-center">
+          <Button onClick={uploadImage} className="">
+            Start !
+          </Button>
+        </div> */}
+      </div>
 
-      <div className="flex flex-col justify-center w-[600px] mt-8">
+      {/* <div className="flex flex-col justify-center w-[600px] mt-8">
         <Input
           type="text"
           placeholder="Enter a Prompt . . ."
@@ -395,9 +618,55 @@ const InputSection = () => {
             Submit
           </Button>
         </div>
-      </div>
+      </div> */}
 
       {/* Display loading progress bar */}
+
+      {transformLoading && (
+        <div className="mt-8 w-[512px]">
+          <h1 className="mt-4 mb-6 mx-auto text-center">
+            Transforming your image..
+          </h1>
+          <div className="w-full bg-gray-100 rounded-full h-2">
+            <div
+              className="bg-blue-500 h-2 rounded-full animate-pulse"
+              style={{ width: "100%" }}
+            />
+          </div>
+        </div>
+      )}
+
+      {!transformLoading && transformedImage && (
+        // <div className="mt-8 w-screen flex items-center justify-center">
+        //   <img
+        //     src={`data:image/png;base64,${originalImage}`} // Update the format if needed
+        //     alt="Generated"
+        //     className="w-[512px] h-[512px] object-fit:cover"
+        //   />
+        //   <img
+        //     src={`data:image/png;base64,${transformedImage}`} // Update the format if needed
+        //     alt="Generated"
+        //     className="w-[512px] h-[512px] object-fit:cover"
+        //   />
+        // </div>
+        <div className="px-4 py-12 rounded-3xl w-full flex items-center justify-center space-x-12">
+          <div className="flex flex-col items-center justify-center w-[256px]">
+            <h1 className="text-5xl text-center">Ta-Daa !</h1>
+            <h1 className="text-2xl py-2 text-center font-light">
+              Slide to Compare{" "}
+            </h1>
+          </div>
+          <Compare
+            firstImage={`data:image/png;base64,${originalImage}`}
+            secondImage={`data:image/png;base64,${transformedImage}`}
+            firstImageClassName="object-cover object-left-top"
+            secondImageClassname="object-cover object-left-top"
+            className="h-[250px] w-[200px] md:h-[500px] md:w-[500px]"
+            slideMode="hover"
+          />
+        </div>
+      )}
+
       {loading && (
         <div className="mt-8 w-[512px]">
           <h1 className="mt-4 mb-6">Generating image for prompt: {prompt}</h1>

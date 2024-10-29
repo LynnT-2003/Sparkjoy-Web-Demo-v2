@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { Button } from "./button";
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { IconUpload } from "@tabler/icons-react";
@@ -27,8 +28,10 @@ const secondaryVariant = {
 
 export const FileUpload = ({
   onChange,
+  uploadImage,
 }: {
   onChange?: (files: File[]) => void;
+  uploadImage: () => void;
 }) => {
   const [files, setFiles] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -63,7 +66,7 @@ export const FileUpload = ({
       <motion.div
         onClick={handleClick}
         whileHover="animate"
-        className="p-10 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden"
+        className="px-10 pt-10 pb-7 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden"
       >
         <input
           ref={fileInputRef}
@@ -77,10 +80,10 @@ export const FileUpload = ({
         </div>
         <div className="flex flex-col items-center justify-center">
           <p className="relative z-20 font-sans font-bold text-neutral-300 text-base">
-            Upload file
+            Upload Your Image
           </p>
           <p className="relative z-20 font-sans font-normal text-neutral-400 dark:text-neutral-400 text-base mt-2">
-            Drag or drop your files here or click to upload
+            Drag or drop your file here or click to upload
           </p>
           <div className="relative w-full mt-10 max-w-xl mx-auto">
             {files.length > 0 &&
@@ -174,12 +177,20 @@ export const FileUpload = ({
 
       {/* Reset Button */}
       {files.length > 0 && (
-        <button
-          onClick={handleReset}
-          className="mt-4 p-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-        >
-          Clear
-        </button>
+        <div className="w-full space-x-8 flex items-center justify-center px-[160px]">
+          <Button
+            onClick={handleReset}
+            className="w-[50%] bg-red-500 text-white text-lg py-4 px-12 rounded-md hover:bg-red-600"
+          >
+            Clear
+          </Button>
+          <Button
+            onClick={uploadImage}
+            className="w-full bg-slate-500 text-white text-lg py-4 px-12 rounded-md hover:bg-slate-600"
+          >
+            Start !
+          </Button>
+        </div>
       )}
     </div>
   );
