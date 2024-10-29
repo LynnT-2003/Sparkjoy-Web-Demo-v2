@@ -83,7 +83,7 @@ export const FileUpload = ({
             Upload Your Image
           </p>
           <p className="relative z-20 font-sans font-normal text-neutral-400 dark:text-neutral-400 text-base mt-2">
-            Drag or drop your file here or click to upload
+            Drag or drop your file here or click to upload.
           </p>
           <div className="relative w-full mt-10 max-w-xl mx-auto">
             {files.length > 0 &&
