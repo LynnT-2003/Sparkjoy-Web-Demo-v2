@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { signInWithGoogle } from "@/lib/firebase";
 import {
   motion,
   useScroll,
@@ -113,9 +112,6 @@ export const Header = () => {
         high-quality visuals instantly. Perfect for designers, developers, and
         creatives looking for fast, tailored results.
       </p>
-      <Button onClick={signInWithGoogle} className="relative z-50">
-        Sign In with Google
-      </Button>
     </div>
   );
 };
