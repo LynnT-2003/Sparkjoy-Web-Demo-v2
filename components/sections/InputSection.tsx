@@ -293,6 +293,13 @@ const InputSection = () => {
     reader.readAsDataURL(file); // Trigger file to Base64 conversion
   };
 
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = `data:image/png;base64,${transformedImage}`;
+    link.download = "transformed-image.png";
+    link.click();
+  };
+
   const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value);
   };
@@ -522,8 +529,25 @@ const InputSection = () => {
         </div>
       )}
 
-      <div className="w-full mt-12 max-w-4xl mx-auto min-h-96 border border-dashed bg-black border-neutral-800 rounded-lg">
-        <FileUpload onChange={handleFileUpload} uploadImage={uploadImage} />
+      <div className="w-full mt-12 max-w-4xl mx-auto h-96 border border-dashed bg-black border-neutral-800 rounded-lg">
+        {!transformLoading && (
+          <FileUpload onChange={handleFileUpload} uploadImage={uploadImage} />
+        )}
+
+        {transformLoading && (
+          <div className="w-full flex flex-col items-center justify-center h-full">
+            <h1 className="mb-6 mx-auto text-center animate-pulse font-bold font-sans text-xl">
+              Generating your image..
+            </h1>
+            <div className="w-[50%] bg-gray-100 rounded-full h-2">
+              <div
+                className="bg-blue-500 h-2 rounded-full animate-pulse"
+                style={{ width: "100%" }}
+              />
+            </div>
+          </div>
+        )}
+
         {/* <div className="w-full flex items-center justify-center">
           <Button onClick={uploadImage} className="">
             Start !
@@ -622,20 +646,6 @@ const InputSection = () => {
 
       {/* Display loading progress bar */}
 
-      {transformLoading && (
-        <div className="mt-8 w-[512px]">
-          <h1 className="mt-4 mb-6 mx-auto text-center">
-            Transforming your image..
-          </h1>
-          <div className="w-full bg-gray-100 rounded-full h-2">
-            <div
-              className="bg-blue-500 h-2 rounded-full animate-pulse"
-              style={{ width: "100%" }}
-            />
-          </div>
-        </div>
-      )}
-
       {!transformLoading && transformedImage && (
         // <div className="mt-8 w-screen flex items-center justify-center">
         //   <img
@@ -652,9 +662,16 @@ const InputSection = () => {
         <div className="px-4 py-12 rounded-3xl w-full flex items-center justify-center space-x-12">
           <div className="flex flex-col items-center justify-center w-[256px]">
             <h1 className="text-5xl text-center">Ta-Daa !</h1>
-            <h1 className="text-2xl py-2 text-center font-light">
+            {/* <h1 className="text-2xl py-2 text-center font-light">
               Slide to Compare{" "}
-            </h1>
+            </h1> */}
+            <Button
+              variant="destructive"
+              className="text-xl font-bold font-sans mt-5 px-7 py-5"
+              onClick={handleDownload}
+            >
+              Save your Image
+            </Button>
           </div>
           <Compare
             firstImage={`data:image/png;base64,${originalImage}`}
