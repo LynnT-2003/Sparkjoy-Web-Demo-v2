@@ -43,9 +43,9 @@ const InputSection = () => {
   const [files, setFiles] = useState<File[]>();
   const [file, setFile] = useState<File>();
 
-  const handleFileUpload = (files: File[]) => {
-    setFiles(files);
-    console.log(files);
+  const handleFileUpload = (file: File) => {
+    setFile(file);
+    console.log(file);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -54,12 +54,12 @@ const InputSection = () => {
     }
   };
   const uploadImage = () => {
-    if (!files || files.length === 0) {
+    if (!file) {
       console.log("No file selected.");
       return;
     }
 
-    const file = files[0];
+    // const file = files[0];
     const reader = new FileReader();
 
     // Convert the file to Base64

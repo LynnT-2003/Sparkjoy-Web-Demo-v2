@@ -30,15 +30,15 @@ export const FileUpload = ({
   onChange,
   uploadImage,
 }: {
-  onChange?: (files: File[]) => void;
+  onChange?: (file: File) => void;
   uploadImage: () => void;
 }) => {
-  const [files, setFiles] = useState<File[]>([]);
+  const [file, setFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileChange = (newFiles: File[]) => {
-    setFiles((prevFiles) => [...prevFiles, ...newFiles]);
-    onChange && onChange(newFiles);
+  const handleFileChange = (newFile: File) => {
+    setFile(newFile);
+    onChange && onChange(newFile);
   };
 
   const handleClick = () => {
@@ -46,7 +46,7 @@ export const FileUpload = ({
   };
 
   const handleReset = () => {
-    setFiles([]); // Clear the files state
+    setFile(null); // Clear the file state
     if (fileInputRef.current) {
       fileInputRef.current.value = ""; // Reset the file input value
     }
@@ -55,7 +55,12 @@ export const FileUpload = ({
   const { getRootProps, isDragActive } = useDropzone({
     multiple: false,
     noClick: true,
-    onDrop: handleFileChange,
+    accept: {
+      "image/jpeg": [".jpg", ".jpeg"],
+      "image/png": [".png"],
+      "image/webp": [".webp"],
+    },
+    onDrop: (acceptedFiles) => handleFileChange(acceptedFiles[0]),
     onDropRejected: (error) => {
       console.log(error);
     },
@@ -72,7 +77,11 @@ export const FileUpload = ({
           ref={fileInputRef}
           id="file-upload-handle"
           type="file"
-          onChange={(e) => handleFileChange(Array.from(e.target.files || []))}
+          accept="image/jpeg,image/png,image/webp"
+          onChange={(e) => {
+            const selectedFile = e.target.files?.[0];
+            if (selectedFile) handleFileChange(selectedFile);
+          }}
           className="hidden"
         />
         <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]">
@@ -86,57 +95,32 @@ export const FileUpload = ({
             Drag or drop your file here or click to upload.
           </p>
           <div className="relative w-full mt-10 max-w-xl mx-auto">
-            {files.length > 0 &&
-              files.map((file, idx) => (
-                <motion.div
-                  key={"file" + idx}
-                  layoutId={idx === 0 ? "file-upload" : "file-upload-" + idx}
-                  className={cn(
-                    "relative overflow-hidden z-40 bg-neutral-900 flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto rounded-md",
-                    "shadow-sm"
-                  )}
-                >
-                  <div className="flex justify-between w-full items-center gap-4">
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      layout
-                      className="text-base dark:text-neutral-300 truncate max-w-xs"
-                    >
-                      {file.name}
-                    </motion.p>
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      layout
-                      className="rounded-lg px-2 py-1 w-fit flex-shrink-0 text-sm dark:bg-neutral-800 dark:text-white shadow-input"
-                    >
-                      {(file.size / (1024 * 1024)).toFixed(2)} MB
-                    </motion.p>
-                  </div>
-
-                  <div className="flex text-sm md:flex-row flex-col items-start md:items-center w-full mt-2 justify-between text-neutral-600 dark:text-neutral-400">
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      layout
-                      className="px-1 py-0.5 rounded-md bg-neutral-800 "
-                    >
-                      {file.type}
-                    </motion.p>
-
-                    <motion.p
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      layout
-                    >
-                      modified{" "}
-                      {new Date(file.lastModified).toLocaleDateString()}
-                    </motion.p>
-                  </div>
-                </motion.div>
-              ))}
-            {!files.length && (
+            {file ? (
+              <motion.div
+                layoutId="file-upload"
+                className={cn(
+                  "relative overflow-hidden z-40 bg-neutral-900 flex flex-col items-start justify-start md:h-24 p-4 mt-4 w-full mx-auto rounded-md",
+                  "shadow-sm"
+                )}
+              >
+                <div className="flex justify-between w-full items-center gap-4">
+                  <motion.p className="text-base dark:text-neutral-300 truncate max-w-xs">
+                    {file.name}
+                  </motion.p>
+                  <motion.p className="rounded-lg px-2 py-1 w-fit flex-shrink-0 text-sm dark:bg-neutral-800 dark:text-white shadow-input">
+                    {(file.size / (1024 * 1024)).toFixed(2)} MB
+                  </motion.p>
+                </div>
+                <div className="flex text-sm md:flex-row flex-col items-start md:items-center w-full mt-2 justify-between text-neutral-600 dark:text-neutral-400">
+                  <motion.p className="px-1 py-0.5 rounded-md bg-neutral-800 ">
+                    {file.type}
+                  </motion.p>
+                  <motion.p>
+                    modified {new Date(file.lastModified).toLocaleDateString()}
+                  </motion.p>
+                </div>
+              </motion.div>
+            ) : (
               <motion.div
                 layoutId="file-upload"
                 variants={mainVariant}
@@ -165,7 +149,7 @@ export const FileUpload = ({
               </motion.div>
             )}
 
-            {!files.length && (
+            {!file && (
               <motion.div
                 variants={secondaryVariant}
                 className="absolute opacity-0 border border-dashed border-sky-400 inset-0 z-30 bg-transparent flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-md"
@@ -176,7 +160,7 @@ export const FileUpload = ({
       </motion.div>
 
       {/* Reset Button */}
-      {files.length > 0 && (
+      {file && (
         <div className="w-full space-x-8 flex items-center justify-center px-[160px]">
           <Button
             onClick={handleReset}
