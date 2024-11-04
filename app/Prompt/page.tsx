@@ -20,11 +20,7 @@ interface ImageObject {
   prompt: string; // Image generation prompt
 }
 
-interface PromptSectionProps {
-  onNewImage: (newImage: ImageObject) => void;
-}
-
-const PromptPage: React.FC<PromptSectionProps> = ({ onNewImage }) => {
+const PromptPage = () => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -216,7 +212,6 @@ const PromptPage: React.FC<PromptSectionProps> = ({ onNewImage }) => {
           image: data.output.message,
           prompt: body.input.workflow["6"].inputs.text,
         };
-        onNewImage(newImage); // Call onNewImage with the new image object
       }
 
       // Save the response to MongoDB
