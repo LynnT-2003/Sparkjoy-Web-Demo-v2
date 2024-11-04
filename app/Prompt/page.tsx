@@ -20,10 +20,11 @@ interface ImageObject {
   prompt: string; // Image generation prompt
 }
 
-interface InputSectionProps {
+interface PromptSectionProps {
   onNewImage: (newImage: ImageObject) => void;
 }
-const PromptPage: React.FC<InputSectionProps> = ({ onNewImage }) => {
+
+const PromptPage: React.FC<PromptSectionProps> = ({ onNewImage }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
