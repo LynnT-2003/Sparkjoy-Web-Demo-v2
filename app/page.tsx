@@ -34,34 +34,39 @@ export default function Home() {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    const fetchSavedImages = async () => {
-      console.log("Fetching..?");
-      if (!user) return; // Only fetch images if the user is logged in
+  const fetchSavedImages = async () => {
+    console.log("Fetching..?");
+    if (!user) return; // Only fetch images if the user is logged in
 
-      try {
-        console.log("Fetching from API for user:", user?.uid);
-        const response = await fetch(`/api/savedImages?userId=${user?.uid}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+    try {
+      console.log("Fetching from API for user:", user?.uid);
+      const response = await fetch(`/api/savedImages?userId=${user?.uid}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch saved images");
-        }
-
-        const data = await response.json();
-        setImages(data || []); // Now expecting an array of image objects
-        setLoading(false);
-        console.log("Fetched images:", data);
-      } catch (error) {
-        console.error("Error fetching saved images:", error);
-        setLoading(false); // Stop loading even if there's an error
+      if (!response.ok) {
+        throw new Error("Failed to fetch saved images");
       }
-    };
 
+      const data = await response.json();
+      setImages(data || []); // Now expecting an array of image objects
+      setLoading(false);
+      console.log("Fetched images:", data);
+    } catch (error) {
+      console.error("Error fetching saved images:", error);
+      setLoading(false); // Stop loading even if there's an error
+    }
+  };
+
+  const handleNewImage = (newImage: ImageObject) => {
+    // setImages((prevImages) => [newImage, ...prevImages]);
+    fetchSavedImages();
+  };
+
+  useEffect(() => {
     fetchSavedImages();
   }, [user]); // Fetch images when the user changes
 
@@ -71,7 +76,7 @@ export default function Home() {
         {loading ? (
           <motion.div
             key="loading"
-            className="h-screen flex items-center justify-center"
+            className="w-screen h-screen flex items-center justify-center"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -82,15 +87,15 @@ export default function Home() {
         ) : (
           <motion.div
             key="content"
-            className="flex flex-col w-screen items-center justify-center "
+            className="flex flex-col w-screen  items-center justify-center "
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
           >
             <HeroSection images={images} />
-            <div className="flex flex-col w-full w-screen items-center justify-center bg-grid-gray-900 bg-black">
-              <InputSection />
+            <div className="flex flex-col w-screen items-center justify-center">
+              <InputSection onNewImage={handleNewImage} />
               <HistoryImagesSection homeImages={images} />
             </div>
           </motion.div>

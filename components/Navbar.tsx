@@ -40,8 +40,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-screen flex bg-transparent items-center justify-center">
-      <header className="md:px-0 px-5 w-[90vw] py-2 flex justify-between items-center">
+    <div className="w-screen flex items-center justify-center">
+      <header className="md:px-0 px-0 w-[90vw] py-2 flex justify-between items-center">
         <nav className="flex w-full screen-max-width">
           <div className="flex flex-1 items-center ">
             <div className="md:pr-15 py-1 pr-5 cursor-pointer">

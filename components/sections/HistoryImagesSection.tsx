@@ -49,7 +49,7 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
   }, [initialImages]);
 
   return (
-    <div className="px-24">
+    <div className="px-24 w-full">
       {!homeImages ? (
         <div className="flex justify-center items-center h-20">
           <div className="w-24 h-2 bg-gray-300 rounded-full overflow-hidden">
@@ -58,38 +58,41 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
           <p className="ml-4">Loading...</p>
         </div>
       ) : homeImages.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pb-24 gap-6">
+        <>
+          {" "}
           <h2 className="text-xl font-bold mt-12 mb-6 pl-2">
             History of Generated Images
           </h2>
-          {homeImages
-            .slice()
-            .reverse()
-            .map(({ _id, image, prompt }, index) => (
-              <CardContainer className="inter-var" key={index}>
-                <CardBody className="relative group/card dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-full rounded-xl p-6 px-2 border">
-                  <CardItem translateZ="100" className="w-full mt-0">
-                    <Image
-                      src={`data:image/png;base64,${image}`} // Use base64 string from image object
-                      height={1000}
-                      width={1000}
-                      className="object-cover rounded-xl group-hover/card:shadow-xl"
-                      alt={`Image with prompt: ${prompt}`}
-                    />
-                  </CardItem>
-                  <CardItem translateZ="50" className="mt-4 text-white">
-                    <p className="font-bold">Prompt: {prompt}</p>
-                    <button
-                      className="mt-4 text-red-500 hover:text-red-700"
-                      onClick={() => handleDelete(_id)}
-                    >
-                      Delete
-                    </button>
-                  </CardItem>
-                </CardBody>
-              </CardContainer>
-            ))}
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pb-24 gap-6">
+            {homeImages
+              .slice()
+              .reverse()
+              .map(({ _id, image, prompt }, index) => (
+                <CardContainer className="inter-var" key={index}>
+                  <CardBody className="relative group/card dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-full rounded-xl p-6 px-2 border">
+                    <CardItem translateZ="100" className="w-full mt-0">
+                      <Image
+                        src={`data:image/png;base64,${image}`} // Use base64 string from image object
+                        height={1000}
+                        width={1000}
+                        className="object-cover rounded-xl group-hover/card:shadow-xl"
+                        alt={`Image with prompt: ${prompt}`}
+                      />
+                    </CardItem>
+                    <CardItem translateZ="50" className="mt-4 text-white">
+                      <p className="font-bold">Prompt: {prompt}</p>
+                      <button
+                        className="mt-4 text-red-500 hover:text-red-700"
+                        onClick={() => handleDelete(_id)}
+                      >
+                        Delete
+                      </button>
+                    </CardItem>
+                  </CardBody>
+                </CardContainer>
+              ))}
+          </div>
+        </>
       ) : (
         <div>{/* <p>No images generated yet!</p> */}</div>
       )}

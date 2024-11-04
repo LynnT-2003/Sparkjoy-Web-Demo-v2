@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { User } from "firebase/auth";
 import { onAuthStateChange } from "@/lib/firebase";
 import { Compare } from "../ui/compare";
@@ -14,7 +15,17 @@ import {
 
 import { FileUpload } from "../ui/file-upload";
 
-const InputSection = () => {
+interface ImageObject {
+  _id: string;
+  image: string; // Base64-encoded image string
+  prompt: string; // Image generation prompt
+}
+interface InputSectionProps {
+  onNewImage: (newImage: ImageObject) => void;
+}
+
+const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
+  const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -300,6 +311,31 @@ const InputSection = () => {
     link.click();
   };
 
+  const handlePrint = () => {
+    const imageWindow = window.open("", "_blank");
+    if (imageWindow) {
+      // Check if the window was opened successfully
+      imageWindow.document.write(`
+        <html>
+          <head>
+            <title>Print Image</title>
+          </head>
+          <body>
+            <img src="data:image/png;base64,${transformedImage}" alt="Transformed Image" style="width:100%; max-width:800px;" />
+            <script>
+              window.onload = function() {
+                window.print();
+              }
+            </script>
+          </body>
+        </html>
+      `);
+      imageWindow.document.close();
+    } else {
+      console.error("Failed to open a new window for printing.");
+    }
+  };
+
   const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPrompt(e.target.value);
   };
@@ -478,6 +514,12 @@ const InputSection = () => {
 
       if (data.output.message) {
         setImage(data.output.message); // Set the Base64 image string
+        const newImage = {
+          _id: data.id,
+          image: data.output.message,
+          prompt: body.input.workflow["6"].inputs.text,
+        };
+        onNewImage(newImage); // Call onNewImage with the new image object
       }
 
       // Save the response to MongoDB
@@ -514,10 +556,10 @@ const InputSection = () => {
   };
 
   return (
-    <div className="py-48 w-screen flex flex-col items-center justify-center">
+    <div className="py-48 w-full flex flex-col items-center justify-center">
       {!image ? (
         <div className="">
-          <div className="text-8xl text-center font-bold font-sans relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 pb-4">
+          <div className="text-6xl text-center font-bold font-sans relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 pb-4">
             <div className="">Start Creating</div>
           </div>
         </div>
@@ -529,7 +571,7 @@ const InputSection = () => {
         </div>
       )}
 
-      <div className="w-full mt-12 max-w-4xl mx-auto h-96 border border-dashed bg-black border-neutral-800 rounded-lg">
+      {/* <div className="w-full mt-12 max-w-4xl mx-auto h-96 border border-dashed bg-black border-neutral-800 rounded-lg">
         {!transformLoading && (
           <FileUpload onChange={handleFileUpload} uploadImage={uploadImage} />
         )}
@@ -547,15 +589,9 @@ const InputSection = () => {
             </div>
           </div>
         )}
-
-        {/* <div className="w-full flex items-center justify-center">
-          <Button onClick={uploadImage} className="">
-            Start !
-          </Button>
-        </div> */}
       </div>
 
-      {/* <div className="flex flex-col justify-center w-[600px] mt-8">
+      <div className="flex flex-col justify-center w-[600px] mt-8">
         <Input
           type="text"
           placeholder="Enter a Prompt . . ."
@@ -646,6 +682,42 @@ const InputSection = () => {
 
       {/* Display loading progress bar */}
 
+      <div className="w-full mx-24 mt-12 ">
+        <div className="lg:mx-64 mx-48 flex gap-12 items-center justify-center">
+          <div
+            className="w-full group"
+            onClick={() => {
+              router.push("/ImageUpload");
+            }}
+          >
+            <img
+              src="/image_upload.jpg"
+              alt="logo"
+              className="w-full grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
+            />
+            <h1 className="text-center mt-6 text-xl font-bold  group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:via-violet-500 group-hover:to-pink-500 transition duration-300 ease-in-out">
+              Upload your Image
+            </h1>
+          </div>
+
+          <div
+            className="w-full group"
+            onClick={() => {
+              router.push("/Prompt");
+            }}
+          >
+            <img
+              src="/image_upload.jpg"
+              alt="logo"
+              className="w-full grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
+            />
+            <h1 className="text-center mt-6 text-xl font-bold group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:via-violet-500 group-hover:to-pink-500 transition duration-300 ease-in-out">
+              Create a Prompt
+            </h1>
+          </div>
+        </div>
+      </div>
+
       {!transformLoading && transformedImage && (
         // <div className="mt-8 w-screen flex items-center justify-center">
         //   <img
@@ -667,7 +739,7 @@ const InputSection = () => {
             </h1> */}
             <Button
               variant="destructive"
-              className="text-xl font-bold font-sans mt-5 px-7 py-5"
+              className="text-xl font-sans mt-5 px-7 py-5"
               onClick={handleDownload}
             >
               Save your Image
