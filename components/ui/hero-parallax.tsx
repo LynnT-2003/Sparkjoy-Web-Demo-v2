@@ -101,7 +101,7 @@ export const HeroParallax = ({
 
 export const Header = () => {
   return (
-    <div className="ml-[7.5vw] relative py-20 md:py-20 px-4 w-full  left-0 top-0">
+    <div className="ml-[7.5vw] relative py-20 md:py-20 px-4 w-full left-0 top-0">
       <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
         The Ultimate Studio for
         <br /> AI Image Generation
