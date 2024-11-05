@@ -41,24 +41,17 @@ const Navbar = () => {
 
   return (
     <div className="w-screen flex items-center justify-center">
-      <header className="md:px-0 px-0 w-[90vw] py-2 flex justify-between items-center">
+      <header className="md:px-0 px-0 w-[85vw] py-2 flex justify-between items-center">
         <nav className="flex w-full screen-max-width">
           <div className="flex flex-1 items-center ">
             <div className="md:pr-15 py-1 pr-5 cursor-pointer">
-              {/* <img
-                  src="/logo.png"
-                  width={128}
-                  onClick={() => router.push("/")}
-                /> */}
+              <img
+                src="/logo_clear.png"
+                width={72}
+                onClick={() => router.push("/")}
+              />
             </div>
-            {user ? (
-              <div className="pl-0 font-thin text-sm cursor-pointer text-gray hover:font-light hover:text-base hover:text-slate-500 transition-all">
-                {/* Using Next.js Image component */}
-                <span className="text-md">Welcome {user.displayName}</span>
-              </div>
-            ) : (
-              <div></div>
-            )}
+            <h1 className="text-2xl font-bold">PrismaForge</h1>
           </div>
         </nav>
         <div className="flex gap-0 justify-center items-center">
@@ -73,7 +66,7 @@ const Navbar = () => {
                 className="rounded-full"
                 onClick={() => router.push("/Profile")}
               />
-              <Button onClick={handleSignOut} className="text-sm ml-4">
+              <Button onClick={handleSignOut} className="text-sm ml-4 py-6">
                 Sign Out
               </Button>
             </div>
