@@ -383,13 +383,13 @@ const PromptPage = () => {
 
   const handleDownload = () => {
     const link = document.createElement("a");
-    link.href = `data:image/png;base64,${transformedImage}`;
+    link.href = `data:image/png;base64,${image}`;
     link.download = "transformed-image.png";
     link.click();
   };
 
   return (
-    <div className="py-48 w-full flex flex-col items-center justify-center">
+    <div className="py-10 w-full flex flex-col items-center justify-center">
       <div className="flex flex-col justify-center w-[600px] mt-8">
         <Input
           type="text"

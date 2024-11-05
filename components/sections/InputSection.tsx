@@ -560,7 +560,7 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
       {!image ? (
         <div className="">
           <div className="text-6xl text-center font-bold font-sans relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 pb-4">
-            <div className="">Start Creating</div>
+            <div className="">Start Creating Your Own !</div>
           </div>
         </div>
       ) : (
@@ -683,7 +683,7 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
       {/* Display loading progress bar */}
 
       <div className="w-full mx-24 mt-12 ">
-        <div className="flex gap-12 items-center justify-center">
+        <div className="flex gap-12 mt-4 items-center justify-center">
           <div
             className="flex flex-col items-center justify-center group"
             onClick={() => {
@@ -693,10 +693,10 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
             <img
               src="/abstract1.png"
               alt="logo"
-              className="w-[400px] grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
+              className="w-[500px] grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
             />
             <h1 className="text-center mt-6 text-xl font-bold  group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-300 group-hover:via-cyan-500 group-hover:to-blue-300 transition duration-300 ease-in-out">
-              Upload your Image
+              Upload an Image
             </h1>
           </div>
 
@@ -709,7 +709,7 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
             <img
               src="/abstract2.png"
               alt="logo"
-              className="w-[400px] grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
+              className="w-[500px] grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
             />
             <h1 className="text-center mt-6 text-xl font-bold group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:via-violet-500 group-hover:to-pink-500 transition duration-300 ease-in-out">
               Create a Prompt

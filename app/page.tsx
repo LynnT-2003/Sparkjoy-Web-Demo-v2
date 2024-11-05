@@ -25,6 +25,7 @@ export default function Home() {
       if (user) {
         setUser(user);
         console.log("User is now: ", user);
+        fetchSavedImages(user.uid); // Fetch images when the user logs in
       } else {
         setUser(null);
         setImages([]); // Clear images when user signs out
@@ -34,13 +35,11 @@ export default function Home() {
     return () => unsubscribe();
   }, []);
 
-  const fetchSavedImages = async () => {
+  const fetchSavedImages = async (userId: string) => {
     console.log("Fetching..?");
-    if (!user) return; // Only fetch images if the user is logged in
-
     try {
-      console.log("Fetching from API for user:", user?.uid);
-      const response = await fetch(`/api/savedImages?userId=${user?.uid}`, {
+      console.log("Fetching from API for user:", userId);
+      const response = await fetch(`/api/savedImages?userId=${userId}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +52,7 @@ export default function Home() {
 
       const data = await response.json();
       setImages(data || []); // Now expecting an array of image objects
-      setLoading(false);
+      setLoading(false); // Stop loading after fetching images
       console.log("Fetched images:", data);
     } catch (error) {
       console.error("Error fetching saved images:", error);
@@ -62,44 +61,26 @@ export default function Home() {
   };
 
   const handleNewImage = (newImage: ImageObject) => {
-    // setImages((prevImages) => [newImage, ...prevImages]);
-    fetchSavedImages();
+    fetchSavedImages(user?.uid!); // Fetch images again after a new image is added
   };
-
-  useEffect(() => {
-    fetchSavedImages();
-  }, [user]); // Fetch images when the user changes
 
   return (
     <div className="w-screen">
       <AnimatePresence mode="wait">
-        {loading ? (
-          <motion.div
-            key="loading"
-            className="w-screen h-[90vh] flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <LoadingSection />
-          </motion.div>
-        ) : (
-          <motion.div
-            key="content"
-            className="flex flex-col w-screen  items-center justify-center "
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <HeroSection images={images} />
-            <div className="flex flex-col w-screen items-center justify-center">
-              <InputSection onNewImage={handleNewImage} />
-              <HistoryImagesSection homeImages={images} />
-            </div>
-          </motion.div>
-        )}
+        <motion.div
+          key="content"
+          className="flex flex-col w-screen items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <HeroSection images={images} />
+          <div className="flex flex-col w-screen items-center justify-center">
+            <InputSection onNewImage={handleNewImage} />
+            <HistoryImagesSection homeImages={images} />
+          </div>
+        </motion.div>
       </AnimatePresence>
     </div>
   );
