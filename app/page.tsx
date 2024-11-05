@@ -60,8 +60,12 @@ export default function Home() {
     }
   };
 
-  const handleNewImage = (newImage: ImageObject) => {
-    fetchSavedImages(user?.uid!); // Fetch images again after a new image is added
+  const handleNewImage = () => {
+    if (user?.uid) {
+      fetchSavedImages(user.uid); // Fetch images again after a new image is added
+    } else {
+      console.error("User not authenticated");
+    }
   };
 
   return (
