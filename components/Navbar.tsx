@@ -41,7 +41,7 @@ const Navbar = () => {
 
   return (
     <div className="w-screen flex items-center justify-center">
-      <header className="md:px-0 px-0 w-[85vw] py-2 flex justify-between items-center">
+      <header className="md:px-0 px-0 w-[85vw] h-[10vh] flex justify-between items-center">
         <nav className="flex w-full screen-max-width">
           <div className="flex flex-1 items-center">
             <div className="flex items-center" onClick={() => router.push("/")}>

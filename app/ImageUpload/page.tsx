@@ -298,7 +298,7 @@ const ImageUploadPage = () => {
 
   return (
     <div className="py-48 w-full flex flex-col items-center justify-center">
-      <div className="w-full mt-12 max-w-4xl mx-auto h-96 border border-dashed bg-black border-neutral-800 rounded-lg">
+      <div className="w-full max-w-4xl mx-auto h-96 border border-dashed bg-black border-neutral-800 rounded-lg">
         {!transformLoading && (
           <FileUpload onChange={handleFileUpload} uploadImage={uploadImage} />
         )}
@@ -338,8 +338,7 @@ const ImageUploadPage = () => {
               Slide to Compare{" "}
             </h1> */}
             <Button
-              variant="destructive"
-              className="text-xl font-sans mt-5 px-7 py-5"
+              className="text-lg font-sans mt-7 px-7 py-6"
               onClick={handleDownload}
             >
               Save your Image

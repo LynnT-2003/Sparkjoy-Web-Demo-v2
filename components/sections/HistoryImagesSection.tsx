@@ -49,7 +49,7 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
   }, [initialImages]);
 
   return (
-    <div className="px-24 w-full">
+    <div className="px-24 mt-48 w-full">
       {!homeImages ? (
         <div className="flex justify-center items-center h-20">
           <div className="w-24 h-2 bg-gray-300 rounded-full overflow-hidden">

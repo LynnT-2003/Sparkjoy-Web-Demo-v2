@@ -556,7 +556,7 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
   };
 
   return (
-    <div className="py-48 w-full flex flex-col items-center justify-center">
+    <div className="w-full h-screen flex flex-col items-center justify-center">
       {!image ? (
         <div className="">
           <div className="text-6xl text-center font-bold font-sans relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 pb-4">
@@ -691,11 +691,11 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
             }}
           >
             <img
-              src="/image_upload.jpg"
+              src="/abstract1.png"
               alt="logo"
               className="w-[400px] grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
             />
-            <h1 className="text-center mt-6 text-xl font-bold  group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:via-violet-500 group-hover:to-pink-500 transition duration-300 ease-in-out">
+            <h1 className="text-center mt-6 text-xl font-bold  group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-300 group-hover:via-cyan-500 group-hover:to-blue-300 transition duration-300 ease-in-out">
               Upload your Image
             </h1>
           </div>
@@ -707,7 +707,7 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
             }}
           >
             <img
-              src="/image_upload.jpg"
+              src="/abstract2.png"
               alt="logo"
               className="w-[400px] grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
             />
