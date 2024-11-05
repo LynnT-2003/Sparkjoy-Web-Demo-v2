@@ -259,7 +259,7 @@ const ImageUploadPage = () => {
 
       try {
         const response = await fetch(
-          "https://api.runpod.ai/v2/p9sesagtclzjrr/runsync",
+          `${process.env.NEXT_PUBLIC_RUNPOD_SERVERLESS_ENDPOINT}`,
           {
             method: "POST",
             headers: {
