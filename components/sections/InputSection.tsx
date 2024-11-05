@@ -683,9 +683,9 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
       {/* Display loading progress bar */}
 
       <div className="w-full mx-24 mt-12 ">
-        <div className="lg:mx-64 mx-48 flex gap-12 items-center justify-center">
+        <div className="flex gap-12 items-center justify-center">
           <div
-            className="w-full group"
+            className="flex flex-col items-center justify-center group"
             onClick={() => {
               router.push("/ImageUpload");
             }}
@@ -693,7 +693,7 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
             <img
               src="/image_upload.jpg"
               alt="logo"
-              className="w-full grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
+              className="w-[400px] grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
             />
             <h1 className="text-center mt-6 text-xl font-bold  group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:via-violet-500 group-hover:to-pink-500 transition duration-300 ease-in-out">
               Upload your Image
@@ -701,7 +701,7 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
           </div>
 
           <div
-            className="w-full group"
+            className="flex flex-col items-center justify-center group"
             onClick={() => {
               router.push("/Prompt");
             }}
@@ -709,7 +709,7 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
             <img
               src="/image_upload.jpg"
               alt="logo"
-              className="w-full grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
+              className="w-[400px] grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
             />
             <h1 className="text-center mt-6 text-xl font-bold group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:via-violet-500 group-hover:to-pink-500 transition duration-300 ease-in-out">
               Create a Prompt
