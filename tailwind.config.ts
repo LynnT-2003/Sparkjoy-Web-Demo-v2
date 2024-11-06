@@ -99,6 +99,7 @@ const config: Config = {
       );
     },
     require("tailwindcss-animate"),
+    require("tailwindcss-motion"),
   ],
 };
 

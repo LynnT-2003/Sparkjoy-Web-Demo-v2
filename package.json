@@ -29,7 +29,8 @@
     "react-dom": "^18",
     "react-dropzone": "^14.2.9",
     "tailwind-merge": "^2.5.2",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-motion": "^0.4.1-beta"
   },
   "devDependencies": {
     "@types/node": "^20",
