@@ -709,7 +709,7 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
               alt="logo"
               className="w-[500px] grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
             />
-            <h1 className="text-center mt-6 text-xl font-bold  group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-300 group-hover:via-cyan-500 group-hover:to-blue-300 transition duration-300 ease-in-out">
+            <h1 className="text-center mt-6 text-2xl font-bold  group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-300 group-hover:via-cyan-500 group-hover:to-blue-300 transition duration-300 ease-in-out">
               Upload an Image
             </h1>
           </div>
@@ -725,7 +725,7 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
               alt="logo"
               className="w-[500px] grayscale opacity-75 group-hover:opacity-100 group-hover:grayscale-0 transition duration-300 ease-in-out"
             />
-            <h1 className="text-center mt-6 text-xl font-bold group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:via-violet-500 group-hover:to-pink-500 transition duration-300 ease-in-out">
+            <h1 className="text-center mt-6 text-2xl font-bold group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-purple-500 group-hover:via-violet-500 group-hover:to-pink-500 transition duration-300 ease-in-out">
               Create a Prompt
             </h1>
           </div>
