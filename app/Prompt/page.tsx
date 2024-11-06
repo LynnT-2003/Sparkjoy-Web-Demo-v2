@@ -14,6 +14,9 @@ import {
 
 import { FileUpload } from "@/components/ui/file-upload";
 
+import { useGSAP } from "@gsap/react";
+import { animateWithGsapBottom } from "@/lib/animation";
+
 interface ImageObject {
   _id: string;
   image: string; // Base64-encoded image string
@@ -21,6 +24,14 @@ interface ImageObject {
 }
 
 const PromptPage = () => {
+  useGSAP(() => {
+    animateWithGsapBottom("#promptSection", {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+    });
+  }, []);
+
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -390,7 +401,10 @@ const PromptPage = () => {
 
   return (
     <div className="py-10 w-full flex flex-col items-center justify-center">
-      <div className="flex flex-col justify-center w-[600px] mt-8">
+      <div
+        id="promptSection"
+        className="flex flex-col justify-center w-[600px] mt-8"
+      >
         <Input
           type="text"
           placeholder="Enter a Prompt . . ."

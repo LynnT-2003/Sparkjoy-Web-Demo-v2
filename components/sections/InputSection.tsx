@@ -15,6 +15,9 @@ import {
 
 import { FileUpload } from "../ui/file-upload";
 
+import { useGSAP } from "@gsap/react";
+import { animateWithGsapRight, animateWithGsapBottom } from "@/lib/animation";
+
 interface ImageObject {
   _id: string;
   image: string; // Base64-encoded image string
@@ -25,6 +28,11 @@ interface InputSectionProps {
 }
 
 const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
+  useGSAP(() => {
+    animateWithGsapBottom("#create", { y: 0, opacity: 1, duration: 1 });
+    animateWithGsapRight("#options", { x: 0, opacity: 1, duration: 1 });
+  }, []);
+
   const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
 
@@ -559,7 +567,10 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
     <div className="w-full h-screen flex flex-col items-center justify-center">
       {!image ? (
         <div className="">
-          <div className="text-6xl text-center font-bold font-sans relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 pb-4">
+          <div
+            id="create"
+            className="text-6xl text-center font-bold font-sans relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 pb-4"
+          >
             <div className="">Start Creating Your Own !</div>
           </div>
         </div>
@@ -683,7 +694,10 @@ const InputSection: React.FC<InputSectionProps> = ({ onNewImage }) => {
       {/* Display loading progress bar */}
 
       <div className="w-full mx-24 mt-12 ">
-        <div className="flex gap-12 mt-4 items-center justify-center">
+        <div
+          id="options"
+          className="flex gap-12 mt-4 items-center justify-center"
+        >
           <div
             className="flex flex-col items-center justify-center group"
             onClick={() => {

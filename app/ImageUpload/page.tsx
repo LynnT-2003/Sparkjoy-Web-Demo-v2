@@ -15,6 +15,9 @@ import {
 
 import { FileUpload } from "@/components/ui/file-upload";
 
+import { useGSAP } from "@gsap/react";
+import { animateWithGsapBottom } from "@/lib/animation";
+
 interface ImageObject {
   _id: string;
   image: string; // Base64-encoded image string
@@ -25,6 +28,14 @@ interface InputSectionProps {
 }
 
 const ImageUploadPage = () => {
+  useGSAP(() => {
+    animateWithGsapBottom("#uploadSection", {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+    });
+  }, []);
+
   const [prompt, setPrompt] = useState("");
   const [sampler, setSampler] = useState("Euler");
   const [steps, setSteps] = useState("50");
@@ -298,7 +309,10 @@ const ImageUploadPage = () => {
 
   return (
     <div className="py-48 w-full flex flex-col items-center justify-center">
-      <div className="w-full max-w-4xl mx-auto h-96 border border-dashed bg-black border-neutral-800 rounded-lg">
+      <div
+        id="uploadSection"
+        className="w-full max-w-4xl mx-auto h-96 border border-dashed bg-black border-neutral-800 rounded-lg"
+      >
         {!transformLoading && (
           <FileUpload onChange={handleFileUpload} uploadImage={uploadImage} />
         )}
