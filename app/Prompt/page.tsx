@@ -11,6 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Textarea } from "@/components/ui/textarea";
 
 import { FileUpload } from "@/components/ui/file-upload";
 
@@ -60,7 +61,7 @@ const PromptPage = () => {
   const [files, setFiles] = useState<File[]>();
   const [file, setFile] = useState<File>();
 
-  const handlePromptChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPrompt(e.target.value);
   };
 
@@ -321,7 +322,7 @@ const PromptPage = () => {
           },
           "25": {
             inputs: {
-              noise_seed: 1111,
+              noise_seed: Math.floor(1000 + Math.random() * 9000),
             },
             class_type: "RandomNoise",
             _meta: {
@@ -403,16 +404,15 @@ const PromptPage = () => {
     <div className="py-10 w-full flex flex-col items-center justify-center">
       <div
         id="promptSection"
-        className="flex flex-col justify-center w-[600px] mt-8"
+        className="flex flex-col justify-center w-[1200px] mt-8"
       >
-        <Input
-          type="text"
+        <Textarea
           placeholder="Enter a Prompt . . ."
-          onChange={handlePromptChange}
-          className="text-lg py-9 pl-9 mb-2"
+          onInput={handlePromptChange}
+          className="text-2xl pt-8 pl-9 "
         />
-        <div className="flex w-full gap-6 ">
-          <div className="w-1/2 mt-4">
+        <div className="flex justify-start w-full gap-6 ">
+          <div className="w-1/3 mt-4">
             <Popover>
               <PopoverTrigger asChild>
                 <Button
@@ -486,7 +486,7 @@ const PromptPage = () => {
           <Button
             variant="outline"
             onClick={handleSubmitClick}
-            className="hover:bg-no-repeat hover:border-none hover:text-xl hover:bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 hover:text-white w-1/2 mt-4 px-6 py-1.5 bg-white text-black text-md rounded p-6"
+            className="hover:bg-no-repeat hover:border-none hover:text-xl hover:bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 hover:text-white w-2/3 mt-4 px-6 py-1.5 bg-white text-black text-md rounded p-6"
           >
             Submit
           </Button>

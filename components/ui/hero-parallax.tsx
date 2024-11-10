@@ -52,7 +52,7 @@ export const HeroParallax = ({
 
   const imagesStatic = [
     "/example/img1.png",
-    "/example/img2.png",
+    "/example/img.png",
     "/example/img3.png",
     "/example/img4.png",
     "/example/img5.png",
@@ -60,7 +60,7 @@ export const HeroParallax = ({
     "/example/img7.png",
     "/example/img8.png",
     "/example/img1.png",
-    "/example/img2.png",
+    "/example/img.png",
     "/example/img4.png",
     "/example/img7.png",
     "/example/img6.png",
