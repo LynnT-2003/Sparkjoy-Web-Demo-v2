@@ -55,7 +55,7 @@ export const HeroParallax = ({
     "/example/img.png",
     "/example/img3.png",
     "/example/img4.png",
-    "/example/img5.png",
+    "/example/img7.png",
     "/example/img6.png",
     "/example/img7.png",
     "/example/img8.png",
