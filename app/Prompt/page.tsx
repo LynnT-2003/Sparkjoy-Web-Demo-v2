@@ -301,7 +301,7 @@ const PromptPage = () => {
           "17": {
             inputs: {
               scheduler: "beta",
-              steps: 8,
+              steps: 20,
               denoise: 1,
               model: ["12", 0],
             },
