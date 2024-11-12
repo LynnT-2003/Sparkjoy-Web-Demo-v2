@@ -353,38 +353,54 @@ const PromptPage = () => {
 
       if (data.output.message) {
         setImage(data.output.message); // Set the Base64 image string
-        const newImage = {
-          _id: data.id,
-          image: data.output.message,
-          prompt: body.input.workflow["6"].inputs.text,
-        };
-      }
+        // const newImage = {
+        //   _id: data.id,
+        //   image: data.output.message,
+        //   prompt: body.input.workflow["6"].inputs.text,
+        // };
+        const base64Image = data.output.message;
 
-      // Save the response to MongoDB
-      const mongoBody = {
-        delayTime: data.delayTime,
-        executionTime: data.executionTime,
-        image: data.output.message,
-        prompt: prompt || "Default prompt here",
-        userId: user?.uid,
-        username: user?.displayName,
-      };
-
-      // console.log("Lets post to MongoDB later:", data);
-      console.log("Posting", mongoBody);
-      try {
-        const mongoResponse = await fetch("/api/savedImages", {
+        // Call Cloudinary upload function
+        const cloudinaryResponse = await fetch("/api/upload-to-cloudinary", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(mongoBody),
+          body: JSON.stringify({ base64Image }),
         });
-        console.log("MongoDB response status:", mongoResponse.status);
-        const mongoResponseBody = await mongoResponse.json();
-        console.log("MongoDB response body:", mongoResponseBody);
-      } catch (error) {
-        console.error("Error saving to MongoDB:", error);
+
+        const cloudinaryData = await cloudinaryResponse.json();
+
+        console.log("Cloudinary URL:", cloudinaryData.url);
+
+        if (cloudinaryData.url) {
+          // Save the response to MongoDB
+          const mongoBody = {
+            delayTime: data.delayTime,
+            executionTime: data.executionTime,
+            image: cloudinaryData.url,
+            prompt: prompt || "Default prompt here",
+            userId: user?.uid,
+            username: user?.displayName,
+          };
+
+          // // console.log("Lets post to MongoDB later:", data);
+          console.log("Posting", mongoBody);
+          try {
+            const mongoResponse = await fetch("/api/savedImages", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(mongoBody),
+            });
+            console.log("MongoDB response status:", mongoResponse.status);
+            const mongoResponseBody = await mongoResponse.json();
+            console.log("MongoDB response body:", mongoResponseBody);
+          } catch (error) {
+            console.error("Error saving to MongoDB:", error);
+          }
+        }
       }
     } catch (error) {
       console.error("Error:", error);

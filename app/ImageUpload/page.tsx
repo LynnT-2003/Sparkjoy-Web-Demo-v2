@@ -289,7 +289,23 @@ const ImageUploadPage = () => {
         console.log("Success!");
         console.log("API Response:", data);
 
-        setTransformedImage(data.output.message);
+        if (data.output.message) {
+          setTransformedImage(data.output.message);
+          const base64Image = data.output.message;
+
+          // Call Cloudinary upload function
+          const cloudinaryResponse = await fetch("/api/upload-to-cloudinary", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ base64Image }),
+          });
+
+          const cloudinaryData = await cloudinaryResponse.json();
+
+          console.log("Cloudinary URL:", cloudinaryData.url);
+        }
       } catch (error) {
         console.error("Error:", error);
       } finally {

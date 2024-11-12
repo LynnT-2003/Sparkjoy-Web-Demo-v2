@@ -36,5 +36,5 @@ const UserSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export default mongoose.models.UserImages ||
-  mongoose.model("UserImages", UserSchema);
+export default mongoose.models.CloudinaryUserImages ||
+  mongoose.model("CloudinaryUserImages", UserSchema);

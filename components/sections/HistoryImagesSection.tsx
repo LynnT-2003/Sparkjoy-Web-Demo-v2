@@ -19,21 +19,21 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
 }) => {
   const [homeImages, setHomeImages] = useState<ImageObject[]>(initialImages);
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (imageUrl: string) => {
     try {
       const response = await fetch("/api/savedImages", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id }), // Send the image ID in the body
+        body: JSON.stringify({ imageUrl }), // Send the image ID in the body
       });
 
       if (response.ok) {
         console.log("Image deleted successfully");
         // Remove the image from the local state after deletion
         setHomeImages((prevImages) =>
-          prevImages.filter((image) => image._id !== id)
+          prevImages.filter((image) => image.image !== imageUrl)
         );
       } else {
         console.error("Failed to delete image");
@@ -72,7 +72,7 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
                   <CardBody className="relative group/card dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full h-full rounded-xl p-6 px-2 border">
                     <CardItem translateZ="100" className="w-full mt-0">
                       <Image
-                        src={`data:image/png;base64,${image}`} // Use base64 string from image object
+                        src={image} // Use base64 string from image object
                         height={1000}
                         width={1000}
                         className="object-cover rounded-xl group-hover/card:shadow-xl"
@@ -83,7 +83,7 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
                       <p className="font-bold">Prompt: {prompt}</p>
                       <button
                         className="mt-4 text-red-500 hover:text-red-700"
-                        onClick={() => handleDelete(_id)}
+                        onClick={() => handleDelete(image)}
                       >
                         Delete
                       </button>
