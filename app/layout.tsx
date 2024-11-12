@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
 import localFont from "next/font/local";
 import "./globals.css";
 
@@ -27,10 +29,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="w-screen overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
       >
-        <Navbar />
-        {children}
+        <SidebarProvider>
+          <AppSidebar />
+          <main className="w-screen relative">
+            <div className="fixed bg-red-800 py-1 opacity-50 hover:opacity-100 hover:cursor-pointer transition-opacity duration-300 ease-in-out top-4 z-50">
+              <SidebarTrigger />
+            </div>
+            {children}
+          </main>
+        </SidebarProvider>
       </body>
     </html>
   );

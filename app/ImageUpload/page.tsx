@@ -327,7 +327,7 @@ const ImageUploadPage = () => {
     <div className="py-48 w-full flex flex-col items-center justify-center">
       <div
         id="uploadSection"
-        className="w-full max-w-4xl mx-auto h-96 border border-dashed bg-black border-neutral-800 rounded-lg"
+        className="w-full max-w-4xl mx-auto h-96 border border-dashed border-neutral-800 rounded-lg"
       >
         {!transformLoading && (
           <FileUpload onChange={handleFileUpload} uploadImage={uploadImage} />
