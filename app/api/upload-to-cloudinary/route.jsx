@@ -7,14 +7,6 @@ cloudinary.config({
   api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
 });
 
-// "https://res.cloudinary.com/prisma-forge/image/upload/v1731438581/q9zpvfkcmarsdxohooz1.png"
-
-/**
- * POST endpoint to upload an image to Cloudinary
- * @param {Object} req The incoming request object
- * @param {String} req.body.base64Image The base64 encoded image data
- * @returns {NextResponse} The response object containing the Cloudinary URL
- */
 export async function POST(req) {
   try {
     const { base64Image } = await req.json();
@@ -65,12 +57,6 @@ export async function POST(req) {
   }
 }
 
-/**
- * DELETE endpoint to delete an image by its URL.
- * @param {Request} req - HTTP request object
- * @param {string} req.body.imageUrl - URL of the image to delete
- * @returns {Promise<NextResponse>} - Promise that resolves to a NextResponse
- */
 export async function DELETE(req) {
   try {
     const { imageUrl } = await req.json();
