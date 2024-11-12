@@ -7,6 +7,14 @@ cloudinary.config({
   api_secret: process.env.NEXT_PUBLIC_CLOUDINARY_API_SECRET,
 });
 
+// "https://res.cloudinary.com/prisma-forge/image/upload/v1731438581/q9zpvfkcmarsdxohooz1.png"
+
+/**
+ * POST endpoint to upload an image to Cloudinary
+ * @param {Object} req The incoming request object
+ * @param {String} req.body.base64Image The base64 encoded image data
+ * @returns {NextResponse} The response object containing the Cloudinary URL
+ */
 export async function POST(req) {
   try {
     const { base64Image } = await req.json();
@@ -52,6 +60,60 @@ export async function POST(req) {
     console.error("Error during upload:", error);
     return NextResponse.json(
       { error: "Error uploading to Cloudinary", details: error.message },
+      { status: 500 }
+    );
+  }
+}
+
+/**
+ * DELETE endpoint to delete an image by its URL.
+ * @param {Request} req - HTTP request object
+ * @param {string} req.body.imageUrl - URL of the image to delete
+ * @returns {Promise<NextResponse>} - Promise that resolves to a NextResponse
+ */
+export async function DELETE(req) {
+  try {
+    const { imageUrl } = await req.json();
+
+    if (!imageUrl) {
+      return NextResponse.json(
+        { error: "No image URL provided" },
+        { status: 400 }
+      );
+    }
+
+    // Extract public_id from the URL
+    const urlParts = imageUrl.split("/");
+    const publicIdWithExtension = urlParts[urlParts.length - 1];
+    const publicId = publicIdWithExtension.split(".")[0]; // Remove the file extension
+
+    console.log("Deleting image with public ID:", publicId);
+
+    // Use Cloudinary's API to delete the image by public_id
+    const deleteResult = await new Promise((resolve, reject) => {
+      cloudinary.v2.uploader.destroy(
+        publicId,
+        { resource_type: "image" },
+        (error, result) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(result);
+          }
+        }
+      );
+    });
+
+    console.log("Cloudinary delete completed successfully:", deleteResult);
+
+    return NextResponse.json(
+      { status: "Good", result: deleteResult },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error during deletion:", error);
+    return NextResponse.json(
+      { error: "Error deleting from Cloudinary", details: error.message },
       { status: 500 }
     );
   }

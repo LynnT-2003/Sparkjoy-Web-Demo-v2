@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import cloudinary from "cloudinary";
 import { User } from "firebase/auth";
 import Image from "next/image";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
@@ -40,6 +41,25 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
       }
     } catch (error) {
       console.error("Error while deleting image:", error);
+    }
+
+    // const urlParts = imageUrl.split("/");
+    // const publicIdWithExtension = urlParts[urlParts.length - 1];
+    // const publicId = publicIdWithExtension.split(".")[0];
+
+    console.log("Deleting image in Cloudinary with URL:", imageUrl);
+    const cloudinaryResponse = await fetch("/api/upload-to-cloudinary", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ imageUrl }), // Send the public ID in the body
+    });
+
+    if (cloudinaryResponse.ok) {
+      console.log("Image deleted from Cloudinary successfully");
+    } else {
+      console.error("Failed to delete image from Cloudinary");
     }
   };
 
