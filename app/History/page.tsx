@@ -11,7 +11,7 @@ interface ImageObject {
   prompt: string; // Image generation prompt
 }
 
-const page = () => {
+const HistoryPage = () => {
   const [images, setImages] = useState<ImageObject[]>([]);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -63,4 +63,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default HistoryPage;
