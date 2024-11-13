@@ -70,6 +70,9 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
 
   return (
     <div className="px-24 mt-[-1.355rem] w-full">
+      <h2 className="text-xl font-bold mt-12 mb-6 pl-2">
+        History of Generated Images
+      </h2>
       {!homeImages ? (
         <div className="flex justify-center items-center h-20">
           <div className="w-24 h-2 bg-gray-300 rounded-full overflow-hidden">
@@ -79,10 +82,6 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
         </div>
       ) : homeImages.length > 0 ? (
         <>
-          {" "}
-          <h2 className="text-xl font-bold mt-12 mb-6 pl-2">
-            History of Generated Images
-          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pb-24 gap-6">
             {homeImages
               .slice()
