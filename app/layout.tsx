@@ -34,7 +34,7 @@ export default function RootLayout({
         <SidebarProvider>
           <AppSidebar />
           <main className="w-screen relative bg-[#111112]">
-            <div className="fixed bg-red-800 py-1 opacity-50 hover:opacity-100 hover:cursor-pointer transition-opacity duration-300 ease-in-out top-4 z-50">
+            <div className="fixed bg-red-800 py-1 opacity-50 hover:opacity-100 hover:cursor-pointer transition-opacity duration-300 ease-in-out top-6 z-50">
               <SidebarTrigger />
             </div>
             {children}
