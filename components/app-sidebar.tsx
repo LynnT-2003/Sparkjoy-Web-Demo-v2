@@ -1,3 +1,4 @@
+"use client";
 import {
   Home,
   Search,
@@ -7,6 +8,7 @@ import {
   ChevronDown,
   Save,
   Bookmark,
+  User2,
 } from "lucide-react";
 
 import {
@@ -27,36 +29,18 @@ import {
   CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
 
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Saved",
-    url: "#",
-    icon: Heart,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-  {
-    title: "Sign Out",
-    url: "#",
-    icon: LogOut,
-  },
-];
+import { useRouter } from "next/navigation";
 
 export function AppSidebar() {
+  const router = useRouter();
   return (
     <Sidebar>
       <SidebarContent>
         <SidebarGroup className="">
-          <div className="flex items-center mb-3 mt-1">
+          <div
+            className="flex items-center mb-3 mt-1 hover:cursor-pointer"
+            onClick={() => router.push("/")}
+          >
             <img
               src="/logo_clear.png"
               alt="Anim8"
@@ -69,12 +53,15 @@ export function AppSidebar() {
 
           <SidebarGroupContent className="mt-0 ml-2">
             <SidebarMenu>
-              <SidebarMenuItem className="py-3 hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+              <SidebarMenuItem
+                className="py-3 hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                onClick={() => router.push("/")}
+              >
                 <SidebarMenuButton
                   asChild
                   className="text-lg text-[#d9d9d9] space-x-2"
                 >
-                  <a href={""}>
+                  <a>
                     <Home className="w-64 h-64" />
                     <span>Home</span>
                   </a>
@@ -146,12 +133,10 @@ export function AppSidebar() {
 
       <SidebarFooter>
         <div className="flex items-center">
-          <img
-            src="/logo_clear.png"
-            alt="Anim8"
-            className="w-14 h-14 rounded-full object-cover opacity-88"
-          />{" "}
-          <h1 className="text-lg text-[#d9d9d9]">Lynn Thit</h1>
+          <div className="px-4">
+            <User2 className="w-7 h-7 rounded-full" />
+          </div>
+          <h1 className="text-lg text-[#d9d9d9]">Username</h1>
         </div>
       </SidebarFooter>
     </Sidebar>
