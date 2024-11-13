@@ -419,28 +419,30 @@ const PromptPage = () => {
 
   return (
     <div className="py-10 w-full flex flex-col items-center justify-center">
-      <div
-        id="promptSection"
-        className="flex flex-col justify-center w-[1200px] mt-8"
-      >
-        <Textarea
-          placeholder="Enter a Prompt . . ."
-          onInput={handlePromptChange}
-          className="text-2xl pt-8 pl-9 "
-        />
-        <div className="flex justify-start w-full gap-6 ">
-          <div className="w-1/3 mt-4">
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  disabled={true}
-                  className="text-md w-full p-6 hover:bg-slate-800 hover:border-slate-800 hover:text-white"
-                >
-                  Customize
-                </Button>
-              </PopoverTrigger>
-              {/* <PopoverContent className="w-full">
+      {!loading && (
+        <div
+          id="promptSection"
+          className="flex flex-col justify-center w-[1200px] mt-8"
+        >
+          <Textarea
+            placeholder={prompt || "Enter a Prompt . . ."}
+            onInput={handlePromptChange}
+            className="text-2xl pt-8 pl-9"
+          />
+
+          <div className="flex justify-start w-full gap-6 ">
+            <div className="w-1/3 mt-4">
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    disabled={true}
+                    className="text-md w-full p-6 hover:bg-slate-800 hover:border-slate-800 hover:text-white"
+                  >
+                    Customize
+                  </Button>
+                </PopoverTrigger>
+                {/* <PopoverContent className="w-full">
                 <div className="grid gap-4">
                   <div className="space-y-2">
                     <h4 className="font-medium leading-none">Customize</h4>
@@ -497,21 +499,22 @@ const PromptPage = () => {
                   </div>
                 </div>
               </PopoverContent> */}
-            </Popover>
-          </div>
+              </Popover>
+            </div>
 
-          <Button
-            variant="outline"
-            onClick={handleSubmitClick}
-            className="hover:bg-no-repeat hover:border-none hover:text-xl hover:bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 hover:text-white w-2/3 mt-4 px-6 py-1.5 bg-white text-black text-md rounded p-6"
-          >
-            Submit
-          </Button>
+            <Button
+              variant="outline"
+              onClick={handleSubmitClick}
+              className="hover:bg-no-repeat hover:border-none hover:text-xl hover:bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 hover:text-white w-2/3 mt-4 px-6 py-1.5 bg-white text-black text-md rounded p-6"
+            >
+              Submit
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
 
       {loading && (
-        <div className="mt-8 w-[512px]">
+        <div className="mt-8 w-[700px] mt-[50px] flex flex-col items-center justify-center">
           <h1 className="mt-4 mb-6">Generating image for prompt: {prompt}</h1>
           <div className="w-full bg-gray-100 rounded-full h-2">
             <div
