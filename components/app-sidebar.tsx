@@ -1,4 +1,8 @@
 "use client";
+
+import { useState, useEffect } from "react";
+import Image from "next/image";
+
 import {
   Home,
   Search,
@@ -6,7 +10,6 @@ import {
   Heart,
   LogOut,
   ChevronDown,
-  Save,
   Bookmark,
   User2,
 } from "lucide-react";
@@ -29,16 +32,48 @@ import {
   CollapsibleTrigger,
 } from "@radix-ui/react-collapsible";
 
+import {
+  signInWithGoogle,
+  signOutUser,
+  onAuthStateChange,
+  User,
+} from "@/lib/firebase";
+
 import { useRouter } from "next/navigation";
+import { Button } from "./ui/button";
 
 export function AppSidebar() {
   const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChange((user) => {
+      if (user) {
+        setUser(user);
+        console.log("User is now: ", user);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleSignIn = async () => {
+    await signInWithGoogle();
+    console.log("Sign-in successful!");
+  };
+
+  const handleSignOut = async () => {
+    await signOutUser();
+    console.log("Sign-out successful!");
+  };
+
   return (
     <Sidebar>
-      <SidebarContent>
+      <SidebarContent className="mx-4">
         <SidebarGroup className="">
           <div
-            className="flex items-center mb-3 mt-1 hover:cursor-pointer"
+            className="flex items-center mb-3 mt-1 hover:cursor-pointer ml-[-0.5rem]"
             onClick={() => router.push("/")}
           >
             <img
@@ -51,10 +86,10 @@ export function AppSidebar() {
             </SidebarGroupLabel>
           </div>
 
-          <SidebarGroupContent className="mt-0 ml-2">
+          <SidebarGroupContent className="mt-2">
             <SidebarMenu>
               <SidebarMenuItem
-                className="py-3 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                className="py-4 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
                 onClick={() => router.push("/")}
               >
                 <SidebarMenuButton
@@ -69,57 +104,59 @@ export function AppSidebar() {
               </SidebarMenuItem>
 
               <Collapsible defaultOpen>
-                <CollapsibleTrigger className="w-full flex items-center text-lg text-[#d9d9d9] py-3 hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                <CollapsibleTrigger className="py-4 w-full flex items-center text-lg text-[#d9d9d9] hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
                   <Bookmark className="ml-2 w-5 h-5" />
                   <span className="ml-4">My Collections</span>
-                  <ChevronDown className="ml-auto w-5.5 h-5.5 mr-6" />
+                  <ChevronDown className="ml-auto w-5.5 h-5.5 mr-1" />
                 </CollapsibleTrigger>
                 <CollapsibleContent className="pl-4">
                   <SidebarMenu>
-                    <SidebarMenuItem
-                      className="py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
-                      onClick={() => router.push("/Templates")}
-                    >
-                      <SidebarMenuButton
-                        asChild
-                        className="text-lg text-[#d9d9d9] space-x-2"
+                    <div className="mb-1">
+                      <SidebarMenuItem
+                        className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                        onClick={() => router.push("/Templates")}
                       >
-                        <a>
-                          <span className="text-base text-[#d9d9d9] ml-7">
-                            Templates
-                          </span>
-                        </a>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem className="py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
-                      <SidebarMenuButton
-                        asChild
-                        className="text-lg text-[#d9d9d9] space-x-2"
-                      >
-                        <a href={""}>
-                          <span className="text-base text-[#d9d9d9] ml-7">
-                            Favorites
-                          </span>
-                        </a>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
-                    <SidebarMenuItem className="py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
-                      <SidebarMenuButton
-                        asChild
-                        className="text-lg text-[#d9d9d9] space-x-2"
-                        onClick={() => router.push("/History")}
-                      >
-                        <a>
-                          <span className="text-base text-[#d9d9d9] ml-7">
-                            Image History
-                          </span>
-                        </a>
-                      </SidebarMenuButton>
-                    </SidebarMenuItem>
+                        <SidebarMenuButton
+                          asChild
+                          className="text-lg text-[#d9d9d9] space-x-2"
+                        >
+                          <a>
+                            <span className="text-base text-[#d9d9d9] ml-7">
+                              Templates
+                            </span>
+                          </a>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                        <SidebarMenuButton
+                          asChild
+                          className="text-lg text-[#d9d9d9] space-x-2"
+                        >
+                          <a href={""}>
+                            <span className="text-base text-[#d9d9d9] ml-7">
+                              Favorites
+                            </span>
+                          </a>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                        <SidebarMenuButton
+                          asChild
+                          className="text-lg text-[#d9d9d9] space-x-2"
+                          onClick={() => router.push("/History")}
+                        >
+                          <a>
+                            <span className="text-base text-[#d9d9d9] ml-7">
+                              Image History
+                            </span>
+                          </a>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    </div>
                   </SidebarMenu>
                 </CollapsibleContent>
               </Collapsible>
-              <SidebarMenuItem className="py-3 hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+              <SidebarMenuItem className="py-4 hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
                 <SidebarMenuButton
                   asChild
                   className="text-lg text-[#d9d9d9] space-x-2"
@@ -130,17 +167,57 @@ export function AppSidebar() {
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+
+              {user ? (
+                <SidebarMenuItem className="py-4 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                  <SidebarMenuButton
+                    asChild
+                    className="text-lg text-[#d9d9d9] space-x-2"
+                    onClick={handleSignOut}
+                  >
+                    <a>
+                      <LogOut className="w-64 h-64" />
+                      <span>Sign Out</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              ) : (
+                <Button
+                  className="w-full mt-4 py-2 mb-3"
+                  onClick={handleSignIn}
+                >
+                  <h1 className="text-lg">Sign In</h1>
+                </Button>
+              )}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
 
       <SidebarFooter>
-        <div className="flex items-center">
-          <div className="px-4">
-            <User2 className="w-7 h-7 rounded-full" />
-          </div>
-          <h1 className="text-lg text-[#d9d9d9]">Username</h1>
+        <div className="px-4 mb-2 flex gap-0 items-center">
+          {user ? (
+            <div className="w-full flex items-center">
+              <Image
+                src={user.photoURL || "/default.png"} // Fallback if photoURL is not available
+                alt={user.displayName || "User"}
+                width={36} // Set desired width
+                height={36} // Set desired height
+                className="rounded-full"
+                onClick={() => router.push("/Profile")}
+              />
+              <h1 className="text-lg text-[#d9d9d9] ml-4">
+                {user.displayName}
+              </h1>
+            </div>
+          ) : (
+            <div className="flex space-x-4 items-center justify-start mb-3">
+              <User2 className="w-6 h-6" />
+              <h1 className="text-base text-[#d9d9d9] ml-4">
+                User not signed in
+              </h1>
+            </div>
+          )}
         </div>
       </SidebarFooter>
     </Sidebar>
