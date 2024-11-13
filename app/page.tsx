@@ -75,7 +75,6 @@ export default function Home() {
       </div>
       <div className="pt-[2640px]">
         <InputSection onNewImage={handleNewImage} />
-        <HistoryImagesSection homeImages={images} />
       </div>
     </div>
   );

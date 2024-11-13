@@ -54,7 +54,7 @@ export function AppSidebar() {
           <SidebarGroupContent className="mt-0 ml-2">
             <SidebarMenu>
               <SidebarMenuItem
-                className="py-3 hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                className="py-3 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
                 onClick={() => router.push("/")}
               >
                 <SidebarMenuButton
@@ -76,7 +76,7 @@ export function AppSidebar() {
                 </CollapsibleTrigger>
                 <CollapsibleContent className="pl-4">
                   <SidebarMenu>
-                    <SidebarMenuItem className="py-1 hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                    <SidebarMenuItem className="py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
                       <SidebarMenuButton
                         asChild
                         className="text-lg text-[#d9d9d9] space-x-2"
@@ -88,7 +88,7 @@ export function AppSidebar() {
                         </a>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
-                    <SidebarMenuItem className="py-1 hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                    <SidebarMenuItem className="py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
                       <SidebarMenuButton
                         asChild
                         className="text-lg text-[#d9d9d9] space-x-2"
@@ -100,12 +100,13 @@ export function AppSidebar() {
                         </a>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
-                    <SidebarMenuItem className="py-1 hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                    <SidebarMenuItem className="py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
                       <SidebarMenuButton
                         asChild
                         className="text-lg text-[#d9d9d9] space-x-2"
+                        onClick={() => router.push("/History")}
                       >
-                        <a href={""}>
+                        <a>
                           <span className="text-base text-[#d9d9d9] ml-7">
                             Image History
                           </span>
