@@ -12,6 +12,7 @@ import {
   ChevronDown,
   Bookmark,
   User2,
+  Edit,
 } from "lucide-react";
 
 import {
@@ -102,6 +103,50 @@ export function AppSidebar() {
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+
+              <Collapsible defaultOpen>
+                <CollapsibleTrigger className="py-4 w-full flex items-center text-lg text-[#d9d9d9] hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                  <Edit className="ml-2 w-5 h-5" />
+                  <span className="ml-4">Studio</span>
+                  <ChevronDown className="ml-auto w-5.5 h-5.5 mr-1" />
+                </CollapsibleTrigger>
+                <CollapsibleContent className="pl-4">
+                  <SidebarMenu>
+                    <div className="mb-1">
+                      <SidebarMenuItem
+                        className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                        onClick={() => router.push("/Prompt")}
+                      >
+                        <SidebarMenuButton
+                          asChild
+                          className="text-lg text-[#d9d9d9] space-x-2"
+                        >
+                          <a>
+                            <span className="text-base text-[#d9d9d9] ml-7">
+                              Text Prompt
+                            </span>
+                          </a>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                      <SidebarMenuItem
+                        className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                        onClick={() => router.push("/ImageUpload")}
+                      >
+                        <SidebarMenuButton
+                          asChild
+                          className="text-lg text-[#d9d9d9] space-x-2"
+                        >
+                          <a>
+                            <span className="text-base text-[#d9d9d9] ml-7">
+                              Image Upload
+                            </span>
+                          </a>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    </div>
+                  </SidebarMenu>
+                </CollapsibleContent>
+              </Collapsible>
 
               <Collapsible defaultOpen>
                 <CollapsibleTrigger className="py-4 w-full flex items-center text-lg text-[#d9d9d9] hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">

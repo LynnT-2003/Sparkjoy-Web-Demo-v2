@@ -542,7 +542,7 @@ const PromptPage = () => {
         //     Save your Image
         //   </Button>
         // </div>
-        <div className="flex mt-8 md:w-[1200px] justify-center h-[512px]">
+        <div className="flex mt-12 md:w-[1200px] justify-center h-[512px]">
           <Image
             src={`data:image/png;base64,${image}`} // Update the format if needed
             //   src="/image_upload.jpg"
