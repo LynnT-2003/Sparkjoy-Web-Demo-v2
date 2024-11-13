@@ -86,7 +86,7 @@ export function AppSidebar() {
             </SidebarGroupLabel>
           </div>
 
-          <SidebarGroupContent className="mt-2">
+          <SidebarGroupContent className="mt-0">
             <SidebarMenu>
               <SidebarMenuItem
                 className="py-4 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
