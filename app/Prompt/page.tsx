@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { User } from "firebase/auth";
 import { onAuthStateChange } from "@/lib/firebase";
 import { Compare } from "@/components/ui/compare";
@@ -523,20 +524,110 @@ const PromptPage = () => {
 
       {/* Display the Base64 image if it exists */}
       {!loading && image && (
-        <div className="mt-8 flex flex-col items-center justify-center w-[512px]">
-          <img
+        // <div className="mt-8 flex flex-col items-center justify-center w-[512px]">
+        // <img
+        //   src={`data:image/png;base64,${image}`} // Update the format if needed
+        //   //   src="/image_upload.jpg"
+        //   alt="Generated"
+        //   className="max-w-full h-auto"
+        // />
+
+        //   <Button
+        //     className="text-xl font-sans mt-5 px-7 py-5"
+        //     onClick={handleDownload}
+        //   >
+        //     Save your Image
+        //   </Button>
+        // </div>
+        <div className="flex mt-8 md:w-[1200px] justify-center h-[512px]">
+          <Image
             src={`data:image/png;base64,${image}`} // Update the format if needed
             //   src="/image_upload.jpg"
             alt="Generated"
-            className="max-w-full h-auto"
+            width={512}
+            height={512}
           />
+          <div className="flex flex-col w-full h-full ml-12">
+            <h1 className="font-sans font-bold text-3xl mb-1">
+              Generation Result
+            </h1>
+            <div className="flex flex-col items-center w-full h-[512px]">
+              {/* Details */}
+              <div className="w-full">
+                <div className="flex w-full space-x-5 my-5">
+                  <Button
+                    variant="secondary"
+                    className="w-1/2 font-sans text-md"
+                  >
+                    Reuse Settings
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    className="w-1/2 font-sans text-md"
+                  >
+                    Use Image
+                  </Button>
+                </div>
+                <span className="w-full">
+                  Model:
+                  <span className="text-green-500 ml-2">PrismaForge Flux</span>
+                </span>
+                <div className="mt-3 bg-[#1e1e1e] p-4 w-full rounded-lg">
+                  <div className="flex flex-wrap gap-y-4">
+                    <h1 className="font-sans w-1/2">Width: 1024</h1>
+                    <h1 className="font-sans w-1/2">Height: 1024</h1>
+                    <h1 className="font-sans w-1/2">Scale: 7</h1>
+                    <h1 className="font-sans w-1/2">Steps: 7</h1>
+                    <h1 className="font-sans w-1/2">Seed: 755527</h1>
+                  </div>
+                  <h1 className="font-sans w-1/2 mt-5">
+                    Creation time:{" "}
+                    {new Date(Date.now()).toLocaleString("en-GB", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                    })}
+                  </h1>{" "}
+                </div>
+              </div>
 
-          <Button
-            className="text-xl font-sans mt-5 px-7 py-5"
-            onClick={handleDownload}
-          >
-            Save your Image
-          </Button>
+              {/* Save and Share */}
+              <div className="w-full mt-5">
+                <h1 className="mt-5 w-full justify-start font-sans font-bold text-3xl">
+                  Save & Share
+                </h1>
+                <div className="flex w-full mt-5 flex-wrap justify-between gap-y-3">
+                  <Button
+                    variant="secondary"
+                    className="w-[48%] font-sans text-md"
+                  >
+                    Move to Albums
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    className="w-[48%] font-sans text-md"
+                  >
+                    Download Image
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    className="w-[48%] bg-[#06402b] hover:bg-green-800 hover:font-bold font-sans text-md"
+                  >
+                    Share
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    className="w-[48%] bg-[#06402b] hover:bg-green-800 hover:font-bold font-sans text-md"
+                  >
+                    Publish
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
