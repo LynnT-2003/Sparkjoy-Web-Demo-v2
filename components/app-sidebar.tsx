@@ -76,12 +76,15 @@ export function AppSidebar() {
                 </CollapsibleTrigger>
                 <CollapsibleContent className="pl-4">
                   <SidebarMenu>
-                    <SidebarMenuItem className="py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                    <SidebarMenuItem
+                      className="py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                      onClick={() => router.push("/Templates")}
+                    >
                       <SidebarMenuButton
                         asChild
                         className="text-lg text-[#d9d9d9] space-x-2"
                       >
-                        <a href={""}>
+                        <a>
                           <span className="text-base text-[#d9d9d9] ml-7">
                             Templates
                           </span>
