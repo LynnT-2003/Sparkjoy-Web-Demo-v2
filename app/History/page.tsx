@@ -5,6 +5,8 @@ import { onAuthStateChange } from "@/lib/firebase";
 import { User } from "firebase/auth";
 import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
 
+// update
+
 interface ImageObject {
   _id: string;
   image: string; // Base64-encoded image string
