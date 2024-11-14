@@ -188,7 +188,7 @@ export function AppSidebar() {
                         <SidebarMenuButton
                           asChild
                           className="text-lg text-[#d9d9d9] space-x-2"
-                          onClick={() => router.push("/History")}
+                          onClick={() => router.push("/history")}
                         >
                           <a>
                             <span className="text-base text-[#d9d9d9] ml-7">
