@@ -69,12 +69,17 @@ export default function Home() {
   };
 
   return (
-    <div className="relative">
-      <div className="absolute top-0 left-0">
-        <HeroSection images={images} />
+    <div className="relative overflow-x-hidden">
+      <div className="hidden md:block">
+        <div className=" absolute top-0 left-0">
+          <HeroSection images={images} />
+        </div>
+        <div className="pt-[2640px]">
+          <InputSection onNewImage={handleNewImage} />
+        </div>
       </div>
-      <div className="pt-[2640px]">
-        <InputSection onNewImage={handleNewImage} />
+      <div className="md:hidden h-screen flex justify-center items-center">
+        Welcome Mobile Responsive
       </div>
     </div>
   );

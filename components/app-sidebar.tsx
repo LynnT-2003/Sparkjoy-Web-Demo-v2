@@ -70,7 +70,7 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar>
+    <Sidebar className="hidden md:block">
       <SidebarContent className="mx-4">
         <SidebarGroup className="">
           <div

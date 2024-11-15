@@ -27,19 +27,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="w-screen overflow-x-hidden">
+    <html lang="en" className="md:w-screen overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark `}
       >
-        <SidebarProvider>
-          <AppSidebar />
-          <main className="w-screen relative bg-[#111112]">
-            <div className="fixed bg-red-800 py-1 opacity-50 hover:opacity-100 hover:cursor-pointer transition-opacity duration-300 ease-in-out top-6 z-50">
-              <SidebarTrigger />
-            </div>
-            {children}
-          </main>
-        </SidebarProvider>
+        <div className="">
+          <SidebarProvider>
+            <AppSidebar />
+            <main className="w-screen relative">
+              <div className="hidden md:blockfixed bg-red-800 py-1 opacity-50 hover:opacity-100 hover:cursor-pointer transition-opacity duration-300 ease-in-out top-6 z-50">
+                <SidebarTrigger className="" />
+              </div>
+              {children}
+            </main>
+          </SidebarProvider>
+        </div>
+        {/* <div className="md:hidden w-screen bg-blue-500 h-screen"></div> */}
       </body>
     </html>
   );
