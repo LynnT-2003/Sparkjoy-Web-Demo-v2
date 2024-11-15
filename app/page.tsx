@@ -1,6 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+
+// Navigation Test
+import MobileSidebar from "@/components/mui-mobile-drawer";
+import { MobileSidebarItem } from "@/components/mui-mobile-drawer";
+
 import { onAuthStateChange } from "@/lib/firebase";
 import { User } from "firebase/auth";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,6 +13,7 @@ import LoadingSection from "@/components/sections/LoadingSection";
 import HeroSection from "@/components/sections/HeroSection";
 import InputSection from "@/components/sections/InputSection";
 import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
+import { BarChart3 } from "lucide-react";
 
 interface ImageObject {
   _id: string;
@@ -78,8 +84,37 @@ export default function Home() {
           <InputSection onNewImage={handleNewImage} />
         </div>
       </div>
-      <div className="md:hidden h-screen flex justify-center items-center">
-        Welcome Mobile Responsive
+      <div className="md:hidden flex bg-[#191919]">
+        {/* <PersistentDrawerLeft /> */}
+        <MobileSidebar>
+          <MobileSidebarItem
+            icon={<BarChart3 />}
+            text="Statistics"
+            active={false}
+            alert={false}
+          />
+          <MobileSidebarItem
+            icon={<BarChart3 />}
+            text="Statistics"
+            active={false}
+            alert={false}
+          />
+          <MobileSidebarItem
+            icon={<BarChart3 />}
+            text="Statistics"
+            active={false}
+            alert={false}
+          />
+          <MobileSidebarItem
+            icon={<BarChart3 />}
+            text="Statistics"
+            active={false}
+            alert={false}
+          />
+        </MobileSidebar>
+        <div className="w-full pl-12 pt-[1.9rem]">
+          <h1 className="text-start">Welcome Mobile Responsiveness</h1>
+        </div>
       </div>
     </div>
   );
