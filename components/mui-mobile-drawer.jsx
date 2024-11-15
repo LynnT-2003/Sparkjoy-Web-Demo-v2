@@ -6,7 +6,7 @@ const MobileSidebarContext = createContext();
 
 export default function MobileSidebar({ children }) {
   const [expanded, setExpanded] = useState(false);
-  const sidebarRef = useRef(null); // Reference for sidebar
+  const sidebarRef = useRef(null);
 
   // Close sidebar when clicking outside
   useEffect(() => {
@@ -16,65 +16,77 @@ export default function MobileSidebar({ children }) {
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside); // Listen for clicks
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside); // Cleanup on unmount
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
   return (
-    <aside className="h-screen">
-      <nav
-        ref={sidebarRef} // Add ref to sidebar
-        className={`fixed h-full flex flex-col shadow-sm transition-all duration-300 ease-in-out ${
-          expanded ? "bg-[#1e1e1e] border-r w-64" : "bg-transparent w-10"
-        }`}
-      >
-        <div className={`py-4 pb-2 flex justify-between items-center`}>
-          <div
-            className={`flex items-center pl-2 space-x-2 overflow-hidden transition-all duration-300 ease-in-out ${
-              expanded ? "w-full" : "w-0"
-            }`}
-          >
-            <Image src={"/logo_clear.png"} width={50} height={64} />
-            <h1 className="font-sans text-lg font-bold">PrismaForge</h1>
-          </div>
-          <button
-            onClick={() => setExpanded((curr) => !curr)}
-            className={`p-1.5 rounded-lg flex items-center ${
-              expanded ? "" : "mt-[0.45rem] border-r"
-            }`}
-          >
-            {expanded ? <ChevronFirst /> : <ChevronLast />}
-          </button>
-        </div>
-
-        {/* Apply the transition to the expanded section */}
+    <>
+      {/* Overlay when expanded */}
+      {expanded && (
         <div
-          className={`flex flex-col justify-between h-full transition-all duration-300 ease-in-out ${
-            expanded ? "opacity-100" : "opacity-0"
+          className="fixed inset-0 bg-black bg-opacity-50 z-10"
+          onClick={() => setExpanded(false)}
+        />
+      )}
+
+      <aside className="h-screen relative z-20">
+        <nav
+          ref={sidebarRef}
+          className={`fixed h-full flex flex-col shadow-sm transition-all duration-300 ease-in-out ${
+            expanded ? "bg-[#1e1e1e] border-r w-64" : "bg-transparent w-10"
           }`}
         >
-          <MobileSidebarContext.Provider value={{ expanded }}>
-            <ul className="flex-1 px-3">{children}</ul>
-          </MobileSidebarContext.Provider>
-          <div className="border-t mt-auto flex items-center w-full p-3 space-x-4">
-            <img
-              src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
-              alt=""
-              className="w-10 h-10 rounded-md"
-            />
-            <div className="flex w-full justify-between items-center overflow-hidden">
-              <div className="flexleading-4">
-                <h4 className="font-semibold">John Doe</h4>
-                <span className="text-xs text-gray-600">johndoe@gmail.com</span>
+          <div className={`py-4 pb-2 flex justify-between items-center`}>
+            <div
+              className={`flex items-center pl-2 space-x-2 overflow-hidden transition-all duration-300 ease-in-out ${
+                expanded ? "w-full" : "w-0"
+              }`}
+            >
+              <Image src={"/logo_clear.png"} width={50} height={64} />
+              <h1 className="font-sans text-lg font-bold">PrismaForge</h1>
+            </div>
+            <button
+              onClick={() => setExpanded((curr) => !curr)}
+              className={`p-1.5 rounded-lg flex items-center ${
+                expanded ? "" : "mt-[0.45rem] border-r"
+              }`}
+            >
+              {expanded ? <ChevronFirst /> : <ChevronLast />}
+            </button>
+          </div>
+
+          <div
+            className={`flex flex-col justify-between h-full transition-all duration-300 ease-in-out ${
+              expanded ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            <MobileSidebarContext.Provider value={{ expanded }}>
+              <ul className="flex-1 px-3">{children}</ul>
+            </MobileSidebarContext.Provider>
+
+            <div className="border-t mt-auto flex items-center w-full p-3 space-x-4">
+              <img
+                src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
+                alt=""
+                className="w-10 h-10 rounded-md"
+              />
+              <div className="flex w-full justify-between items-center overflow-hidden">
+                <div className="flexleading-4">
+                  <h4 className="font-semibold">John Doe</h4>
+                  <span className="text-xs text-gray-600">
+                    johndoe@gmail.com
+                  </span>
+                </div>
+                <MoreVertical size={20} className="ml-auto" />
               </div>
-              <MoreVertical size={20} className="ml-auto" />
             </div>
           </div>
-        </div>
-      </nav>
-    </aside>
+        </nav>
+      </aside>
+    </>
   );
 }
 
