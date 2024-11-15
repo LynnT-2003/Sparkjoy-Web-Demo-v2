@@ -112,7 +112,7 @@ export default function Home() {
             alert={false}
           />
         </MobileSidebar>
-        <div className="w-full pl-12 pt-[1.9rem]">
+        <div className="w-full pl-12 pt-[1.8rem]">
           <h1 className="text-start">Welcome Mobile Responsiveness</h1>
         </div>
       </div>
