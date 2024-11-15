@@ -1,22 +1,38 @@
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
 import Image from "next/image";
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext, useState, useRef, useEffect } from "react";
 
 const MobileSidebarContext = createContext();
 
 export default function MobileSidebar({ children }) {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(false);
+  const sidebarRef = useRef(null); // Reference for sidebar
+
+  // Close sidebar when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setExpanded(false); // Close the sidebar when clicked outside
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside); // Listen for clicks
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside); // Cleanup on unmount
+    };
+  }, []);
 
   return (
     <aside className="h-screen">
       <nav
+        ref={sidebarRef} // Add ref to sidebar
         className={`fixed h-full flex flex-col shadow-sm transition-all duration-300 ease-in-out ${
           expanded ? "bg-[#1e1e1e] border-r w-64" : "bg-transparent w-10"
         }`}
       >
-        <div className={`py-4 pb-2 flex justify-between items-center `}>
+        <div className={`py-4 pb-2 flex justify-between items-center`}>
           <div
-            className={`flex items-center space-x-0 overflow-hidden transition-all duration-300 ease-in-out ${
+            className={`flex items-center pl-2 space-x-2 overflow-hidden transition-all duration-300 ease-in-out ${
               expanded ? "w-full" : "w-0"
             }`}
           >
@@ -42,7 +58,7 @@ export default function MobileSidebar({ children }) {
           <MobileSidebarContext.Provider value={{ expanded }}>
             <ul className="flex-1 px-3">{children}</ul>
           </MobileSidebarContext.Provider>
-          <div className="border-t mt-auto flex w-full p-3 space-x-4">
+          <div className="border-t mt-auto flex items-center w-full p-3 space-x-4">
             <img
               src="https://ui-avatars.com/api/?background=c7d2fe&color=3730a3&bold=true"
               alt=""
@@ -68,13 +84,13 @@ export function MobileSidebarItem({ icon, text, active, alert }) {
   return (
     <li
       className={`
-        relative flex items-center py-2 px-3 my-1
+        relative flex items-center py-5 px-3 my-1
         font-medium rounded-md cursor-pointer
         transition-all duration-300 group
         ${
           active
             ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800"
-            : "hover:bg-indigo-50 text-gray-600"
+            : "hover:bg-[#181818] text-gray-300"
         }
     `}
     >
