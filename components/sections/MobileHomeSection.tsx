@@ -26,7 +26,7 @@ const MobileHomeSection = () => {
           style={{ backgroundColor: "rgba(30, 30, 30, 0.8)" }}
         >
           {" "}
-          <Image src="/brands/Google.png" alt="Logo" width={40} height={40} />
+          <Image src="/brands/google.png" alt="Logo" width={40} height={40} />
           <h1 className="text-sm font-sans">Sign in With Google</h1>
         </div>
       </div>
