@@ -45,30 +45,35 @@ export default function RootLayout({
                   text="Home"
                   active={false}
                   alert={false}
+                  route={"/"}
                 />
                 <MobileSidebarItem
                   icon={<Edit />}
                   text="Text Prompt"
                   active={false}
                   alert={false}
+                  route={"/Prompt"}
                 />
                 <MobileSidebarItem
                   icon={<Image />}
-                  text="Image Upload"
+                  text="Templates"
                   active={false}
                   alert={false}
+                  route={"/ImageUpload"}
                 />
                 <MobileSidebarItem
                   icon={<Settings />}
                   text="Settings"
                   active={false}
                   alert={false}
+                  route={"/ImageUpload"}
                 />
                 <MobileSidebarItem
                   icon={<LogOut />}
                   text="Sign Out"
                   active={false}
                   alert={false}
+                  route={"/"}
                 />
               </MobileSidebar>
               {children}

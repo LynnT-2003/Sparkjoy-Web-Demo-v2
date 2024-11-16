@@ -2,6 +2,9 @@ import React from "react";
 import Image from "next/image";
 import MobileTemplatesCard from "@/components/mobileTemplatesCard";
 
+import { useGSAP } from "@gsap/react";
+import { animateWithGsapBottom } from "@/lib/animation";
+
 const templates = [
   {
     image: "/bg/bg.jpg",
@@ -24,9 +27,27 @@ const templates = [
 ];
 
 const MobileImageUploadSection = () => {
+  useGSAP(() => {
+    animateWithGsapBottom("#header", {
+      y: 0,
+      opacity: 1,
+      duration: 0.3,
+    });
+  }, []);
+  useGSAP(() => {
+    animateWithGsapBottom("#templates", {
+      y: 0,
+      opacity: 1,
+      duration: 0.6,
+    });
+  }, []);
+
   return (
     <div className="">
-      <div className="h-48 relative flex items-center justify-center z-0">
+      <div
+        className="h-48 relative flex items-center justify-center z-0"
+        id="header"
+      >
         <div className="absolute inset-0">
           <Image
             src="/bg/bg.jpg"
@@ -40,7 +61,7 @@ const MobileImageUploadSection = () => {
           Generative AI Templates
         </h1>
       </div>
-      <div className="flex flex-col space-y-6 w-full mb-12">
+      <div className="flex flex-col space-y-6 w-full mb-12" id="templates">
         {templates.map((template, index) => (
           <MobileTemplatesCard
             key={index}

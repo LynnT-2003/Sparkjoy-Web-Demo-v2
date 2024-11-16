@@ -1,5 +1,6 @@
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useContext, createContext, useState, useRef, useEffect } from "react";
 
 const MobileSidebarContext = createContext();
@@ -63,7 +64,7 @@ export default function MobileSidebar({ children }) {
               expanded ? "opacity-100" : "opacity-0"
             }`}
           >
-            <MobileSidebarContext.Provider value={{ expanded }}>
+            <MobileSidebarContext.Provider value={{ expanded, setExpanded }}>
               <ul className="flex-1 px-3">{children}</ul>
             </MobileSidebarContext.Provider>
 
@@ -90,8 +91,16 @@ export default function MobileSidebar({ children }) {
   );
 }
 
-export function MobileSidebarItem({ icon, text, active, alert }) {
-  const { expanded } = useContext(MobileSidebarContext);
+export function MobileSidebarItem({ icon, text, active, alert, route }) {
+  const router = useRouter();
+
+  const { expanded, setExpanded } = useContext(MobileSidebarContext);
+  const handleClick = () => {
+    if (route) {
+      router.push(route);
+    }
+    setExpanded(false);
+  };
 
   return (
     <li
@@ -105,6 +114,7 @@ export function MobileSidebarItem({ icon, text, active, alert }) {
             : "hover:bg-[#181818] text-gray-300"
         }
     `}
+      onClick={handleClick}
     >
       {icon}
       <span
