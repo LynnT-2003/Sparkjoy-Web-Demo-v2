@@ -14,6 +14,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import InputSection from "@/components/sections/InputSection";
 import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
 import { Edit, Settings, LogOut, HomeIcon, Image } from "lucide-react";
+import MobileHomeSection from "@/components/sections/MobileHomeSection";
 
 interface ImageObject {
   _id: string;
@@ -86,40 +87,7 @@ export default function Home() {
       </div>
       <div className="md:hidden flex bg-[#191919]">
         <div className="w-full overflow-x-hidden">
-          <div className="h-screen">
-            <h1 className="text-start pl-16 pt-[1.8rem] font-bold">
-              Welcome to Mobile Responsiveness
-            </h1>
-            <h1 className="text-start pl-16 pt-[1.8rem]">
-              So far this is just a demo with a
-            </h1>
-            <h1 className="text-start pl-16">
-              sidebar initialized. Try it out &#33;
-            </h1>
-            <h1 className="text-start pl-16 pt-[1.8rem]">
-              1. Click on our brand new
-            </h1>
-            <h1 className="text-start pl-[5.25rem]">mobile sidebar.</h1>
-            <h1 className="text-start pl-16 pt-[1.8rem]">2. Scroll me &#33;</h1>
-          </div>
-
-          <div className="w-full flex flex-col justify-center items-center h-[100vh]">
-            <h1 className="flex flex-col items-center text-center w-[85vw] justify-center leading-loose">
-              Rotate me on if you are on a Mobile device. See what changed and
-              why. This is what we call a mobile responsive UI. Our goal, later
-              on, should be to make our web application user-friendly &
-              accessible across all media devices. This is why a well
-              thought-out and finalized initial low-mid fidelity design is
-              important for any web application project that demands mobile UI
-              responsiveness, so that keep we can keep our codebase and project
-              management clean, maintainable, and scalable
-            </h1>
-            <h1 className="flex flex-col mt-24 items-center text-center w-[85vw] justify-center leading-loose">
-              Note: The code I have written right now for is not in its best
-              form or architecture lol. This is just a demo as a concept, since
-              the design is in progress.
-            </h1>
-          </div>
+          <MobileHomeSection />
         </div>
       </div>
     </div>
