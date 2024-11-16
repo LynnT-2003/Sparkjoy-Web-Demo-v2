@@ -17,6 +17,7 @@ import { FileUpload } from "@/components/ui/file-upload";
 
 import { useGSAP } from "@gsap/react";
 import { animateWithGsapBottom } from "@/lib/animation";
+import MobileImageUploadSection from "@/components/sections/MobileImageUploadSection";
 
 interface ImageObject {
   _id: string;
@@ -324,66 +325,56 @@ const ImageUploadPage = () => {
   };
 
   return (
-    <div className="py-48 w-full flex flex-col items-center justify-center">
-      <div
-        id="uploadSection"
-        className="w-full max-w-4xl mx-auto h-96 border border-dashed border-neutral-800 rounded-lg"
-      >
-        {!transformLoading && (
-          <FileUpload onChange={handleFileUpload} uploadImage={uploadImage} />
-        )}
+    <div className="md: w-full md:flex flex-col items-center justify-center">
+      <div className="hidden md:block w-full max-w-4xl py-48">
+        <div
+          id="uploadSection"
+          className="w-full max-w-4xl mx-auto h-96 border border-dashed border-neutral-800 rounded-lg"
+        >
+          {!transformLoading && (
+            <FileUpload onChange={handleFileUpload} uploadImage={uploadImage} />
+          )}
 
-        {transformLoading && (
-          <div className="w-full flex flex-col items-center justify-center h-full">
-            <h1 className="mb-6 mx-auto text-center animate-pulse font-bold font-sans text-xl">
-              Generating your image..
-            </h1>
-            {/* <h1>Hang on tight! This usually takes a few seconds.</h1> */}
-            <div className="w-[50%] bg-gray-100 rounded-full h-2">
-              <div
-                className="bg-blue-500 h-2 rounded-full animate-pulse"
-                style={{ width: "100%" }}
-              />
+          {transformLoading && (
+            <div className="w-full flex flex-col items-center justify-center h-full">
+              <h1 className="mb-6 mx-auto text-center animate-pulse font-bold font-sans text-xl">
+                Generating your image..
+              </h1>
+              {/* <h1>Hang on tight! This usually takes a few seconds.</h1> */}
+              <div className="w-[50%] bg-gray-100 rounded-full h-2">
+                <div
+                  className="bg-blue-500 h-2 rounded-full animate-pulse"
+                  style={{ width: "100%" }}
+                />
+              </div>
             </div>
+          )}
+        </div>
+        {!transformLoading && transformedImage && (
+          <div className="px-4 py-12 rounded-3xl w-full flex items-center justify-center space-x-12">
+            <div className="flex flex-col items-center justify-center w-[256px]">
+              <h1 className="text-5xl text-center">Ta-Daa !</h1>
+              <Button
+                className="text-lg font-sans mt-7 px-7 py-6"
+                onClick={handleDownload}
+              >
+                Save your Image
+              </Button>
+            </div>
+            <Compare
+              firstImage={`data:image/png;base64,${originalImage}`}
+              secondImage={`data:image/png;base64,${transformedImage}`}
+              firstImageClassName="object-cover object-left-top"
+              secondImageClassname="object-cover object-left-top"
+              className="h-[250px] w-[200px] md:h-[500px] md:w-[500px]"
+              slideMode="hover"
+            />
           </div>
         )}
       </div>
-      {!transformLoading && transformedImage && (
-        // <div className="mt-8 w-screen flex items-center justify-center">
-        //   <img
-        //     src={`data:image/png;base64,${originalImage}`} // Update the format if needed
-        //     alt="Generated"
-        //     className="w-[512px] h-[512px] object-fit:cover"
-        //   />
-        //   <img
-        //     src={`data:image/png;base64,${transformedImage}`} // Update the format if needed
-        //     alt="Generated"
-        //     className="w-[512px] h-[512px] object-fit:cover"
-        //   />
-        // </div>
-        <div className="px-4 py-12 rounded-3xl w-full flex items-center justify-center space-x-12">
-          <div className="flex flex-col items-center justify-center w-[256px]">
-            <h1 className="text-5xl text-center">Ta-Daa !</h1>
-            {/* <h1 className="text-2xl py-2 text-center font-light">
-              Slide to Compare{" "}
-            </h1> */}
-            <Button
-              className="text-lg font-sans mt-7 px-7 py-6"
-              onClick={handleDownload}
-            >
-              Save your Image
-            </Button>
-          </div>
-          <Compare
-            firstImage={`data:image/png;base64,${originalImage}`}
-            secondImage={`data:image/png;base64,${transformedImage}`}
-            firstImageClassName="object-cover object-left-top"
-            secondImageClassname="object-cover object-left-top"
-            className="h-[250px] w-[200px] md:h-[500px] md:w-[500px]"
-            slideMode="hover"
-          />
-        </div>
-      )}
+      <div className="block md:hidden">
+        <MobileImageUploadSection />
+      </div>
     </div>
   );
 };

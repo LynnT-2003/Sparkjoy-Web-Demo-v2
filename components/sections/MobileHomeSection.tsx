@@ -1,9 +1,13 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { Sparkles } from "lucide-react";
+
+import { useRouter } from "next/navigation";
 
 const MobileHomeSection = () => {
+  const router = useRouter();
+
   return (
     // <div className="h-screen pl-16 pt-[1.8rem]">
     <div className="h-screen w-screen relative flex flex-col items-center justify-center">
@@ -20,7 +24,12 @@ const MobileHomeSection = () => {
         Start Creating Your Art Now
       </h1>
       <div className="flex flex-col space-y-4 w-full px-12 z-10 mt-48">
-        <Button className="w-full font-sans text-md">Get Started</Button>
+        <Button
+          className="w-full font-sans text-md"
+          onClick={() => router.push("/ImageUpload")}
+        >
+          Get Started
+        </Button>
         <div
           className="flex items-center justify-center py-1 space-x-2"
           style={{ backgroundColor: "rgba(30, 30, 30, 0.8)" }}
