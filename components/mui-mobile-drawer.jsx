@@ -23,7 +23,7 @@ export default function MobileSidebar({ children }) {
   }, []);
 
   return (
-    <>
+    <div className="md:hidden fixed top-0 left-0 z-50">
       {/* Overlay when expanded */}
       {expanded && (
         <div
@@ -86,7 +86,7 @@ export default function MobileSidebar({ children }) {
           </div>
         </nav>
       </aside>
-    </>
+    </div>
   );
 }
 

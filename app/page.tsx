@@ -13,14 +13,7 @@ import LoadingSection from "@/components/sections/LoadingSection";
 import HeroSection from "@/components/sections/HeroSection";
 import InputSection from "@/components/sections/InputSection";
 import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
-import {
-  BarChart3,
-  Edit,
-  Settings,
-  LogOut,
-  HomeIcon,
-  Image,
-} from "lucide-react";
+import { Edit, Settings, LogOut, HomeIcon, Image } from "lucide-react";
 
 interface ImageObject {
   _id: string;
@@ -92,41 +85,7 @@ export default function Home() {
         </div>
       </div>
       <div className="md:hidden flex bg-[#191919]">
-        {/* <PersistentDrawerLeft /> */}
-        <MobileSidebar>
-          <div className="mt-5"></div>
-          <MobileSidebarItem
-            icon={<HomeIcon />}
-            text="Home"
-            active={false}
-            alert={false}
-          />
-          <MobileSidebarItem
-            icon={<Edit />}
-            text="Text Prompt"
-            active={false}
-            alert={false}
-          />
-          <MobileSidebarItem
-            icon={<Image />}
-            text="Image Upload"
-            active={false}
-            alert={false}
-          />
-          <MobileSidebarItem
-            icon={<Settings />}
-            text="Settings"
-            active={false}
-            alert={false}
-          />
-          <MobileSidebarItem
-            icon={<LogOut />}
-            text="Sign Out"
-            active={false}
-            alert={false}
-          />
-        </MobileSidebar>
-        <div className="w-full">
+        <div className="w-full overflow-x-hidden">
           <div className="h-screen">
             <h1 className="text-start pl-16 pt-[1.8rem] font-bold">
               Welcome to Mobile Responsiveness
