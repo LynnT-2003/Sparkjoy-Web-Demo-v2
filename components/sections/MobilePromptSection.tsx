@@ -18,7 +18,7 @@ const MobilePromptSection = () => {
             <div className="h-[22vh]">
               <Textarea
                 placeholder={"Enter a Prompt . . ."}
-                className="text-md font-sans border-0 hover:border-0 focus:border-0"
+                className="text-md font-sans border-0 outline-none focus:outline-none hover:outline-none"
               />
             </div>
             <div className="h-[4.5vh] flex items-center rounded-xl mt-auto">

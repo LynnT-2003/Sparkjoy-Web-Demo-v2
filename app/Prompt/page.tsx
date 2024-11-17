@@ -429,7 +429,7 @@ const PromptPage = () => {
             <Textarea
               placeholder={prompt || "Enter a Prompt . . ."}
               onInput={handlePromptChange}
-              className="text-2xl pt-8 pl-9"
+              className="text-2xl pt-8 pl-9 border"
             />
 
             <div className="flex justify-start w-full gap-6 ">
