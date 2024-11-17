@@ -20,9 +20,10 @@ const UploadSuccessScreen = () => {
   }
 
   return (
-    <div className="flex flex-col justify-center w-[100dvw]">
+    <div className="flex flex-col justify-center">
       <h1 className="mx-12 text-center pt-[1.7rem] text-2xl font-semibold font-sans motion-preset-slide-right">
-        Image Uploaded Successfully!
+        Image Uploaded <br />
+        Successfully!
       </h1>
       <div className="relative mx-12 aspect-square mt-5 rounded-lg ">
         <Image
