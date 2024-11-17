@@ -18,6 +18,7 @@ import { FileUpload } from "@/components/ui/file-upload";
 
 import { useGSAP } from "@gsap/react";
 import { animateWithGsapBottom } from "@/lib/animation";
+import MobilePromptSection from "@/components/sections/MobilePromptSection";
 
 interface ImageObject {
   _id: string;
@@ -418,31 +419,32 @@ const PromptPage = () => {
   };
 
   return (
-    <div className="py-10 w-full flex flex-col items-center justify-center">
-      {!loading && (
-        <div
-          id="promptSection"
-          className="flex flex-col justify-center w-[1200px] mt-8"
-        >
-          <Textarea
-            placeholder={prompt || "Enter a Prompt . . ."}
-            onInput={handlePromptChange}
-            className="text-2xl pt-8 pl-9"
-          />
+    <div className="md:py-10 w-full md:flex flex-col items-center justify-center">
+      <div className="hidden md:block">
+        {!loading && (
+          <div
+            id="promptSection"
+            className="flex flex-col justify-center w-[1200px] mt-8"
+          >
+            <Textarea
+              placeholder={prompt || "Enter a Prompt . . ."}
+              onInput={handlePromptChange}
+              className="text-2xl pt-8 pl-9"
+            />
 
-          <div className="flex justify-start w-full gap-6 ">
-            <div className="w-1/3 mt-4">
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    disabled={true}
-                    className="text-md w-full p-6 hover:bg-slate-800 hover:border-slate-800 hover:text-white"
-                  >
-                    Customize
-                  </Button>
-                </PopoverTrigger>
-                {/* <PopoverContent className="w-full">
+            <div className="flex justify-start w-full gap-6 ">
+              <div className="w-1/3 mt-4">
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      disabled={true}
+                      className="text-md w-full p-6 hover:bg-slate-800 hover:border-slate-800 hover:text-white"
+                    >
+                      Customize
+                    </Button>
+                  </PopoverTrigger>
+                  {/* <PopoverContent className="w-full">
                 <div className="grid gap-4">
                   <div className="space-y-2">
                     <h4 className="font-medium leading-none">Customize</h4>
@@ -499,140 +501,145 @@ const PromptPage = () => {
                   </div>
                 </div>
               </PopoverContent> */}
-              </Popover>
+                </Popover>
+              </div>
+
+              <Button
+                variant="outline"
+                onClick={handleSubmitClick}
+                className="hover:bg-no-repeat hover:border-none hover:text-xl hover:bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 hover:text-white w-2/3 mt-4 px-6 py-1.5 bg-white text-black text-md rounded p-6"
+              >
+                Submit
+              </Button>
             </div>
-
-            <Button
-              variant="outline"
-              onClick={handleSubmitClick}
-              className="hover:bg-no-repeat hover:border-none hover:text-xl hover:bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 hover:text-white w-2/3 mt-4 px-6 py-1.5 bg-white text-black text-md rounded p-6"
-            >
-              Submit
-            </Button>
           </div>
-        </div>
-      )}
+        )}
 
-      {loading && (
-        <div className="mt-8 w-[700px] mt-[50px] flex flex-col items-center justify-center">
-          <h1 className="mt-4 mb-6">Generating image for prompt: {prompt}</h1>
-          <div className="w-full bg-gray-100 rounded-full h-2">
-            <div
-              className="bg-blue-500 h-2 rounded-full animate-pulse"
-              style={{ width: "100%" }}
+        {loading && (
+          <div className="mt-8 w-[700px] mt-[50px] flex flex-col items-center justify-center">
+            <h1 className="mt-4 mb-6">Generating image for prompt: {prompt}</h1>
+            <div className="w-full bg-gray-100 rounded-full h-2">
+              <div
+                className="bg-blue-500 h-2 rounded-full animate-pulse"
+                style={{ width: "100%" }}
+              />
+            </div>
+          </div>
+        )}
+
+        {!loading && image && (
+          // <div className="mt-8 flex flex-col items-center justify-center w-[512px]">
+          // <img
+          //   src={`data:image/png;base64,${image}`} // Update the format if needed
+          //   //   src="/image_upload.jpg"
+          //   alt="Generated"
+          //   className="max-w-full h-auto"
+          // />
+
+          //   <Button
+          //     className="text-xl font-sans mt-5 px-7 py-5"
+          //     onClick={handleDownload}
+          //   >
+          //     Save your Image
+          //   </Button>
+          // </div>
+          <div className="flex mt-12 md:w-[1200px] justify-center h-[512px]">
+            <Image
+              src={`data:image/png;base64,${image}`} // Update the format if needed
+              //   src="/image_upload.jpg"
+              alt="Generated"
+              width={512}
+              height={512}
             />
-          </div>
-        </div>
-      )}
-
-      {/* Display the Base64 image if it exists */}
-      {!loading && image && (
-        // <div className="mt-8 flex flex-col items-center justify-center w-[512px]">
-        // <img
-        //   src={`data:image/png;base64,${image}`} // Update the format if needed
-        //   //   src="/image_upload.jpg"
-        //   alt="Generated"
-        //   className="max-w-full h-auto"
-        // />
-
-        //   <Button
-        //     className="text-xl font-sans mt-5 px-7 py-5"
-        //     onClick={handleDownload}
-        //   >
-        //     Save your Image
-        //   </Button>
-        // </div>
-        <div className="flex mt-12 md:w-[1200px] justify-center h-[512px]">
-          <Image
-            src={`data:image/png;base64,${image}`} // Update the format if needed
-            //   src="/image_upload.jpg"
-            alt="Generated"
-            width={512}
-            height={512}
-          />
-          <div className="flex flex-col w-full h-full ml-12">
-            <h1 className="font-sans font-bold text-3xl mb-1">
-              Generation Result
-            </h1>
-            <div className="flex flex-col items-center w-full h-[512px]">
-              {/* Details */}
-              <div className="w-full">
-                <div className="flex w-full space-x-5 my-5">
-                  <Button
-                    variant="secondary"
-                    className="w-1/2 font-sans text-md"
-                  >
-                    Reuse Settings
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    className="w-1/2 font-sans text-md"
-                  >
-                    Use Image
-                  </Button>
-                </div>
-                <span className="w-full">
-                  Model:
-                  <span className="text-green-500 ml-2">PrismaForge Flux</span>
-                </span>
-                <div className="mt-3 bg-[#1e1e1e] p-4 w-full rounded-lg">
-                  <div className="flex flex-wrap gap-y-4">
-                    <h1 className="font-sans w-1/2">Width: 1024</h1>
-                    <h1 className="font-sans w-1/2">Height: 1024</h1>
-                    <h1 className="font-sans w-1/2">Scale: 7</h1>
-                    <h1 className="font-sans w-1/2">Steps: 7</h1>
-                    <h1 className="font-sans w-1/2">Seed: 755527</h1>
+            <div className="flex flex-col w-full h-full ml-12">
+              <h1 className="font-sans font-bold text-3xl mb-1">
+                Generation Result
+              </h1>
+              <div className="flex flex-col items-center w-full h-[512px]">
+                {/* Details */}
+                <div className="w-full">
+                  <div className="flex w-full space-x-5 my-5">
+                    <Button
+                      variant="secondary"
+                      className="w-1/2 font-sans text-md"
+                    >
+                      Reuse Settings
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      className="w-1/2 font-sans text-md"
+                    >
+                      Use Image
+                    </Button>
                   </div>
-                  <h1 className="font-sans w-1/2 mt-5">
-                    Creation time:{" "}
-                    {new Date(Date.now()).toLocaleString("en-GB", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "2-digit",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      second: "2-digit",
-                    })}
-                  </h1>{" "}
+                  <span className="w-full">
+                    Model:
+                    <span className="text-green-500 ml-2">
+                      PrismaForge Flux
+                    </span>
+                  </span>
+                  <div className="mt-3 bg-[#1e1e1e] p-4 w-full rounded-lg">
+                    <div className="flex flex-wrap gap-y-4">
+                      <h1 className="font-sans w-1/2">Width: 1024</h1>
+                      <h1 className="font-sans w-1/2">Height: 1024</h1>
+                      <h1 className="font-sans w-1/2">Scale: 7</h1>
+                      <h1 className="font-sans w-1/2">Steps: 7</h1>
+                      <h1 className="font-sans w-1/2">Seed: 755527</h1>
+                    </div>
+                    <h1 className="font-sans w-1/2 mt-5">
+                      Creation time:{" "}
+                      {new Date(Date.now()).toLocaleString("en-GB", {
+                        day: "2-digit",
+                        month: "2-digit",
+                        year: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                      })}
+                    </h1>{" "}
+                  </div>
                 </div>
-              </div>
 
-              {/* Save and Share */}
-              <div className="w-full mt-5">
-                <h1 className="mt-5 w-full justify-start font-sans font-bold text-3xl">
-                  Save & Share
-                </h1>
-                <div className="flex w-full mt-5 flex-wrap justify-between gap-y-3">
-                  <Button
-                    variant="secondary"
-                    className="w-[48%] font-sans text-md"
-                  >
-                    Move to Albums
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    className="w-[48%] font-sans text-md"
-                  >
-                    Download Image
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    className="w-[48%] bg-[#06402b] hover:bg-green-800 hover:font-bold font-sans text-md"
-                  >
-                    Share
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    className="w-[48%] bg-[#06402b] hover:bg-green-800 hover:font-bold font-sans text-md"
-                  >
-                    Publish
-                  </Button>
+                {/* Save and Share */}
+                <div className="w-full mt-5">
+                  <h1 className="mt-5 w-full justify-start font-sans font-bold text-3xl">
+                    Save & Share
+                  </h1>
+                  <div className="flex w-full mt-5 flex-wrap justify-between gap-y-3">
+                    <Button
+                      variant="secondary"
+                      className="w-[48%] font-sans text-md"
+                    >
+                      Move to Albums
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      className="w-[48%] font-sans text-md"
+                    >
+                      Download Image
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      className="w-[48%] bg-[#06402b] hover:bg-green-800 hover:font-bold font-sans text-md"
+                    >
+                      Share
+                    </Button>
+                    <Button
+                      variant="secondary"
+                      className="w-[48%] bg-[#06402b] hover:bg-green-800 hover:font-bold font-sans text-md"
+                    >
+                      Publish
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
+      <div className="md:hidden">
+        <MobilePromptSection />
+      </div>
     </div>
   );
 };
