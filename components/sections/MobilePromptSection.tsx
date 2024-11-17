@@ -25,7 +25,7 @@ const MobilePromptSection = () => {
               <div className="h-full ml-2">
                 <Dices className="h-full w-auto" />
               </div>
-              <div className="flex items-center ml-auto rounded-xl bg-gradient-to-r from-pink-800 to-purple-800 px-5 font-semibold text-md h-full">
+              <div className="flex items-center ml-auto rounded-xl bg-gradient-to-r from-pink-800 to-purple-800 px-5 text-md h-full">
                 Generate <Sparkles size={18} className="ml-1" />
               </div>
             </div>
