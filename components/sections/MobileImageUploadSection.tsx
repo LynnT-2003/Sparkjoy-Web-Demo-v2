@@ -1,9 +1,26 @@
+"use client";
 import React from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import MobileTemplatesCard from "@/components/mobileTemplatesCard";
 
 import { useGSAP } from "@gsap/react";
 import { animateWithGsapBottom } from "@/lib/animation";
+
+import { FileUpload } from "../ui/file-upload";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const templates = [
   {
@@ -27,6 +44,11 @@ const templates = [
 ];
 
 const MobileImageUploadSection = () => {
+  const [file, setFile] = useState<File>();
+  const [originalImage, setOriginalImage] = useState<string | null>(null);
+  const [transformedImage, setTransformedImage] = useState<string | null>(null);
+  const [transformLoading, setTransformLoading] = useState(false);
+
   useGSAP(() => {
     animateWithGsapBottom("#header", {
       y: 0,

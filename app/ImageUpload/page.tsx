@@ -372,6 +372,8 @@ const ImageUploadPage = () => {
           </div>
         )}
       </div>
+
+      {/* Mobile Section */}
       <div className="block md:hidden">
         <MobileImageUploadSection />
       </div>
