@@ -25,13 +25,17 @@ const UploadSuccessScreen = () => {
         Image Uploaded <br />
         Successfully!
       </h1>
-      <div className="relative mx-12 aspect-square mt-5 rounded-lg ">
-        <Image
+      <div className="relative mx-12 aspect-square mt-7 rounded-lg ">
+        {/* <Image
           src={base64String}
           alt="Uploaded Image"
           layout="fill"
           objectFit="cover"
           className="rounded-lg z-0 opacity-25 motion-preset-expand motion-duration-300"
+        /> */}
+        <img
+          src={base64String}
+          className="w-full aspect-square rounded-lg opacity-25 object-cover motion-preset-expand motion-duration-300"
         />
         <div className="w-[80%] h-[80%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center justify-center">
           <CheckCircle2Icon
@@ -49,12 +53,12 @@ const UploadSuccessScreen = () => {
         </div>
       </div>
 
-      <div className="flex mx-12 items-center justify-between space-x-4">
-        <Button className="mt-7 w-full" variant="default">
+      <div className="flex mx-12 mt-7 items-center justify-between space-x-4">
+        <Button className="w-full" variant="default">
           Go Back
         </Button>
         <Button
-          className="mt-7 w-full bg-gradient-to-r from-pink-900 to-purple-900 "
+          className="w-full bg-gradient-to-r from-pink-900 to-purple-900 "
           variant="secondary"
         >
           Generate <ArrowRightIcon className="w-4 h-5 ml-2" />
