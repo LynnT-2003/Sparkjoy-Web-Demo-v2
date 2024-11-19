@@ -364,8 +364,8 @@ const ImageUploadPage = () => {
             <Compare
               firstImage={`data:image/png;base64,${originalImage}`}
               secondImage={`data:image/png;base64,${transformedImage}`}
-              firstImageClassName="object-cover object-left-top"
-              secondImageClassname="object-cover object-left-top"
+              firstImageClassName="object-cover"
+              secondImageClassname="object-cover"
               className="h-[250px] w-[200px] md:h-[500px] md:w-[500px]"
               slideMode="hover"
             />
