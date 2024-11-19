@@ -4,6 +4,8 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { IconUpload } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
+import { Alert, Snackbar } from "@mui/material";
+import { CheckIcon } from "lucide-react";
 
 const mainVariant = {
   initial: {
@@ -28,17 +30,20 @@ const secondaryVariant = {
 
 export const FileUploadMobile = ({
   onChange,
-  uploadImage,
 }: {
   onChange?: (file: File) => void;
-  uploadImage: () => void;
 }) => {
   const [file, setFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [alertOpen, setAlertOpen] = useState<boolean>(false);
 
   const handleFileChange = (newFile: File) => {
     setFile(newFile);
     onChange && onChange(newFile);
+  };
+
+  const handleAlertClose = () => {
+    setAlertOpen(false);
   };
 
   const handleClick = () => {
@@ -55,6 +60,7 @@ export const FileUploadMobile = ({
   const { getRootProps, isDragActive } = useDropzone({
     multiple: false,
     noClick: true,
+    maxSize: 5 * 1024 * 1024,
     accept: {
       "image/jpeg": [".jpg", ".jpeg"],
       "image/png": [".png"],
@@ -67,7 +73,27 @@ export const FileUploadMobile = ({
   });
 
   return (
-    <div className="w-full flex py-6 md:mb-0" {...getRootProps()}>
+    <div
+      className="w-full flex justify-center py-6 md:mb-0"
+      {...getRootProps()}
+    >
+      {alertOpen && (
+        <Snackbar
+          open={alertOpen}
+          autoHideDuration={6000}
+          onClose={handleAlertClose}
+          className="mx-auto w-[75vw] absolute top-[-15rem] z-50"
+        >
+          <Alert
+            onClose={handleAlertClose}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            File size exceeds 5MB. Please upload a smaller file.
+          </Alert>
+        </Snackbar>
+      )}
+
       <motion.div
         onClick={handleClick}
         whileHover="animate"
@@ -80,10 +106,23 @@ export const FileUploadMobile = ({
           accept="image/jpeg,image/png,image/webp"
           onChange={(e) => {
             const selectedFile = e.target.files?.[0];
-            if (selectedFile) handleFileChange(selectedFile);
+            if (selectedFile) {
+              // Validate file size
+              if (selectedFile.size > 5 * 1024 * 1024) {
+                setAlertOpen(true);
+              } else {
+                handleFileChange(selectedFile); // Proceed with file processing
+              }
+
+              // Reset the file input so the same file can be selected again
+              if (fileInputRef.current) {
+                fileInputRef.current.value = ""; // Clear the value programmatically
+              }
+            }
           }}
           className="hidden"
         />
+
         <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]">
           <GridPattern />
         </div>
