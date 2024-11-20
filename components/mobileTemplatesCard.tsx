@@ -22,12 +22,14 @@ import { Alert, Snackbar } from "@mui/material";
 
 interface MobileTemplatesCardProps {
   image: string;
+  template: string;
   title: string;
   description: string;
 }
 
 const MobileTemplatesCard: React.FC<MobileTemplatesCardProps> = ({
   image,
+  template,
   title,
   description,
 }) => {
@@ -57,10 +59,12 @@ const MobileTemplatesCard: React.FC<MobileTemplatesCardProps> = ({
       }
 
       const reader = new FileReader();
+      // const chosenTemplate = template;
 
       reader.onload = () => {
         const base64String = reader.result as string;
         localStorage.setItem("uploadedFile", base64String);
+        localStorage.setItem("template", template);
         router.push("/ImageUpload/upload-success");
       };
 

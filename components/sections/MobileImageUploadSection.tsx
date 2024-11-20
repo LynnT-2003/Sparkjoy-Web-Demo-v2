@@ -25,12 +25,14 @@ import {
 const templates = [
   {
     image: "/bg/bg.jpg",
+    template: "animify",
     title: "Animate your look",
     description:
       "Turn any selfie or portrait into a fun and unique cartoon style. Experiment with bold outlines, vibrant colors, and stylized effects to create your own animated image.",
   },
   {
     image: "/templates/christmas.jpg",
+    template: "christmas",
     title: "Christmas Theme",
     description:
       "Add a festive touch to your photos with Christmas designs. Choose from holiday lights, snow effects, and custom frames to make your images merry and bright.",
@@ -38,6 +40,7 @@ const templates = [
   {
     image: "/templates/fortune.jpg",
     title: "Test Your Fortune",
+    template: "fortune",
     description:
       "Get fun, personalized fortune readings in seconds. Upload your photo to reveal mystical insights with colorful illustrations and cosmic designs.",
   },
@@ -88,6 +91,7 @@ const MobileImageUploadSection = () => {
           <MobileTemplatesCard
             key={index}
             image={template.image}
+            template={template.template}
             title={template.title}
             description={template.description}
           />

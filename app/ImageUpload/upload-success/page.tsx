@@ -6,18 +6,34 @@ import { ArrowRightIcon, CheckCircle2Icon } from "lucide-react";
 
 const UploadSuccessScreen = () => {
   const [base64String, setBase64String] = useState<string | null>(null);
+  const [template, setTemplate] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Access localStorage safely only on the client side
       const storedFile = localStorage.getItem("uploadedFile");
+      const storedTemplate = localStorage.getItem("template");
       setBase64String(storedFile);
+      setTemplate(storedTemplate);
     }
   }, []);
 
   if (!base64String) {
     return <div>No file found.</div>;
   }
+
+  const handleOnClickGoBack = () => {
+    console.log("Clicked on back.");
+    window.history.back();
+    localStorage.removeItem("uploadedFile");
+    localStorage.removeItem("template");
+  };
+
+  const handleOnClickContinue = () => {
+    console.log("Clicked on continue.");
+    console.log("Generation Image: ", base64String);
+    console.log("Generation Template: ", template);
+  };
 
   return (
     <div className="flex flex-col justify-center">
@@ -54,12 +70,17 @@ const UploadSuccessScreen = () => {
       </div>
 
       <div className="flex mx-12 mt-7 items-center justify-between space-x-4">
-        <Button className="w-full" variant="default">
+        <Button
+          className="w-full"
+          variant="default"
+          onClick={handleOnClickGoBack}
+        >
           Go Back
         </Button>
         <Button
           className="w-full bg-gradient-to-r from-pink-900 to-purple-900 "
           variant="secondary"
+          onClick={handleOnClickContinue}
         >
           Generate <ArrowRightIcon className="w-4 h-5 ml-2" />
         </Button>
