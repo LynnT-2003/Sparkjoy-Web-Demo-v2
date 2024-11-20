@@ -514,10 +514,10 @@ const MobilePromptSection = () => {
             </div>
 
             <div className="w-full flex flex-col items-center justify-center space-y-3 mt-6 motion-preset-slide-right">
-              <Button className="w-full bg-[#f0f8ff] text-pink-800 rounded-3xl py-5 border border-purple-900 border-[0.15rem] font-sans text-[1rem]">
+              <Button className="w-full bg-[#d8d8d8] text-pink-800 rounded-3xl py-5 border border-purple-900 border-[0.15rem] font-sans text-[1rem]">
                 Save to Albums
               </Button>
-              <Button className="w-full rounded-3xl py-5 text-white bg-gradient-to-r from-pink-900 to-purple-900 border border-[#f0f8ff] border-[0.1rem] font-sans text-[1rem]">
+              <Button className="w-full rounded-3xl py-5 text-white bg-gradient-to-r from-pink-900 to-purple-900 border border-[#d8d8d8] border-[0.03rem] font-sans text-[1rem]">
                 Share <Share2Icon className="w-6 h-6 ml-1" />
               </Button>
             </div>
