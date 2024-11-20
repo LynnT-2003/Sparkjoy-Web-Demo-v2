@@ -1,30 +1,27 @@
 "use client";
-import { Dices, SendHorizonal, Share, Sparkles } from "lucide-react";
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Dices, Sparkles } from "lucide-react";
+import { Share2Icon } from "@radix-ui/react-icons";
+import { Button } from "../ui/button";
 import { Textarea } from "../ui/textarea";
 import Image from "next/image";
-import {
-  InstagramLogoIcon,
-  Share2Icon,
-  TwitterLogoIcon,
-} from "@radix-ui/react-icons";
-import {
-  IconBrandFacebook,
-  IconBrandFacebookFilled,
-  IconBrandReddit,
-  IconBrandTiktok,
-} from "@tabler/icons-react";
-import { Button } from "../ui/button";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
+// Register GSAP plugin
 gsap.registerPlugin(ScrollToPlugin);
 
 const MobilePromptSection = () => {
   const [prompt, setPrompt] = useState<string | null>(null);
   const [image, setImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = `data:image/png;base64,${image}`;
+    link.download = "prismaforge-image.png";
+    link.click();
+  };
 
   const handlePromptChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setPrompt(e.target.value);
@@ -407,7 +404,10 @@ const MobilePromptSection = () => {
                 />
               </div>
               <h1 className="text-sm animate-pulse">
-                This may take around 30 seconds.
+                This may take up to 30 seconds.
+              </h1>
+              <h1 className="text-sm animate-pulse">
+                Please dont quit or refresh the page.
               </h1>
             </div>
           </div>
@@ -497,25 +497,19 @@ const MobilePromptSection = () => {
               />
             </div>
 
-            {/* <div className="w-full flex items-center justify-center space-x-12">
-              <InstagramLogoIcon className="w-6 h-6" />
-              <IconBrandTiktok className="w-6 h-6" />
-              <IconBrandFacebook className="w-6 h-6" />
-              <IconBrandReddit className="w-6 h-6" />
-            </div> */}
-
             <div className="flex items-center w-full mt-10 motion-preset-slide-right">
               <Share2Icon className="w-8 h-8" />
-              {/* <h1 className="font-sans text-xl font-semibold mb-4 flex items-center"> */}
-
               <h1 className="relative left-2 bottom-[-0.1rem] font-sans text-2xl ">
                 Save and Share
               </h1>
             </div>
 
             <div className="w-full flex flex-col items-center justify-center space-y-3 mt-6 motion-preset-slide-right">
-              <Button className="w-full bg-[#d8d8d8] text-pink-800 rounded-3xl py-5 border border-purple-900 border-[0.15rem] font-sans text-[1rem]">
-                Save to Albums
+              <Button
+                className="w-full bg-[#d8d8d8] text-pink-800 rounded-3xl py-5 border border-purple-900 border-[0.15rem] font-sans text-[1rem]"
+                onClick={handleDownload}
+              >
+                Download Image
               </Button>
               <Button className="w-full rounded-3xl py-5 text-white bg-gradient-to-r from-pink-900 to-purple-900 border border-[#d8d8d8] border-[0.03rem] font-sans text-[1rem]">
                 Share <Share2Icon className="w-6 h-6 ml-1" />
