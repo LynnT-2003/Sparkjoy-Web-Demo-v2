@@ -1,11 +1,21 @@
+"use client";
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { IconUpload } from "@tabler/icons-react";
 import { useDropzone } from "react-dropzone";
 import { Alert, Snackbar } from "@mui/material";
-import { CheckIcon } from "lucide-react";
+import {
+  Camera,
+  CameraIcon,
+  CheckIcon,
+  UploadCloudIcon,
+  UploadIcon,
+} from "lucide-react";
+import Webcam from "react-webcam";
+import { CircularProgress } from "@mui/material";
 
 const mainVariant = {
   initial: {
@@ -33,6 +43,8 @@ export const FileUploadMobile = ({
 }: {
   onChange?: (file: File) => void;
 }) => {
+  const router = useRouter();
+
   const [file, setFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [alertOpen, setAlertOpen] = useState<boolean>(false);
@@ -72,6 +84,45 @@ export const FileUploadMobile = ({
     },
   });
 
+  // Webcam
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const webcamRef = useRef<Webcam>(null);
+  const cameraModalRef = useRef<HTMLDivElement | null>(null);
+
+  const handleOpenCamera = () => setIsCameraOpen(true);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        cameraModalRef.current &&
+        !cameraModalRef.current.contains(event.target as Node)
+      ) {
+        setIsCameraOpen(false);
+      }
+    };
+
+    if (isCameraOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isCameraOpen]);
+
+  const handleCapture = () => {
+    if (webcamRef.current) {
+      const imageSrc = webcamRef.current.getScreenshot();
+      if (imageSrc) {
+        // setFile(imageSrc); // Set the captured image as the file
+        localStorage.setItem("uploadedFile", imageSrc);
+        console.log("Captured Image: ", imageSrc);
+        setIsCameraOpen(false);
+        router.push("/ImageUpload/upload-success");
+      }
+    }
+  };
+
   return (
     <div
       className="w-full flex justify-center py-6 md:mb-0"
@@ -95,7 +146,6 @@ export const FileUploadMobile = ({
       )}
 
       <motion.div
-        onClick={handleClick}
         whileHover="animate"
         className="px-2 pb-7 group/file block rounded-lg cursor-pointer w-full relative overflow-hidden"
       >
@@ -136,37 +186,62 @@ export const FileUploadMobile = ({
           <div className="w-full flex space-x-8">
             <div className="relative w-1/2">
               <motion.div
-                layoutId="file-upload"
-                variants={mainVariant}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20,
-                }}
+                onClick={handleOpenCamera}
+                whileHover="animate"
                 className={cn(
                   "relative group-hover/file:shadow-2xl z-40 bg-neutral-900 flex items-center justify-center aspect-square mt-10 w-full rounded-md",
                   "shadow-[0px_10px_50px_rgba(0,0,0,0.1)]"
                 )}
               >
-                {isDragActive ? (
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="text-neutral-600 flex flex-col items-center"
-                  >
-                    Drop it
-                    <IconUpload className="h-4 w-4 dark:text-neutral-400" />
-                  </motion.p>
-                ) : (
-                  <IconUpload className="h-4 w-4 dark:text-neutral-300" />
-                )}
+                <div className="flex flex-col items-center justify-center">
+                  <p className="relative z-20 font-sans font-bold text-neutral-300 text-lg">
+                    <CameraIcon className="h-12 w-12" />
+                  </p>
+                </div>
               </motion.div>
 
-              {!file && (
-                <motion.div
-                  variants={secondaryVariant}
-                  className="absolute opacity-0 border border-dashed border-sky-400 inset-0 z-30 bg-transparent flex items-center justify-center h-32 mt-4 w-full max-w-[8rem] mx-auto rounded-md"
-                ></motion.div>
+              {/* Webcam Modal */}
+              {isCameraOpen && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+                  <div
+                    ref={cameraModalRef}
+                    className="bg-[#181818] p-6 w-[85vw] rounded-lg flex flex-col items-center mt-[-10rem]"
+                  >
+                    <div className="flex items-center justify-center relative">
+                      <CircularProgress
+                        color="inherit"
+                        size={50}
+                        className="absolute z-10" // Set CircularProgress behind the webcam
+                      />
+
+                      <Webcam
+                        ref={webcamRef}
+                        audio={false}
+                        screenshotFormat="image/jpeg"
+                        className="w-full h-auto z-20" // Position Webcam on top with higher z-index
+                      />
+                    </div>
+
+                    <div className="flex items-center mt-4 w-full">
+                      <div className="flex w-full space-x-2">
+                        <Button
+                          onClick={() => setIsCameraOpen(false)}
+                          variant="outline"
+                          className="bg-red-900 w-full border-none"
+                        >
+                          Cancel
+                        </Button>
+                        <Button
+                          onClick={handleCapture}
+                          variant="outline"
+                          className="w-full"
+                        >
+                          Capture
+                        </Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
             <div className="relative w-1/2">
@@ -182,6 +257,7 @@ export const FileUploadMobile = ({
                   "relative group-hover/file:shadow-2xl z-40 bg-neutral-900 flex items-center justify-center aspect-square mt-10 w-full rounded-md",
                   "shadow-[0px_10px_50px_rgba(0,0,0,0.1)]"
                 )}
+                onClick={handleClick}
               >
                 {isDragActive ? (
                   <motion.p
@@ -190,10 +266,10 @@ export const FileUploadMobile = ({
                     className="text-neutral-600 flex flex-col items-center"
                   >
                     Drop it
-                    <IconUpload className="h-4 w-4 dark:text-neutral-400" />
+                    <UploadIcon className="h-10 w-10 dark:text-neutral-400" />
                   </motion.p>
                 ) : (
-                  <IconUpload className="h-4 w-4 dark:text-neutral-300" />
+                  <UploadIcon className="h-10 w-10 dark:text-neutral-300" />
                 )}
               </motion.div>
 
@@ -207,24 +283,6 @@ export const FileUploadMobile = ({
           </div>
         </div>
       </motion.div>
-
-      {/* Reset Button */}
-      {/* {file && (
-        <div className="w-full space-x-8 flex items-center justify-center px-[160px]">
-          <Button
-            onClick={handleReset}
-            className="w-[50%] bg-red-500 text-white text-lg py-4 px-12 rounded-md hover:bg-red-600"
-          >
-            Clear
-          </Button>
-          <Button
-            onClick={uploadImage}
-            className="w-full bg-slate-500 text-white text-lg py-4 px-12 rounded-md hover:bg-slate-600"
-          >
-            Start !
-          </Button>
-        </div>
-      )} */}
     </div>
   );
 };

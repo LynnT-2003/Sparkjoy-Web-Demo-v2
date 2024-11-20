@@ -61,7 +61,7 @@ const UploadSuccessScreen = () => {
             }}
           />
           <h1 className="text-center pt-4 text-md font-semibold font-sans opacity-100 motion-preset-expand motion-duration-300">
-            Your Image is now ready
+            Your new Image ready
           </h1>
           <h1 className="text-center pt-0 text-md font-semibold font-sans opacity-100 motion-preset-expand motion-duration-300">
             to be generated.
@@ -82,7 +82,7 @@ const UploadSuccessScreen = () => {
           variant="secondary"
           onClick={handleOnClickContinue}
         >
-          Generate <ArrowRightIcon className="w-4 h-5 ml-2" />
+          Continue <ArrowRightIcon className="w-4 h-5 ml-2" />
         </Button>
       </div>
     </div>

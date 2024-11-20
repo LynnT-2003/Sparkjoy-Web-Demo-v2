@@ -38,6 +38,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-dropzone": "^14.2.9",
+    "react-webcam": "^7.2.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "tailwindcss-motion": "^0.4.1-beta"
