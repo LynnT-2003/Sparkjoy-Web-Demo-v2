@@ -65,6 +65,7 @@ const HistoryImagesSection: React.FC<HistoryImagesSectionProps> = ({
 
   useEffect(() => {
     // If you want to fetch the latest data from API, do it here.
+    console.log("Image has been generated and saved to history");
     setHomeImages(initialImages); // This will update the state if props change
   }, [initialImages]);
 
