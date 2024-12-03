@@ -46,6 +46,7 @@ export default function RootLayout({
                   active={false}
                   alert={false}
                   route={"/"}
+                  onClick={""}
                 />
                 <MobileSidebarItem
                   icon={<Edit />}
@@ -53,6 +54,7 @@ export default function RootLayout({
                   active={false}
                   alert={false}
                   route={"/Prompt"}
+                  onClick={""}
                 />
                 <MobileSidebarItem
                   icon={<Image />}
@@ -60,6 +62,15 @@ export default function RootLayout({
                   active={false}
                   alert={false}
                   route={"/ImageUpload"}
+                  onClick={""}
+                />
+                <MobileSidebarItem
+                  icon={<Settings />}
+                  text="History"
+                  active={false}
+                  alert={false}
+                  route={"/History"}
+                  onClick={""}
                 />
                 <MobileSidebarItem
                   icon={<Settings />}
@@ -67,6 +78,7 @@ export default function RootLayout({
                   active={false}
                   alert={false}
                   route={"/ImageUpload"}
+                  onClick={""}
                 />
               </MobileSidebar>
               {children}
