@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import { onAuthStateChange } from "@/lib/firebase";
 import { User } from "firebase/auth";
 import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
-
-// update
+import HistoryImagesMobileSection from "@/components/sections/HistoryImagesMobileSection";
 
 interface ImageObject {
   _id: string;
@@ -60,7 +59,12 @@ const HistoryPage = () => {
 
   return (
     <div>
-      <HistoryImagesSection homeImages={images} />
+      <div className="hidden md:block">
+        <HistoryImagesSection homeImages={images} />
+      </div>
+      <div className="md:hidden">
+        <HistoryImagesMobileSection />
+      </div>
     </div>
   );
 };

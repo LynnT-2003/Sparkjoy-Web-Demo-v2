@@ -8,7 +8,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { MobileSidebarItem } from "@/components/mui-mobile-drawer";
 
-import { Edit, Settings, LogOut, HomeIcon, Image } from "lucide-react";
+import { Edit, Settings, LogOut, HomeIcon, Image, History } from "lucide-react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -65,19 +65,11 @@ export default function RootLayout({
                   onClick={""}
                 />
                 <MobileSidebarItem
-                  icon={<Settings />}
+                  icon={<History />}
                   text="History"
                   active={false}
                   alert={false}
-                  route={"/History"}
-                  onClick={""}
-                />
-                <MobileSidebarItem
-                  icon={<Settings />}
-                  text="Settings"
-                  active={false}
-                  alert={false}
-                  route={"/ImageUpload"}
+                  route={"/history"}
                   onClick={""}
                 />
               </MobileSidebar>
