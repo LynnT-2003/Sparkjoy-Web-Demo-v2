@@ -68,13 +68,6 @@ export default function RootLayout({
                   alert={false}
                   route={"/ImageUpload"}
                 />
-                <MobileSidebarItem
-                  icon={<LogOut />}
-                  text="Sign Out"
-                  active={false}
-                  alert={false}
-                  route={"/"}
-                />
               </MobileSidebar>
               {children}
             </main>
