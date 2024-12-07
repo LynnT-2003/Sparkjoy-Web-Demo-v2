@@ -150,7 +150,7 @@ export default function Home() {
               </h1>
 
               <Button
-                className="w-full font-sans text-md mb-3 font-extralight"
+                className="w-full font-sans text-sm mb-3"
                 onClick={() => router.push("/ImageUpload")}
               >
                 Get Started
@@ -166,9 +166,7 @@ export default function Home() {
                   width={40}
                   height={40}
                 />
-                <h1 className="text-sm font-sans font-extralight">
-                  Sign in With Google
-                </h1>
+                <h1 className="text-sm font-sans">Sign in With Google</h1>
               </div>
             </div>
           </div>
