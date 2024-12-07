@@ -137,15 +137,16 @@ export default function Home() {
                 Unleash your creativity
               </h1>
               <h1 className="font-sans font-bold text-white text-3xl text-center">
-                With our AI-Powered <br />
-                Image Generator
+                Redefine yourself with
+                <br />
+                Baksters Christmas
               </h1>
             </div>
 
             <div className="mt-[67.5dvh] absolute w-full flex flex-col items-center justify-center h-[30dvh] px-16">
-              <h1 className="font-sans font-bold text-white text-xl text-center mb-6">
-                Save time and resources with <br />
-                AI-powered technology
+              <h1 className="font-sans font-semibold text-white text-xl text-center mb-6">
+                Start introducing <br />
+                new versions of yourself
               </h1>
 
               <Button
