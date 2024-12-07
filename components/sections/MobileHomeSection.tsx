@@ -313,39 +313,55 @@ const MobileHomeSection = () => {
       >
         <div className="flex flex-wrap items-center justify-center gap-[2.5vw] gap-y-8">
           <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-0">
-            <img
-              className="w-[45vw] h-[45vw] object-cover"
-              src="/exampleChristmas/original.png"
-            />
+            <div className="w-[45vw] aspect-square relative">
+              <Image
+                alt="image"
+                className="object-cover"
+                layout="fill"
+                src="/exampleChristmas/original.png"
+              />
+            </div>
             <h1 className="mt-2 text-center">
               Step 1: Take a photo or upload an image
             </h1>
           </div>
           <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-[1000ms]">
-            <img
-              className="w-[45vw] h-[45vw] object-cover"
-              src="/exampleChristmas/loading.avif"
-            />
+            <div className="w-[45vw] aspect-square relative">
+              <Image
+                alt="image"
+                className="object-cover"
+                layout="fill"
+                src="/exampleChristmas/loading.avif"
+              />
+            </div>
             <h1 className="mt-2 text-center">
               Step 2: Wait for the magic to happen
             </h1>
           </div>
           <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-[2000ms]">
-            <img
-              className="w-[45vw] h-[45vw]"
-              src="/exampleChristmas/transformed.png"
-            />
+            <div className="w-[45vw] aspect-square relative">
+              <Image
+                alt="image"
+                className="object-cover"
+                layout="fill"
+                src="/exampleChristmas/transformed.png"
+              />
+            </div>
             <h1 className="mt-2 text-center">
               Step 3: Collect & Save your new look
             </h1>
           </div>
           <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-[3000ms]">
-            <img
-              className="w-[45vw] h-[45vw] object-cover bg-slate-500 opacity-80"
-              src="/exampleChristmas/1.png"
-            />
+            <div className="w-[45vw] aspect-square relative">
+              <Image
+                alt="image"
+                className="object-cover"
+                layout="fill"
+                src="/exampleChristmas/1.png"
+              />
+            </div>
             <h1 className="mt-2 text-center">
-              Step 4: Keep collecting & win different variations
+              Step 4: Keep collecting to win new variations
             </h1>
           </div>
           <Button
