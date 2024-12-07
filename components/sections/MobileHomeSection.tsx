@@ -45,27 +45,27 @@ const MobileHomeSection = () => {
           <img
             id="image1"
             src="/exampleChristmas/3.png"
-            className="h-full aspect-square rounded-lg"
+            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
           />
           <img
             id="image2"
             src="/exampleChristmas/2.png"
-            className="h-full aspect-square rounded-lg"
+            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
           />
         </div>
         <div className="flex w-screen h-[35dvh] ">
           <div className="h-full flex overflow-hidden items-center justify-center space-x-4 py-4">
             <img
               src="/exampleChristmas/1.png"
-              className="h-full aspect-square rounded-lg"
+              className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
             />
             <img
               src="/exampleChristmas/1.png"
-              className="h-full aspect-square rounded-lg"
+              className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
             />
             <img
               src="/exampleChristmas/1.png"
-              className="h-full aspect-square rounded-lg"
+              className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
             />
           </div>
         </div>
@@ -73,16 +73,16 @@ const MobileHomeSection = () => {
           <img
             id="image3"
             src="/exampleChristmas/2.png"
-            className="h-full aspect-square rounded-lg"
+            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
           />
           <img
             id="image4"
             src="/exampleChristmas/3.png"
-            className="h-full aspect-square rounded-lg"
+            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
           />
         </div>
       </div>
-      <div className="absolute w-full flex flex-col items-center justify-center h-[32.5dvh] ">
+      <div className="absolute w-full flex flex-col items-center justify-center h-[32.5dvh] motion-preset-slide-right motion-duration-1000">
         <h1 className="py-2 font-sans font-extralight text-white  text-center uppercase bg-black px-4 mb-6 opacity-60">
           Unleash your creativity
         </h1>
@@ -93,7 +93,7 @@ const MobileHomeSection = () => {
         </h1>
       </div>
 
-      <div className="mt-[67.5dvh] absolute w-full flex flex-col items-center justify-center h-[30dvh] px-16">
+      <div className="mt-[67.5dvh] absolute w-full flex flex-col items-center justify-center h-[30dvh] px-16 motion-preset-slide-right motion-duration-1000">
         <h1 className="font-sans font-semibold text-white text-xl text-center mb-6">
           Introducing new
           <br />
