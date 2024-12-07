@@ -209,7 +209,7 @@ const MobileHomeSection = () => {
 
   const handleStartCollecting = () => {
     // Navigate or perform an action when the button is clicked
-    router.push("/ImageUpload");
+    router.push("/Test");
   };
 
   return (
