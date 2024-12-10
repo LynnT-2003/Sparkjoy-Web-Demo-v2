@@ -187,7 +187,8 @@ export function MobileSidebarItem({
       className={`
         relative flex items-center py-5 px-3 my-1
         font-medium rounded-md cursor-pointer
-        transition-all duration-300 group
+        transition-all duration-300 group 
+        ${expanded ? "w-52 ml-3 visible" : "w-0 invisible"}
         ${
           active
             ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800"
