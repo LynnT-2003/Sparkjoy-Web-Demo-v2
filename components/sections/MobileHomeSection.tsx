@@ -204,7 +204,10 @@ const MobileHomeSection = () => {
 
   const handleGetStartedClick = () => {
     setGetStartedClicked(true);
-    setStepVisible(true); // Show the next steps after Get Started is clicked
+  };
+
+  const handleOutsideAreaClick = () => {
+    setGetStartedClicked(false);
   };
 
   const handleStartCollecting = () => {
@@ -308,10 +311,11 @@ const MobileHomeSection = () => {
       {/* Tutorial Steps */}
       <div
         className={`${
-          stepVisible ? "block" : "hidden"
+          getStartedClicked ? "block" : "hidden"
         } absolute flex items-center justify-center h-[100dvh]`}
+        onClick={handleOutsideAreaClick}
       >
-        <div className="flex flex-wrap items-center justify-center gap-[2.5vw] gap-y-8">
+        <div className="flex flex-wrap items-center justify-center gap-[2.5vw] gap-y-8 z-99">
           <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-0">
             <div className="w-[45vw] aspect-square relative">
               <Image
@@ -364,12 +368,14 @@ const MobileHomeSection = () => {
               Step 4: Keep collecting to win new variations
             </h1>
           </div>
-          <Button
-            className="mt-4 p-[1.5rem] motion-preset-fade motion-duration-2000 motion-delay-[4500ms]"
-            onClick={handleStartCollecting}
-          >
-            Start Collecting
-          </Button>
+          <div onClick={(e) => e.stopPropagation()}>
+            <Button
+              className="mt-4 p-[1.5rem] motion-preset-fade motion-duration-2000 motion-delay-[4500ms]"
+              onClick={handleStartCollecting}
+            >
+              Start Collecting
+            </Button>
+          </div>
         </div>
       </div>
     </div>
