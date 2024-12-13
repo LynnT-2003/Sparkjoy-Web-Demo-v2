@@ -83,14 +83,14 @@ export default function Home() {
   return (
     <div className="relative overflow-x-hidden">
       <div className="hidden md:block">
-        <div className=" absolute top-0 left-0">
+        {/* <div className=" absolute top-0 left-0">
           <HeroSection images={images} />
         </div>
         <div className="pt-[2640px]">
           <InputSection onNewImage={handleNewImage} />
-        </div>
+        </div> */}
       </div>
-      <div className="md:hidden flex bg-[#191919] h-[100dvh]">
+      <div className="flex bg-[#191919] h-[100dvh]">
         <div className="w-full overflow-x-hidden">
           <MobileHomeSection />
         </div>
