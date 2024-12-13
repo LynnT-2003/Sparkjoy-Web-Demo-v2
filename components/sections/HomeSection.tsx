@@ -215,100 +215,237 @@ const HomeSection = () => {
   };
 
   return (
+    // // Original draft (Grid)
+    // <div className="w-full">
+    //   {/* Background Content */}
+    //   <div
+    //     className={`w-full h-screen flex flex-col items-center absolute top-0 left-0 ${
+    //       getStartedClicked ? "opacity-15" : "opacity-100"
+    //     }`}
+    //   >
+    //     {/* <div className="flex w-screen overflow-hidden items-center justify-center opacity-25 h-[32.5dvh] space-x-4">
+    //       <img
+    //         id="image1"
+    //         src="/exampleChristmas/3.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
+    //       />
+    //       <img
+    //         id="image2"
+    //         src="/exampleChristmas/2.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
+    //       />
+    //       <img
+    //         id="image1"
+    //         src="/exampleChristmas/3.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
+    //       />
+    //       <img
+    //         id="image2"
+    //         src="/exampleChristmas/2.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
+    //       />
+    //       <img
+    //         id="image1"
+    //         src="/exampleChristmas/3.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
+    //       />
+    //       <img
+    //         id="image2"
+    //         src="/exampleChristmas/2.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
+    //       />
+    //     </div> */}
+    //     <div className="flex w-full items-center justify-center h-[35dvh] ">
+    //       <div className="h-full flex overflow-hidden items-center justify-center space-x-4 py-4">
+    //         <img
+    //           src="/exampleChristmas/1.png"
+    //           className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
+    //         />
+    //         <img
+    //           src="/exampleChristmas/1.png"
+    //           className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
+    //         />
+    //         <img
+    //           src="/exampleChristmas/1.png"
+    //           className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
+    //         />
+    //         <img
+    //           src="/exampleChristmas/1.png"
+    //           className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
+    //         />
+    //         <img
+    //           src="/exampleChristmas/1.png"
+    //           className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
+    //         />
+    //       </div>
+    //     </div>
+    //     {/* <div className="flex w-screen overflow-hidden items-center justify-center opacity-25 h-[32.5dvh] space-x-4">
+    //       <img
+    //         id="image3"
+    //         src="/exampleChristmas/2.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
+    //       />
+    //       <img
+    //         id="image4"
+    //         src="/exampleChristmas/3.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
+    //       />{" "}
+    //       <img
+    //         id="image3"
+    //         src="/exampleChristmas/2.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
+    //       />
+    //       <img
+    //         id="image4"
+    //         src="/exampleChristmas/3.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
+    //       />{" "}
+    //       <img
+    //         id="image3"
+    //         src="/exampleChristmas/2.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
+    //       />
+    //       <img
+    //         id="image4"
+    //         src="/exampleChristmas/3.png"
+    //         className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
+    //       />
+    //     </div> */}
+    //   </div>
+
+    //   {/* Initial Get Started Section */}
+    //   <div
+    //     className={`absolute w-full flex flex-col items-center justify-center h-[32.5dvh] motion-preset-slide-right motion-duration-1000 ${
+    //       getStartedClicked ? "invisible" : "visible"
+    //     }`}
+    //   >
+    //     <h1 className="py-2 font-sans font-extralight text-white text-center uppercase bg-black px-4 mb-6 opacity-60">
+    //       Unleash your creativity
+    //     </h1>
+    //     <h1 className="font-sans font-bold text-white text-3xl text-center">
+    //       Redefine yourself with
+    //       <br />
+    //       Baksters Christmas
+    //     </h1>
+    //   </div>
+
+    //   {/* Step 2: Wait for the magic */}
+    //   <div className="w-full flex items-center justify-center mt-[67.5dvh] absolute">
+    //     {" "}
+    //     <div
+    //       className={`w-[24rem] flex flex-col items-center justify-center h-[30dvh] px-16 motion-preset-slide-right motion-duration-1000 ${
+    //         getStartedClicked ? "invisible" : "visible"
+    //       }`}
+    //     >
+    //       <h1 className="font-sans font-semibold text-white text-xl text-center mb-6">
+    //         Introducing new
+    //         <br />
+    //         versions of yourself !
+    //       </h1>
+
+    //       <Button
+    //         className="w-full font-sans text-sm mb-3"
+    //         onClick={handleGetStartedClick}
+    //       >
+    //         Get Started
+    //       </Button>
+    //       <div
+    //         className="w-full flex items-center justify-center py-1 space-x-2"
+    //         style={{ backgroundColor: "rgba(30, 30, 30, 0.8)" }}
+    //       >
+    //         <Image src="/brands/google.png" alt="Logo" width={40} height={40} />
+    //         <h1 className="text-sm font-sans">Sign in With Google</h1>
+    //       </div>
+    //     </div>
+    //   </div>
+
+    //   {/* Tutorial Steps */}
+    //   <div
+    //     className={`${
+    //       getStartedClicked ? "block" : "hidden"
+    //     } absolute flex items-center justify-center h-[100dvh]`}
+    //     onClick={handleOutsideAreaClick}
+    //   >
+    //     <div className="flex flex-wrap items-center justify-center gap-[2.5vw] gap-y-8 z-99">
+    //       <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-0">
+    //         <div className="w-[45vw] aspect-square relative">
+    //           <Image
+    //             alt="image"
+    //             className="object-cover"
+    //             layout="fill"
+    //             src="/exampleChristmas/original.png"
+    //           />
+    //         </div>
+    //         <h1 className="mt-2 text-center">
+    //           Step 1: Take a photo or upload an image
+    //         </h1>
+    //       </div>
+    //       <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-[1000ms]">
+    //         <div className="w-[45vw] aspect-square relative">
+    //           <Image
+    //             alt="image"
+    //             className="object-cover"
+    //             layout="fill"
+    //             src="/exampleChristmas/loading.avif"
+    //           />
+    //         </div>
+    //         <h1 className="mt-2 text-center">
+    //           Step 2: Wait for the magic to happen
+    //         </h1>
+    //       </div>
+    //       <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-[2000ms]">
+    //         <div className="w-[45vw] aspect-square relative">
+    //           <Image
+    //             alt="image"
+    //             className="object-cover"
+    //             layout="fill"
+    //             src="/exampleChristmas/transformed.png"
+    //           />
+    //         </div>
+    //         <h1 className="mt-2 text-center">
+    //           Step 3: Collect & Save your new look
+    //         </h1>
+    //       </div>
+    //       <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-[3000ms]">
+    //         <div className="w-[45vw] aspect-square relative">
+    //           <Image
+    //             alt="image"
+    //             className="object-cover"
+    //             layout="fill"
+    //             src="/exampleChristmas/1.png"
+    //           />
+    //         </div>
+    //         <h1 className="mt-2 text-center">
+    //           Step 4: Keep collecting to win new variations
+    //         </h1>
+    //       </div>
+    //       <div onClick={(e) => e.stopPropagation()}>
+    //         <Button
+    //           className="mt-4 p-[1.5rem] motion-preset-fade motion-duration-2000 motion-delay-[4500ms]"
+    //           onClick={handleStartCollecting}
+    //         >
+    //           Start Collecting
+    //         </Button>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
+
+    // // Updated draft (Idk)
     <div className="w-full">
       {/* Background Content */}
       <div
-        className={`w-full h-screen flex flex-col items-center absolute top-0 left-0 ${
+        className={`w-full h-screen flex flex-col items-center justify-center absolute top-0 left-0 ${
           getStartedClicked ? "opacity-15" : "opacity-100"
         }`}
       >
-        <div className="flex w-screen overflow-hidden items-center justify-center opacity-25 h-[32.5dvh] space-x-4">
-          <img
-            id="image1"
-            src="/exampleChristmas/3.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
-          />
-          <img
-            id="image2"
-            src="/exampleChristmas/2.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
-          />
-          <img
-            id="image1"
-            src="/exampleChristmas/3.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
-          />
-          <img
-            id="image2"
-            src="/exampleChristmas/2.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
-          />
-          <img
-            id="image1"
-            src="/exampleChristmas/3.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
-          />
-          <img
-            id="image2"
-            src="/exampleChristmas/2.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
-          />
-        </div>
-        <div className="flex w-full items-center justify-center h-[35dvh] ">
-          <div className="h-full flex overflow-hidden items-center justify-center space-x-4 py-4">
+        <div className="flex w-full items-center justify-center">
+          <div className="h-[32.5dvh] flex overflow-hidden items-center justify-center space-x-4 py-4">
             <img
-              src="/exampleChristmas/1.png"
-              className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
-            />
-            <img
-              src="/exampleChristmas/1.png"
-              className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
-            />
-            <img
-              src="/exampleChristmas/1.png"
-              className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
-            />
-            <img
-              src="/exampleChristmas/1.png"
-              className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
-            />
-            <img
-              src="/exampleChristmas/1.png"
-              className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
+              src="/home/homeHero.png"
+              className="h-full object-cover rounded-lg motion-preset-blur-right motion-duration-700"
             />
           </div>
-        </div>
-        <div className="flex w-screen overflow-hidden items-center justify-center opacity-25 h-[32.5dvh] space-x-4">
-          <img
-            id="image3"
-            src="/exampleChristmas/2.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
-          />
-          <img
-            id="image4"
-            src="/exampleChristmas/3.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
-          />{" "}
-          <img
-            id="image3"
-            src="/exampleChristmas/2.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
-          />
-          <img
-            id="image4"
-            src="/exampleChristmas/3.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
-          />{" "}
-          <img
-            id="image3"
-            src="/exampleChristmas/2.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-700"
-          />
-          <img
-            id="image4"
-            src="/exampleChristmas/3.png"
-            className="h-full aspect-square rounded-lg motion-preset-blur-right motion-duration-1000"
-          />
         </div>
       </div>
 
