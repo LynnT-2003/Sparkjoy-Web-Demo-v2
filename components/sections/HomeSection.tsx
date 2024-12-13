@@ -197,10 +197,9 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 
-const MobileHomeSection = () => {
+const HomeSection = () => {
   const router = useRouter();
   const [getStartedClicked, setGetStartedClicked] = useState(false);
-  const [stepVisible, setStepVisible] = useState(false);
 
   const handleGetStartedClick = () => {
     setGetStartedClicked(true);
@@ -333,7 +332,7 @@ const MobileHomeSection = () => {
       <div className="w-full flex items-center justify-center mt-[67.5dvh] absolute">
         {" "}
         <div
-          className={`w-full md:w-1/3 flex flex-col items-center justify-center h-[30dvh] px-16 motion-preset-slide-right motion-duration-1000 ${
+          className={`w-[24rem] flex flex-col items-center justify-center h-[30dvh] px-16 motion-preset-slide-right motion-duration-1000 ${
             getStartedClicked ? "invisible" : "visible"
           }`}
         >
@@ -433,4 +432,4 @@ const MobileHomeSection = () => {
   );
 };
 
-export default MobileHomeSection;
+export default HomeSection;

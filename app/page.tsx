@@ -16,7 +16,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import InputSection from "@/components/sections/InputSection";
 import HistoryImagesSection from "@/components/sections/HistoryImagesSection";
 import { Edit, Settings, LogOut, HomeIcon } from "lucide-react";
-import MobileHomeSection from "@/components/sections/MobileHomeSection";
+import HomeSection from "@/components/sections/HomeSection";
 import { useRouter } from "next/navigation";
 
 interface ImageObject {
@@ -92,7 +92,7 @@ export default function Home() {
       </div>
       <div className="flex bg-[#191919] h-[100dvh]">
         <div className="w-full overflow-x-hidden">
-          <MobileHomeSection />
+          <HomeSection />
         </div>
       </div>
     </div>
