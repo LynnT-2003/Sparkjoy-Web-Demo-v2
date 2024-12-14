@@ -41,6 +41,7 @@ const TestPage = () => {
   }, [isCameraOpen]);
 
   const handleCapture = () => {
+    console.log("Camera clicked");
     if (webcamRef.current) {
       const imageSrc = webcamRef.current.getScreenshot();
       if (imageSrc) {
@@ -102,22 +103,22 @@ const TestPage = () => {
 
   const router = useRouter();
   return (
-    <div className="h-[100dvh] w-screen">
-      <div className="relative h-[85dvh]">
+    <div className="h-[100dvh] sm:h-[100vh] w-full overflow-y-hidden sm:py-12">
+      <div className="w-full relative h-[85%] flex items-center justify-center">
         <Webcam
           ref={webcamRef}
           audio={false}
           screenshotFormat="image/jpeg"
-          className="h-full w-full object-cover"
+          className="h-full w-full sm:w-[70%] object-cover"
         />
 
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center">
+        <div className="w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-full flex items-center justify-center">
           <div className="absolute flex flex-wrap w-full aspect-square p-16 items-center justify-center gap-24">
-            <div className="w-1/4 h-1/4 border-t-2 border-l-2 border-white" />
-            <div className="w-1/4 h-1/4 border-t-2 border-r-2 border-white" />
-            <div className="w-1/4 h-1/4 border-b-2 border-l-2 border-white" />
-            <div className="w-1/4 h-1/4 border-b-2 border-r-2 border-white" />
-            <h1 className="absolute bottom-[0.5rem] text-white text-center bg-[#294c29] py-2 px-4 rounded-full opacity-90">
+            <div className="sm:hidden w-1/4 h-1/4 border-t-2 border-l-2 border-white" />
+            <div className="sm:hidden w-1/4 h-1/4 border-t-2 border-r-2 border-white" />
+            <div className="sm:hidden w-1/4 h-1/4 border-b-2 border-l-2 border-white" />
+            <div className="sm:hidden w-1/4 h-1/4 border-b-2 border-r-2 border-white" />
+            <h1 className="sm:hidden absolute bottom-[0.5rem] text-white text-center bg-[#294c29] py-2 px-4 rounded-full opacity-60">
               Take a clear picture
             </h1>
             {alertOpen && (
@@ -164,38 +165,40 @@ const TestPage = () => {
         className="hidden"
       />
 
-      <div className="h-[15dvh] flex items-center justify-between">
-        <Button
-          onClick={() => {
-            router.push("/");
-          }}
-          variant={"ghost"}
-          className="w-1/3 flex items-center justify-center bg-none h-full hover:bg-[#181818]"
-        >
-          <div className="flex flex-col w-[3.5rem] items-center justify-center">
-            <ArrowLeft size="80%" strokeWidth={0.5} />
-            <h1 className="font-medium mt-1">Cancel</h1>
-          </div>
-        </Button>
-        <div className="w-1/3 flex items-center justify-center">
+      <div className="w-full relative flex items-center justify-center h-[15%] ">
+        <div className="flex w-full sm:w-[70%] items-center justify-between sm:bg-[#121212] sm:py-2 rounded-xl">
+          {" "}
           <Button
-            onClick={handleCapture}
-            className="p-8 rounded-full aspect-square bg-gray-300 border-white border-[0.4rem] "
+            onClick={() => {
+              router.push("/");
+            }}
             variant={"ghost"}
-          ></Button>
+            className="w-1/3 flex items-center justify-center bg-none h-full hover:bg-[#181818]"
+          >
+            <div className="flex flex-col w-[3.5rem] items-center justify-center">
+              <ArrowLeft size="60%" strokeWidth={0.5} />
+              <h1 className="font-medium mt-1 text-[0.75rem]">Cancel</h1>
+            </div>
+          </Button>
+          <div className="w-1/3 h-full flex items-center justify-center z-99">
+            <Button
+              onClick={handleCapture}
+              className="p-[3vh] rounded-full aspect-square bg-gray-300 border-white border-[0.4rem] "
+              variant={"ghost"}
+            ></Button>
+          </div>
+          <Button
+            onClick={handleClick}
+            variant={"ghost"}
+            className="w-1/3 rounded-full hover:bg-[#181818]"
+          >
+            <ImagePlusIcon
+              size="3rem"
+              className="font-light"
+              strokeWidth={0.5}
+            />
+          </Button>
         </div>
-
-        <Button
-          onClick={handleClick}
-          variant={"ghost"}
-          className="w-1/3 rounded-full hover:bg-[#181818]"
-        >
-          <ImagePlusIcon
-            size="3.5rem"
-            className="font-light"
-            strokeWidth={0.5}
-          />
-        </Button>
       </div>
     </div>
   );
