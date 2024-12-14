@@ -458,7 +458,7 @@ const HomeSection = () => {
         <h1 className="py-2 font-sans font-extralight text-white text-center uppercase bg-black px-4 mb-6 opacity-60">
           Unleash your creativity
         </h1>
-        <h1 className="font-sans font-bold text-white text-3xl text-center">
+        <h1 className=" font-sans font-bold text-white text-[4vh] text-center">
           Redefine yourself with
           <br />
           Baksters Christmas
@@ -469,28 +469,30 @@ const HomeSection = () => {
       <div className="w-full flex items-center justify-center mt-[67.5dvh] absolute">
         {" "}
         <div
-          className={`w-[24rem] flex flex-col items-center justify-center h-[30dvh] px-16 motion-preset-slide-right motion-duration-1000 ${
+          className={`flex flex-col items-center justify-center h-[30dvh] px-16 motion-preset-slide-right motion-duration-1000 ${
             getStartedClicked ? "invisible" : "visible"
           }`}
         >
-          <h1 className="font-sans font-semibold text-white text-xl text-center mb-6">
+          <h1 className="font-sans font-semibold text-white text-[2.5vh] text-center mb-6">
             Introducing new
             <br />
             versions of yourself !
           </h1>
 
           <Button
-            className="w-full font-sans text-sm mb-3"
+            className="w-full font-sans h-[4vh] text-[1.5vh] mb-3"
             onClick={handleGetStartedClick}
           >
             Get Started
           </Button>
           <div
-            className="w-full flex items-center justify-center py-1 space-x-2"
+            className="w-full flex items-center justify-center space-x-2 py-1"
             style={{ backgroundColor: "rgba(30, 30, 30, 0.8)" }}
           >
-            <Image src="/brands/google.png" alt="Logo" width={40} height={40} />
-            <h1 className="text-sm font-sans">Sign in With Google</h1>
+            <Image src="/brands/google.png" alt="Logo" width={35} height={35} />
+            <h1 className="text-[1.5vh] font-sans flex items-center justify-center">
+              Sign in With Google
+            </h1>
           </div>
         </div>
       </div>
@@ -499,63 +501,72 @@ const HomeSection = () => {
       <div
         className={`${
           getStartedClicked ? "block" : "hidden"
-        } absolute flex items-center justify-center h-[100dvh]`}
+        } w-full absolute flex items-center h-[100dvh] sm:items-start sm:h-auto justify-center`}
         onClick={handleOutsideAreaClick}
       >
-        <div className="flex flex-wrap items-center justify-center gap-[2.5vw] gap-y-8 z-99">
-          <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-0">
-            <div className="w-[45vw] aspect-square relative">
-              <Image
-                alt="image"
-                className="object-cover"
-                layout="fill"
-                src="/exampleChristmas/original.png"
-              />
+        <div className="w-full sm:w-[50%] mt-0 sm:mt-12 flex flex-col items-center\ justify-center gap-[2.5vw] gap-y-8 z-99">
+          <div className="flex items-center justify-center space-x-4">
+            <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-0">
+              <div className="w-full aspect-square relative">
+                <Image
+                  alt="image"
+                  className="object-cover"
+                  layout="fill"
+                  src="/exampleChristmas/original.png"
+                />
+              </div>
+              <h1 className="mt-2 text-center">
+                Step 1: Take a photo or upload an image
+              </h1>
             </div>
-            <h1 className="mt-2 text-center">
-              Step 1: Take a photo or upload an image
-            </h1>
-          </div>
-          <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-[1000ms]">
-            <div className="w-[45vw] aspect-square relative">
-              <Image
-                alt="image"
-                className="object-cover"
-                layout="fill"
-                src="/exampleChristmas/loading.avif"
-              />
+            <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-[1000ms]">
+              <div className="w-full  aspect-square relative">
+                <Image
+                  alt="image"
+                  className="object-cover"
+                  layout="fill"
+                  src="/exampleChristmas/loading.avif"
+                />
+              </div>
+              <h1 className="mt-2 text-center">
+                Step 2: Wait for the magic to happen
+              </h1>
             </div>
-            <h1 className="mt-2 text-center">
-              Step 2: Wait for the magic to happen
-            </h1>
           </div>
-          <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-[2000ms]">
-            <div className="w-[45vw] aspect-square relative">
-              <Image
-                alt="image"
-                className="object-cover"
-                layout="fill"
-                src="/exampleChristmas/transformed.png"
-              />
+
+          <div className="flex items-center justify-center space-x-4">
+            <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-[2000ms]">
+              <div className="w-full aspect-square relative">
+                <Image
+                  alt="image"
+                  className="object-cover"
+                  layout="fill"
+                  src="/exampleChristmas/transformed.png"
+                />
+              </div>
+              <h1 className="mt-2 text-center">
+                Step 3: Collect & Save your new look
+              </h1>
             </div>
-            <h1 className="mt-2 text-center">
-              Step 3: Collect & Save your new look
-            </h1>
-          </div>
-          <div className="w-[45vw] motion-preset-slide-right motion-duration-1500 motion-delay-[3000ms]">
-            <div className="w-[45vw] aspect-square relative">
-              <Image
-                alt="image"
-                className="object-cover"
-                layout="fill"
-                src="/exampleChristmas/1.png"
-              />
+            <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-[3000ms]">
+              <div className="w-full mx-0 aspect-square relative">
+                <Image
+                  alt="image"
+                  className="object-cover"
+                  layout="fill"
+                  src="/exampleChristmas/1.png"
+                />
+              </div>
+              <h1 className="mt-2 text-center">
+                Step 4: Keep collecting to win new variations
+              </h1>
             </div>
-            <h1 className="mt-2 text-center">
-              Step 4: Keep collecting to win new variations
-            </h1>
           </div>
-          <div onClick={(e) => e.stopPropagation()}>
+
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="flex w-full justify-center"
+          >
             <Button
               className="mt-4 p-[1.5rem] motion-preset-fade motion-duration-2000 motion-delay-[4500ms]"
               onClick={handleStartCollecting}
