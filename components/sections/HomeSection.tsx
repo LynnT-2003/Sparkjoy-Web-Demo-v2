@@ -455,7 +455,7 @@ const HomeSection = () => {
           getStartedClicked ? "invisible" : "visible"
         }`}
       >
-        <h1 className="py-2 font-sans font-extralight text-white text-center uppercase bg-black px-4 mb-6 opacity-60">
+        <h1 className="py-2 text-[2vh] font-sans font-extralight text-white text-center uppercase bg-black px-4 mb-6 opacity-60">
           Unleash your creativity
         </h1>
         <h1 className=" font-sans font-bold text-white text-[4vh] text-center">
@@ -486,10 +486,16 @@ const HomeSection = () => {
             Get Started
           </Button>
           <div
-            className="w-full flex items-center justify-center space-x-2 py-1"
+            className="h-[5vh] w-full flex items-center justify-center space-x-2"
             style={{ backgroundColor: "rgba(30, 30, 30, 0.8)" }}
           >
-            <Image src="/brands/google.png" alt="Logo" width={35} height={35} />
+            <Image
+              src="/brands/google.png"
+              alt="Logo"
+              width={35}
+              height={35}
+              className="py-[1vh]"
+            />
             <h1 className="text-[1.5vh] font-sans flex items-center justify-center">
               Sign in With Google
             </h1>
