@@ -443,7 +443,7 @@ const HomeSection = () => {
           <div className="h-[32.5dvh] flex overflow-hidden items-center justify-center space-x-4 py-4">
             <img
               src="/home/homeHero.png"
-              className="h-full object-cover rounded-lg motion-preset-blur-right motion-duration-700"
+              className="pl-[3.5rem] h-full object-cover rounded-lg motion-preset-blur-right motion-duration-700"
             />
           </div>
         </div>
