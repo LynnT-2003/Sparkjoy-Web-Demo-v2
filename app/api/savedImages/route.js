@@ -8,6 +8,13 @@ export async function POST(req) {
     const { delayTime, executionTime, image, prompt, userId, username } =
       await req.json();
 
+    if (!userId) {
+      return NextResponse.json(
+        { error: "userId is required to save the image." },
+        { status: 400 }
+      );
+    }
+
     // Connect to MongoDB
     await connectMongoDB();
 
