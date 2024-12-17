@@ -205,7 +205,7 @@ const UploadSuccessScreen = () => {
           <h1 className="mx-12 pt-[1.7rem] text-center text-2xl font-semibold font-sans motion-preset-slide-right">
             Image Generated!
           </h1>
-          <div className="relative mx-12 mt-7 rounded-lg bg-red-500 flex items-center justify-center">
+          <div className="relative mx-12 mt-7 rounded-lg flex items-center justify-center">
             <img
               src={`data:image/png;base64,${generatedImage}`} // Update the format if needed
               className="w-full sm:w-[40%] aspect-square rounded-lg object-cover motion-preset-expand motion-duration-500"
