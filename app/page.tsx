@@ -92,6 +92,10 @@ export default function Home() {
       </div>
       <div className="flex bg-[#191919] h-[100dvh]">
         <div className="w-full overflow-x-hidden">
+          {/* <img
+            src="/bg/bg-red.png"
+            className="absolute top-0 left-0 z-0 h-screen object-cover"
+          /> */}
           <HomeSection />
         </div>
       </div>
