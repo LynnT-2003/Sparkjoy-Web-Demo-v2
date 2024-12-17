@@ -199,7 +199,7 @@ const MobilePromptSection = () => {
       const data = await response.json();
       console.log("Parsed JSON data:", data);
 
-      if (data.output.message) {
+      if (data.output.message && user) {
         setImage(data.output.message);
 
         gsap.to(window, {

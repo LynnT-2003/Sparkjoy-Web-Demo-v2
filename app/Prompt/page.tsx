@@ -353,7 +353,7 @@ const PromptPage = () => {
       const data = await response.json();
       console.log("Parsed JSON data:", data);
 
-      if (data.output.message) {
+      if (data.output.message && user) {
         setImage(data.output.message); // Set the Base64 image string
         // const newImage = {
         //   _id: data.id,
