@@ -13,6 +13,8 @@ import {
   Bookmark,
   User2,
   Edit,
+  History,
+  ImageIcon,
 } from "lucide-react";
 
 import {
@@ -90,7 +92,7 @@ export function AppSidebar() {
           <SidebarGroupContent className="mt-0">
             <SidebarMenu>
               <SidebarMenuItem
-                className="py-4 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                className="py-5 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
                 onClick={() => router.push("/")}
               >
                 <SidebarMenuButton
@@ -104,13 +106,43 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
+              {/* <SidebarMenuItem
+                className="py-5 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                onClick={() => router.push("/Prompt")}
+              >
+                <SidebarMenuButton
+                  asChild
+                  className="text-lg text-[#d9d9d9] space-x-2"
+                >
+                  <a>
+                    <Edit className="w-64 h-64" />
+                    <span>Prompt</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem> */}
+
+              {/* <SidebarMenuItem
+                className="py-5 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                onClick={() => router.push("/Test")}
+              >
+                <SidebarMenuButton
+                  asChild
+                  className="text-lg text-[#d9d9d9] space-x-2"
+                >
+                  <a>
+                    <ImageIcon className="w-64 h-64" />
+                    <span>Custom</span>
+                  </a>
+                </SidebarMenuButton>
+              </SidebarMenuItem> */}
+
               <Collapsible defaultOpen>
-                <CollapsibleTrigger className="py-4 w-full flex items-center text-lg text-[#d9d9d9] hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                <CollapsibleTrigger className="py-5 w-full flex items-center text-lg text-[#d9d9d9] hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
                   <Edit className="ml-2 w-5 h-5" />
                   <span className="ml-4">Studio</span>
                   <ChevronDown className="ml-auto w-5.5 h-5.5 mr-1" />
                 </CollapsibleTrigger>
-                <CollapsibleContent className="pl-4">
+                <CollapsibleContent className="pl-4 transition-all duration-150 ease-linear">
                   <SidebarMenu>
                     <div className="mb-1">
                       <SidebarMenuItem
@@ -148,8 +180,8 @@ export function AppSidebar() {
                 </CollapsibleContent>
               </Collapsible>
 
-              <Collapsible defaultOpen>
-                <CollapsibleTrigger className="py-4 w-full flex items-center text-lg text-[#d9d9d9] hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+              {/* <Collapsible defaultOpen>
+                <CollapsibleTrigger className="py-5 w-full flex items-center text-lg text-[#d9d9d9] hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
                   <Bookmark className="ml-2 w-5 h-5" />
                   <span className="ml-4">My Collections</span>
                   <ChevronDown className="ml-auto w-5.5 h-5.5 mr-1" />
@@ -172,6 +204,7 @@ export function AppSidebar() {
                           </a>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
+
                       <SidebarMenuItem className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
                         <SidebarMenuButton
                           asChild
@@ -184,6 +217,7 @@ export function AppSidebar() {
                           </a>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
+
                       <SidebarMenuItem className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
                         <SidebarMenuButton
                           asChild
@@ -200,21 +234,25 @@ export function AppSidebar() {
                     </div>
                   </SidebarMenu>
                 </CollapsibleContent>
-              </Collapsible>
-              <SidebarMenuItem className="py-4 hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+              </Collapsible> */}
+
+              <SidebarMenuItem
+                className="py-5 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                onClick={() => router.push("/history")}
+              >
                 <SidebarMenuButton
                   asChild
                   className="text-lg text-[#d9d9d9] space-x-2"
                 >
-                  <a href={""}>
-                    <Settings className="w-64 h-64" />
-                    <span>Settings</span>
+                  <a>
+                    <History className="w-64 h-64" />
+                    <span>History</span>
                   </a>
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
               {user ? (
-                <SidebarMenuItem className="py-4 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                <SidebarMenuItem className="py-5 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
                   <SidebarMenuButton
                     asChild
                     className="text-lg text-[#d9d9d9] space-x-2"
