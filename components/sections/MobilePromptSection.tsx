@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Dices, Sparkles } from "lucide-react";
 import { Share2Icon } from "@radix-ui/react-icons";
 import { Button } from "../ui/button";
@@ -7,11 +7,27 @@ import { Textarea } from "../ui/textarea";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { User } from "firebase/auth";
+import { onAuthStateChange } from "@/lib/firebase";
 
 // Register GSAP plugin
 gsap.registerPlugin(ScrollToPlugin);
 
 const MobilePromptSection = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChange((user) => {
+      if (user) {
+        setUser(user);
+        console.log("User is now: ", user);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
   const [prompt, setPrompt] = useState<string | null>(null);
   const [image, setImage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -30,137 +46,6 @@ const MobilePromptSection = () => {
   const handleSubmitClick = async () => {
     setImage(null); // Reset the image state
     setLoading(true); // Set loading state to true when the request starts
-
-    const body = {
-      input: {
-        workflow: {
-          "5": {
-            inputs: {
-              width: 1024,
-              height: 1024,
-              batch_size: 1,
-            },
-            class_type: "EmptyLatentImage",
-            _meta: {
-              title: "Empty Latent Image",
-            },
-          },
-          "6": {
-            inputs: {
-              text: prompt || "Default prompt here", // Set prompt dynamically
-              clip: ["11", 0],
-            },
-            class_type: "CLIPTextEncode",
-            _meta: {
-              title: "CLIP Text Encode (Prompt)",
-            },
-          },
-          "8": {
-            inputs: {
-              samples: ["13", 0],
-              vae: ["10", 0],
-            },
-            class_type: "VAEDecode",
-            _meta: {
-              title: "VAE Decode",
-            },
-          },
-          "9": {
-            inputs: {
-              filename_prefix: "ComfyUI",
-              images: ["8", 0],
-            },
-            class_type: "SaveImage",
-            _meta: {
-              title: "Save Image",
-            },
-          },
-          "10": {
-            inputs: {
-              vae_name: "ae.safetensors",
-            },
-            class_type: "VAELoader",
-            _meta: {
-              title: "Load VAE",
-            },
-          },
-          "11": {
-            inputs: {
-              clip_name1: "t5xxl_fp8_e4m3fn.safetensors",
-              clip_name2: "clip_l.safetensors",
-              type: "flux",
-            },
-            class_type: "DualCLIPLoader",
-            _meta: {
-              title: "DualCLIPLoader",
-            },
-          },
-          "12": {
-            inputs: {
-              unet_name: "flux1-dev.safetensors",
-              weight_dtype: "fp8_e4m3fn",
-            },
-            class_type: "UNETLoader",
-            _meta: {
-              title: "Load Diffusion Model",
-            },
-          },
-          "13": {
-            inputs: {
-              noise: ["25", 0],
-              guider: ["22", 0],
-              sampler: ["16", 0],
-              sigmas: ["17", 0],
-              latent_image: ["5", 0],
-            },
-            class_type: "SamplerCustomAdvanced",
-            _meta: {
-              title: "SamplerCustomAdvanced",
-            },
-          },
-          "16": {
-            inputs: {
-              sampler_name: "euler",
-            },
-            class_type: "KSamplerSelect",
-            _meta: {
-              title: "KSamplerSelect",
-            },
-          },
-          "17": {
-            inputs: {
-              scheduler: "sgm_uniform",
-              steps: 4,
-              denoise: 1,
-              model: ["12", 0],
-            },
-            class_type: "BasicScheduler",
-            _meta: {
-              title: "BasicScheduler",
-            },
-          },
-          "22": {
-            inputs: {
-              model: ["12", 0],
-              conditioning: ["6", 0],
-            },
-            class_type: "BasicGuider",
-            _meta: {
-              title: "BasicGuider",
-            },
-          },
-          "25": {
-            inputs: {
-              noise_seed: 108076821791990,
-            },
-            class_type: "RandomNoise",
-            _meta: {
-              title: "RandomNoise",
-            },
-          },
-        },
-      },
-    };
 
     const newBody = {
       input: {
@@ -296,7 +181,6 @@ const MobilePromptSection = () => {
       },
     };
 
-    console.log("Body:", body);
     console.log("Posting to endpoint...");
 
     try {
@@ -324,57 +208,60 @@ const MobilePromptSection = () => {
         });
       }
 
-      //   if (data.output.message) {
-      //     setImage(data.output.message); // Set the Base64 image string
-      //     // const newImage = {
-      //     //   _id: data.id,
-      //     //   image: data.output.message,
-      //     //   prompt: body.input.workflow["6"].inputs.text,
-      //     // };
-      //     const base64Image = data.output.message;
+      if (data.output.message) {
+        setImage(data.output.message); // Set the Base64 image string
+        // const newImage = {
+        //   _id: data.id,
+        //   image: data.output.message,
+        //   prompt: body.input.workflow["6"].inputs.text,
+        // };
+        const base64Image = data.output.message;
 
-      //     // Call Cloudinary upload function
-      //     const cloudinaryResponse = await fetch("/api/upload-to-cloudinary", {
-      //       method: "POST",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //       body: JSON.stringify({ base64Image }),
-      //     });
+        // Call Cloudinary upload function
+        console.log("Posting to Cloudinary...");
+        const cloudinaryResponse = await fetch("/api/upload-to-cloudinary", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ base64Image }),
+        });
 
-      //     const cloudinaryData = await cloudinaryResponse.json();
+        const cloudinaryData = await cloudinaryResponse.json();
 
-      //     console.log("Cloudinary URL:", cloudinaryData.url);
+        console.log("Cloudinary URL:", cloudinaryData.url);
 
-      //     if (cloudinaryData.url) {
-      //       // Save the response to MongoDB
-      //       const mongoBody = {
-      //         delayTime: data.delayTime,
-      //         executionTime: data.executionTime,
-      //         image: cloudinaryData.url,
-      //         prompt: prompt || "Default prompt here",
-      //         userId: user?.uid,
-      //         username: user?.displayName,
-      //       };
+        if (cloudinaryData.url) {
+          // Save the response to MongoDB
+          console.log("Posting to Mongodb...");
 
-      //       // // console.log("Lets post to MongoDB later:", data);
-      //       console.log("Posting", mongoBody);
-      //       try {
-      //         const mongoResponse = await fetch("/api/savedImages", {
-      //           method: "POST",
-      //           headers: {
-      //             "Content-Type": "application/json",
-      //           },
-      //           body: JSON.stringify(mongoBody),
-      //         });
-      //         console.log("MongoDB response status:", mongoResponse.status);
-      //         const mongoResponseBody = await mongoResponse.json();
-      //         console.log("MongoDB response body:", mongoResponseBody);
-      //       } catch (error) {
-      //         console.error("Error saving to MongoDB:", error);
-      //       }
-      //     }
-      //   }
+          const mongoBody = {
+            delayTime: data.delayTime,
+            executionTime: data.executionTime,
+            image: cloudinaryData.url,
+            prompt: prompt || "Default prompt here",
+            userId: user?.uid,
+            username: user?.displayName,
+          };
+
+          console.log("Lets post to MongoDB:", data);
+          console.log("Posting", mongoBody);
+          try {
+            const mongoResponse = await fetch("/api/savedImages", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(mongoBody),
+            });
+            console.log("MongoDB response status:", mongoResponse.status);
+            const mongoResponseBody = await mongoResponse.json();
+            console.log("MongoDB response body:", mongoResponseBody);
+          } catch (error) {
+            console.error("Error saving to MongoDB:", error);
+          }
+        }
+      }
     } catch (error) {
       console.error("Error:", error);
     } finally {
