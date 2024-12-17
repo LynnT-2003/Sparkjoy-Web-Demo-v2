@@ -206,7 +206,8 @@ const HomeSection = () => {
   };
 
   const handleOutsideAreaClick = () => {
-    setGetStartedClicked(false);
+    // setGetStartedClicked(false);
+    router.push("/Test");
   };
 
   const handleStartCollecting = () => {
@@ -440,10 +441,10 @@ const HomeSection = () => {
         }`}
       >
         <div className="flex w-full items-center justify-center">
-          <div className="h-[32.5dvh] flex overflow-hidden items-center justify-center space-x-4 py-4">
+          <div className="mx-5 sm:mx-0 h-[32.5dvh] flex overflow-hidden items-center justify-center py-4">
             <img
               src="/home/homeHero.png"
-              className="pl-[3.5rem] h-full object-cover rounded-lg motion-preset-blur-right motion-duration-700"
+              className="sm:pl-[3.5rem] sm:h-full object-cover rounded-lg motion-preset-blur-right motion-duration-700"
             />
           </div>
         </div>
@@ -455,10 +456,10 @@ const HomeSection = () => {
           getStartedClicked ? "invisible" : "visible"
         }`}
       >
-        <h1 className="py-2 text-[2vh] font-sans font-extralight text-white text-center uppercase bg-black px-4 mb-6 opacity-60">
+        <h1 className="py-2 text-[1.5vh] sm:text-[2vh] font-sans font-extralight text-white text-center uppercase bg-black px-4 mb-6 opacity-60">
           Unleash your creativity
         </h1>
-        <h1 className=" font-sans font-bold text-white text-[4vh] text-center">
+        <h1 className=" font-sans font-bold text-white text-[3vh] sm:text-[4vh] text-center">
           Redefine yourself with
           <br />
           Baksters Christmas
