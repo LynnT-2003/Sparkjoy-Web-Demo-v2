@@ -191,7 +191,7 @@ const UploadSuccessScreen = () => {
             Generating your image..
           </h1>
           {/* <h1>Hang on tight! This usually takes a few seconds.</h1> */}
-          <div className="w-[60%] bg-gray-100 rounded-full h-2">
+          <div className="w-[60%] sm:w-[20rem] bg-gray-100 rounded-full h-2">
             <div
               className="bg-blue-500 h-2 rounded-full animate-pulse"
               style={{ width: "100%" }}
@@ -205,10 +205,10 @@ const UploadSuccessScreen = () => {
           <h1 className="mx-12 pt-[1.7rem] text-center text-2xl font-semibold font-sans motion-preset-slide-right">
             Image Generated!
           </h1>
-          <div className="relative mx-12 aspect-square mt-7 rounded-lg">
+          <div className="relative mx-12 mt-7 rounded-lg bg-red-500 flex items-center justify-center">
             <img
               src={`data:image/png;base64,${generatedImage}`} // Update the format if needed
-              className="w-full aspect-square rounded-lg object-cover motion-preset-expand motion-duration-500"
+              className="w-full sm:w-[40%] aspect-square rounded-lg object-cover motion-preset-expand motion-duration-500"
             />
           </div>
         </div>
