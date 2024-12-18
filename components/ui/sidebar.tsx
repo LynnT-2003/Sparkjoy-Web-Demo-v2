@@ -1030,12 +1030,20 @@ const SidebarTrigger = React.forwardRef<
   const { toggleSidebar } = useSidebar();
 
   return (
-    <div className="pl-3 mr-2 sticky top-0 z-50">
+    <div className="pl-3 mr-2 sticky top-0 z-50 text-blue-500">
       <div className="flex items-center">
-        <PanelLeft
+        {/* <PanelLeft
           // className="cursor-pointer hover:bg-gray-700 p-1 rounded-lg"
           size={24}
           data-sidebar="trigger"
+          onClick={() => {
+            toggleSidebar();
+          }}
+        /> */}
+        <img
+          src="/logo.png"
+          alt="logo"
+          className="h-[32px]"
           onClick={() => {
             toggleSidebar();
           }}

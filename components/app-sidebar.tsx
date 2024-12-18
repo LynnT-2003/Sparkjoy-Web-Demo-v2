@@ -76,14 +76,15 @@ export function AppSidebar() {
       <SidebarContent className="mx-4">
         <SidebarGroup className="">
           <div
-            className="flex items-center mb-3 mt-1 hover:cursor-pointer ml-[-0.5rem]"
+            className="flex items-center mb-3 mt-5 hover:cursor-pointer ml-[-0.5rem]"
             onClick={() => router.push("/")}
           >
-            <img
+            {/* <img
               src="/logo_clear.png"
               alt="Anim8"
               className="w-14 h-14 rounded-full object-cover opacity-88"
-            />
+            /> */}
+            <SidebarTrigger className="absolute w-14 h-14 rounded-full bg-[#121212] flex items-center justify-center z-50" />
             <SidebarGroupLabel className="text-2xl text-black font-semibold font-sans mt-0 ml-0">
               PrismaForge
             </SidebarGroupLabel>
