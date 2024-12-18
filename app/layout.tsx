@@ -34,7 +34,7 @@ export default function RootLayout({
         <div className="">
           <SidebarProvider>
             <AppSidebar />
-            <div className="hidden md:block fixed mt-7 ml-4 hover:cursor-pointer transition-opacity duration-300 ease-in-out z-50">
+            <div className="hidden md:block fixed mt-8 ml-4 hover:cursor-pointer transition-opacity duration-300 ease-in-out z-50">
               <SidebarTrigger className="absolute top-0 left-0" />
             </div>
             <main className="w-screen relative">

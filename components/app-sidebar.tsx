@@ -84,8 +84,8 @@ export function AppSidebar() {
               alt="Anim8"
               className="w-14 h-14 rounded-full object-cover opacity-88"
             /> */}
-            <SidebarTrigger className="absolute w-14 h-14 rounded-full bg-[#121212] flex items-center justify-center z-50" />
-            <SidebarGroupLabel className="text-2xl text-black font-semibold font-sans mt-0 ml-0">
+            <SidebarTrigger className="absolute w-[24px] h-[24px] rounded-full bg-[#121212] flex items-center justify-center z-50" />
+            <SidebarGroupLabel className="text-2xl text-black font-medium font-sans mt-0 ml-0">
               PrismaForge
             </SidebarGroupLabel>
           </div>
@@ -93,15 +93,16 @@ export function AppSidebar() {
           <SidebarGroupContent className="mt-0">
             <SidebarMenu>
               <SidebarMenuItem
-                className="py-5 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear"
+                className="py-5 ml-[-0.4rem] hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear"
                 onClick={() => router.push("/")}
               >
                 <SidebarMenuButton
                   asChild
-                  className="text-lg text-[#121212] space-x-2 active:text-gray-700"
+                  className="text-lg text-[#121212] space-x-1 active:text-gray-700"
                 >
                   <a>
-                    <Home className="w-64 h-64" />
+                    {/* <Home className="w-64 h-64" /> */}
+                    <img src="/logo.png" alt="PrismaForge" className="w-8" />
                     <span>Home</span>
                   </a>
                 </SidebarMenuButton>

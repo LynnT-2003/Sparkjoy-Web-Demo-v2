@@ -766,7 +766,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { VariantProps, cva } from "class-variance-authority";
-import { PanelLeft } from "lucide-react";
+import { Menu } from "lucide-react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -1027,27 +1027,27 @@ const SidebarTrigger = React.forwardRef<
   React.ElementRef<typeof Button>,
   React.ComponentProps<typeof Button>
 >(({ className, onClick, ...props }, ref) => {
-  const { toggleSidebar } = useSidebar();
+  const { state, toggleSidebar } = useSidebar();
 
   return (
-    <div className="pl-3 mr-2 sticky top-0 z-50 text-blue-500">
+    <div className="pl-3 mr-2 sticky top-0 z-50 text-black">
       <div className="flex items-center">
-        {/* <PanelLeft
+        <Menu
           // className="cursor-pointer hover:bg-gray-700 p-1 rounded-lg"
           size={24}
           data-sidebar="trigger"
           onClick={() => {
             toggleSidebar();
           }}
-        /> */}
-        <img
+        />
+        {/* <img
           src="/logo.png"
           alt="logo"
           className="h-[32px]"
           onClick={() => {
             toggleSidebar();
           }}
-        />
+        /> */}
       </div>
     </div>
   );
