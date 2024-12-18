@@ -68,7 +68,7 @@ export default function MobileSidebar({ children }) {
         <nav
           ref={sidebarRef}
           className={`fixed h-full flex flex-col shadow-sm transition-all duration-300 ease-in-out ${
-            expanded ? "bg-[#1e1e1e] border-r w-64" : "bg-transparent w-10"
+            expanded ? "bg-[#1e1e1e] w-64" : "bg-transparent w-10"
           }`}
         >
           <div className={`py-4 pb-2 flex justify-between items-center`}>
@@ -87,8 +87,8 @@ export default function MobileSidebar({ children }) {
             </div>
             <button
               onClick={() => setExpanded((curr) => !curr)}
-              className={`p-1.5 rounded-lg flex items-center ${
-                expanded ? "" : "mt-[0.45rem] border-r"
+              className={`p-1.5 rounded-lg flex items-center${
+                expanded ? "text-white" : "mt-[0.45rem] text-black"
               }`}
             >
               {expanded ? <ChevronFirst /> : <ChevronLast />}
