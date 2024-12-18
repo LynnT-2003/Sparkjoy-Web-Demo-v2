@@ -522,7 +522,7 @@ const HomeSection = () => {
                   src="/exampleChristmas/original.png"
                 />
               </div>
-              <h1 className="mt-2 text-center">
+              <h1 className="mt-2 text-center text-black">
                 Step 1: Take a photo or upload an image
               </h1>
             </div>
@@ -535,7 +535,7 @@ const HomeSection = () => {
                   src="/exampleChristmas/loading.avif"
                 />
               </div>
-              <h1 className="mt-2 text-center">
+              <h1 className="mt-2 text-center text-black">
                 Step 2: Wait for the magic to happen
               </h1>
             </div>
@@ -551,7 +551,7 @@ const HomeSection = () => {
                   src="/exampleChristmas/transformed.png"
                 />
               </div>
-              <h1 className="mt-2 text-center">
+              <h1 className="mt-2 text-center text-black">
                 Step 3: Collect & Save your new look
               </h1>
             </div>
@@ -564,7 +564,7 @@ const HomeSection = () => {
                   src="/exampleChristmas/1.png"
                 />
               </div>
-              <h1 className="mt-2 text-center">
+              <h1 className="mt-2 text-center text-black">
                 Step 4: Keep collecting to win new variations
               </h1>
             </div>
