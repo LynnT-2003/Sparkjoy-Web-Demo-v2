@@ -23,7 +23,7 @@
 //     //       className="opacity-20"
 //     //     />
 //     //   </div>
-//     //   <h1 className="relative z-10 text-white text-7xl mx-12 font-bold">
+//     //   <h1 className="relative z-10 text-black text-7xl mx-12 font-bold">
 //     //     Start Creating Your Art Now
 //     //   </h1>
 //     //   <div className="flex flex-col space-y-4 w-full px-12 z-10 mt-48">
@@ -99,10 +99,10 @@
 //           getStartedClicked ? "invisible" : "visible"
 //         }`}
 //       >
-//         <h1 className="py-2 font-sans font-extralight text-white  text-center uppercase bg-black px-4 mb-6 opacity-60">
+//         <h1 className="py-2 font-sans font-extralight text-black  text-center uppercase bg-black px-4 mb-6 opacity-60">
 //           Unleash your creativity
 //         </h1>
-//         <h1 className="font-sans font-bold text-white text-3xl text-center">
+//         <h1 className="font-sans font-bold text-black text-3xl text-center">
 //           Redefine yourself with
 //           <br />
 //           Baksters Christmas
@@ -114,7 +114,7 @@
 //           getStartedClicked ? "invisible" : "visible"
 //         }`}
 //       >
-//         <h1 className="font-sans font-semibold text-white text-xl text-center mb-6">
+//         <h1 className="font-sans font-semibold text-black text-xl text-center mb-6">
 //           Introducing new
 //           <br />
 //           versions of yourself !
@@ -320,10 +320,10 @@ const HomeSection = () => {
     //       getStartedClicked ? "invisible" : "visible"
     //     }`}
     //   >
-    //     <h1 className="py-2 font-sans font-extralight text-white text-center uppercase bg-black px-4 mb-6 opacity-60">
+    //     <h1 className="py-2 font-sans font-extralight text-black text-center uppercase bg-black px-4 mb-6 opacity-60">
     //       Unleash your creativity
     //     </h1>
-    //     <h1 className="font-sans font-bold text-white text-3xl text-center">
+    //     <h1 className="font-sans font-bold text-black text-3xl text-center">
     //       Redefine yourself with
     //       <br />
     //       Baksters Christmas
@@ -338,7 +338,7 @@ const HomeSection = () => {
     //         getStartedClicked ? "invisible" : "visible"
     //       }`}
     //     >
-    //       <h1 className="font-sans font-semibold text-white text-xl text-center mb-6">
+    //       <h1 className="font-sans font-semibold text-black text-xl text-center mb-6">
     //         Introducing new
     //         <br />
     //         versions of yourself !
@@ -459,7 +459,7 @@ const HomeSection = () => {
         <h1 className="py-2 text-[1.5vh] sm:text-[2vh] font-sans font-extralight text-white text-center uppercase bg-black px-4 mb-6 opacity-60">
           Unleash your creativity
         </h1>
-        <h1 className=" font-sans font-bold text-white text-[3vh] sm:text-[4vh] text-center">
+        <h1 className=" font-sans font-bold text-black text-[2.5vh] sm:text-[4vh] text-center">
           Redefine yourself with
           <br />
           Baksters Christmas
@@ -474,7 +474,7 @@ const HomeSection = () => {
             getStartedClicked ? "invisible" : "visible"
           }`}
         >
-          <h1 className="font-sans font-semibold text-white text-[2.5vh] text-center mb-6">
+          <h1 className="font-sans font-semibold text-black text-[2.5vh] text-center mb-6">
             Introducing new
             <br />
             versions of yourself !

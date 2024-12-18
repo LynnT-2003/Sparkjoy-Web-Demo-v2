@@ -90,7 +90,7 @@ export default function Home() {
           <InputSection onNewImage={handleNewImage} />
         </div> */}
       </div>
-      <div className="flex bg-[#191919] h-[100dvh]">
+      <div className="flex bg-blue-50 h-[100dvh]">
         <div className="w-full overflow-x-hidden">
           {/* <img
             src="/bg/bg-red.png"

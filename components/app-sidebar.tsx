@@ -84,7 +84,7 @@ export function AppSidebar() {
               alt="Anim8"
               className="w-14 h-14 rounded-full object-cover opacity-88"
             />
-            <SidebarGroupLabel className="text-2xl text-white font-bold font-sans mt-0 ml-0">
+            <SidebarGroupLabel className="text-2xl text-black font-semibold font-sans mt-0 ml-0">
               PrismaForge
             </SidebarGroupLabel>
           </div>
@@ -92,12 +92,12 @@ export function AppSidebar() {
           <SidebarGroupContent className="mt-0">
             <SidebarMenu>
               <SidebarMenuItem
-                className="py-5 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                className="py-5 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear"
                 onClick={() => router.push("/")}
               >
                 <SidebarMenuButton
                   asChild
-                  className="text-lg text-[#d9d9d9] space-x-2"
+                  className="text-lg text-[#121212] space-x-2 active:text-gray-700"
                 >
                   <a>
                     <Home className="w-64 h-64" />
@@ -107,12 +107,12 @@ export function AppSidebar() {
               </SidebarMenuItem>
 
               {/* <SidebarMenuItem
-                className="py-5 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                className="py-5 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear"
                 onClick={() => router.push("/Prompt")}
               >
                 <SidebarMenuButton
                   asChild
-                  className="text-lg text-[#d9d9d9] space-x-2"
+                  className="text-lg text-[#121212] space-x-2"
                 >
                   <a>
                     <Edit className="w-64 h-64" />
@@ -122,12 +122,12 @@ export function AppSidebar() {
               </SidebarMenuItem> */}
 
               {/* <SidebarMenuItem
-                className="py-5 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                className="py-5 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear"
                 onClick={() => router.push("/Test")}
               >
                 <SidebarMenuButton
                   asChild
-                  className="text-lg text-[#d9d9d9] space-x-2"
+                  className="text-lg text-[#121212] space-x-2"
                 >
                   <a>
                     <ImageIcon className="w-64 h-64" />
@@ -137,7 +137,7 @@ export function AppSidebar() {
               </SidebarMenuItem> */}
 
               <Collapsible defaultOpen>
-                <CollapsibleTrigger className="py-5 w-full flex items-center text-lg text-[#d9d9d9] hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                <CollapsibleTrigger className="py-5 w-full flex items-center text-lg text-[#121212] hover:bg-green-100 transition-all duration-150 ease-linear">
                   <Edit className="ml-2 w-5 h-5" />
                   <span className="ml-4">Studio</span>
                   <ChevronDown className="ml-auto w-5.5 h-5.5 mr-1" />
@@ -146,30 +146,30 @@ export function AppSidebar() {
                   <SidebarMenu>
                     <div className="mb-1">
                       <SidebarMenuItem
-                        className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                        className="my-2 py-1 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear"
                         onClick={() => router.push("/Prompt")}
                       >
                         <SidebarMenuButton
                           asChild
-                          className="text-lg text-[#d9d9d9] space-x-2"
+                          className="text-lg text-[#121212] space-x-2"
                         >
                           <a>
-                            <span className="text-base text-[#d9d9d9] ml-7">
+                            <span className="text-base text-[#121212] ml-7">
                               Text Prompt
                             </span>
                           </a>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                       <SidebarMenuItem
-                        className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                        className="my-2 py-1 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear"
                         onClick={() => router.push("/ImageUpload")}
                       >
                         <SidebarMenuButton
                           asChild
-                          className="text-lg text-[#d9d9d9] space-x-2"
+                          className="text-lg text-[#121212] space-x-2"
                         >
                           <a>
-                            <span className="text-base text-[#d9d9d9] ml-7">
+                            <span className="text-base text-[#121212] ml-7">
                               Image Upload
                             </span>
                           </a>
@@ -181,7 +181,7 @@ export function AppSidebar() {
               </Collapsible>
 
               {/* <Collapsible defaultOpen>
-                <CollapsibleTrigger className="py-5 w-full flex items-center text-lg text-[#d9d9d9] hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                <CollapsibleTrigger className="py-5 w-full flex items-center text-lg text-[#121212] hover:bg-green-100 transition-all duration-150 ease-linear">
                   <Bookmark className="ml-2 w-5 h-5" />
                   <span className="ml-4">My Collections</span>
                   <ChevronDown className="ml-auto w-5.5 h-5.5 mr-1" />
@@ -190,42 +190,42 @@ export function AppSidebar() {
                   <SidebarMenu>
                     <div className="mb-1">
                       <SidebarMenuItem
-                        className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                        className="my-2 py-1 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear"
                         onClick={() => router.push("/Templates")}
                       >
                         <SidebarMenuButton
                           asChild
-                          className="text-lg text-[#d9d9d9] space-x-2"
+                          className="text-lg text-[#121212] space-x-2"
                         >
                           <a>
-                            <span className="text-base text-[#d9d9d9] ml-7">
+                            <span className="text-base text-[#121212] ml-7">
                               Templates
                             </span>
                           </a>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
 
-                      <SidebarMenuItem className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                      <SidebarMenuItem className="my-2 py-1 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear">
                         <SidebarMenuButton
                           asChild
-                          className="text-lg text-[#d9d9d9] space-x-2"
+                          className="text-lg text-[#121212] space-x-2"
                         >
                           <a href={""}>
-                            <span className="text-base text-[#d9d9d9] ml-7">
+                            <span className="text-base text-[#121212] ml-7">
                               Favorites
                             </span>
                           </a>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
 
-                      <SidebarMenuItem className="my-2 py-1 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                      <SidebarMenuItem className="my-2 py-1 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear">
                         <SidebarMenuButton
                           asChild
-                          className="text-lg text-[#d9d9d9] space-x-2"
+                          className="text-lg text-[#121212] space-x-2"
                           onClick={() => router.push("/history")}
                         >
                           <a>
-                            <span className="text-base text-[#d9d9d9] ml-7">
+                            <span className="text-base text-[#121212] ml-7">
                               Image History
                             </span>
                           </a>
@@ -237,12 +237,12 @@ export function AppSidebar() {
               </Collapsible> */}
 
               <SidebarMenuItem
-                className="py-5 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear"
+                className="py-5 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear"
                 onClick={() => router.push("/history")}
               >
                 <SidebarMenuButton
                   asChild
-                  className="text-lg text-[#d9d9d9] space-x-2"
+                  className="text-lg text-[#121212] space-x-2"
                 >
                   <a>
                     <History className="w-64 h-64" />
@@ -252,10 +252,10 @@ export function AppSidebar() {
               </SidebarMenuItem>
 
               {user ? (
-                <SidebarMenuItem className="py-5 hover:cursor-pointer hover:bg-[#1e1e1e] transition-all duration-150 ease-linear">
+                <SidebarMenuItem className="py-5 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear">
                   <SidebarMenuButton
                     asChild
-                    className="text-lg text-[#d9d9d9] space-x-2"
+                    className="text-lg text-[#121212] space-x-2"
                     onClick={handleSignOut}
                   >
                     <a>
@@ -284,19 +284,19 @@ export function AppSidebar() {
               <Image
                 src={user.photoURL || "/default.png"} // Fallback if photoURL is not available
                 alt={user.displayName || "User"}
-                width={36} // Set desired width
-                height={36} // Set desired height
+                width={36} // Set desigreen width
+                height={36} // Set desigreen height
                 className="rounded-full"
                 onClick={() => router.push("/Profile")}
               />
-              <h1 className="text-lg text-[#d9d9d9] ml-4">
+              <h1 className="text-lg text-[#191919] ml-4">
                 {user.displayName}
               </h1>
             </div>
           ) : (
             <div className="flex space-x-4 items-center justify-start mb-3">
               <User2 className="w-6 h-6" />
-              <h1 className="text-base text-[#d9d9d9] ml-4">
+              <h1 className="text-base text-[#191919] ml-4">
                 User not signed in
               </h1>
             </div>
