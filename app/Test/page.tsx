@@ -103,13 +103,13 @@ const TestPage = () => {
 
   const router = useRouter();
   return (
-    <div className="h-[100dvh] sm:h-[100vh] w-full overflow-y-hidden sm:py-12">
+    <div className="h-[100dvh] sm:h-[100vh] w-full overflow-y-hidden sm:py-12 bg-blue-50">
       <div className="w-full relative h-[85%] flex items-center justify-center">
         <Webcam
           ref={webcamRef}
           audio={false}
           screenshotFormat="image/jpeg"
-          className="h-full w-full sm:w-[70%] object-cover"
+          className="h-full w-full sm:w-[70%] object-cover bg-blue-100"
         />
 
         <div className="w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-full flex items-center justify-center">
@@ -166,7 +166,7 @@ const TestPage = () => {
       />
 
       <div className="w-full relative flex items-center justify-center h-[15%] ">
-        <div className="flex w-full sm:w-[70%] items-center justify-between sm:bg-[#121212] sm:py-2 rounded-xl">
+        <div className="flex w-full sm:w-[70%] items-center justify-between sm:bg-blue-300 sm:py-2 rounded-xl">
           {" "}
           <Button
             onClick={() => {
@@ -176,8 +176,8 @@ const TestPage = () => {
             className="w-1/3 flex items-center justify-center bg-none h-full hover:bg-[#181818]"
           >
             <div className="flex flex-col w-[3.5rem] items-center justify-center">
-              <ArrowLeft size="60%" strokeWidth={0.5} />
-              <h1 className="font-medium mt-1 text-[0.75rem]">Cancel</h1>
+              <ArrowLeft size="60%" strokeWidth={1.0} />
+              <h1 className="font-semibold mt-1 text-[0.75rem]">Cancel</h1>
             </div>
           </Button>
           <div className="w-1/3 h-full flex items-center justify-center z-99">
@@ -195,7 +195,7 @@ const TestPage = () => {
             <ImagePlusIcon
               size="3rem"
               className="font-light"
-              strokeWidth={0.5}
+              strokeWidth={1.0}
             />
           </Button>
         </div>
