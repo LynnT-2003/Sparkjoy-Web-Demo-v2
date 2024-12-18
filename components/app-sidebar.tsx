@@ -162,7 +162,7 @@ export function AppSidebar() {
                       </SidebarMenuItem>
                       <SidebarMenuItem
                         className="my-2 py-1 hover:cursor-pointer hover:bg-green-100 transition-all duration-150 ease-linear"
-                        onClick={() => router.push("/ImageUpload")}
+                        onClick={() => router.push("/Test")}
                       >
                         <SidebarMenuButton
                           asChild
