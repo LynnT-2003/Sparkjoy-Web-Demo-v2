@@ -7,6 +7,17 @@ import { User } from "firebase/auth";
 import { onAuthStateChange } from "@/lib/firebase";
 import { buildRequestBody } from "@/lib/apiServices/imageGeneration";
 
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  LineShareButton,
+  LineIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  RedditShareButton,
+  RedditIcon,
+} from "react-share";
+
 const UploadSuccessScreen = () => {
   const [user, setUser] = useState<User | null>(null);
 
@@ -201,15 +212,57 @@ const UploadSuccessScreen = () => {
       )}
 
       {generatedImage && !loading && (
-        <div className="">
-          <h1 className="mx-12 pt-[1.7rem] text-center text-2xl font-semibold font-sans motion-preset-slide-right">
-            Image Generated!
+        // <div className="">
+        //   <h1 className="mx-12 pt-[1.7rem] text-center text-2xl font-semibold font-sans motion-preset-slide-right">
+        //     Image Generated!
+        //   </h1>
+        //   <div className="relative mx-12 mt-7 rounded-lg flex items-center justify-center">
+        //     <img
+        //       src={`data:image/png;base64,${generatedImage}`} // Update the format if needed
+        //       className="w-full sm:w-[40%] aspect-square rounded-lg object-cover motion-preset-expand motion-duration-500"
+        //     />
+        //   </div>
+        // </div>
+        <div className="w-[80%] sm:w-[35%] h-[90%] flex flex-col items-center justify-center">
+          <h1 className="mx-12 text-center text-black pt-[1.7rem] text-2xl font-semibold font-sans motion-preset-slide-right">
+            Generation Result
           </h1>
-          <div className="relative mx-12 mt-7 rounded-lg flex items-center justify-center">
+          <div className="relative aspect-square mt-7 rounded-lg ">
             <img
-              src={`data:image/png;base64,${generatedImage}`} // Update the format if needed
-              className="w-full sm:w-[40%] aspect-square rounded-lg object-cover motion-preset-expand motion-duration-500"
+              src={`data:image/png;base64,${generatedImage}`}
+              className="w-full aspect-square rounded-t-lg object-cover motion-preset-expand motion-duration-300"
             />
+          </div>
+          <div className="w-full flex flex-col">
+            <div className="w-full space-x-[2%] mt-4">
+              <Button className="w-[49%]" onClick={handleOnClickContinue}>
+                Generate Again
+              </Button>
+              <Button className="w-[49%]">Save to Device</Button>
+            </div>
+          </div>
+          <div className="w-full space-x-[5%] mt-8 flex items-center justify-center">
+            <FacebookShareButton
+              url="https://prismaforge.vercel.app/"
+              hashtag="#prismaforge"
+            >
+              <FacebookIcon size={32} round={true} />
+            </FacebookShareButton>
+            <LineShareButton url="https://prismaforge.vercel.app/">
+              <LineIcon size={32} round={true} />
+            </LineShareButton>
+            <TwitterShareButton
+              url="https://prismaforge.vercel.app/"
+              title="PrismaForge"
+            >
+              <TwitterIcon size={32} round={true} />
+            </TwitterShareButton>
+            <RedditShareButton
+              url="https://prismaforge.vercel.app/"
+              title="PrismaForge"
+            >
+              <RedditIcon size={32} round={true} />
+            </RedditShareButton>
           </div>
         </div>
       )}
