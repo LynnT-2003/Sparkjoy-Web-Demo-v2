@@ -138,17 +138,17 @@ const UploadSuccessScreen = () => {
   };
 
   return (
-    <div className="h-screen w-full flex flex-col items-center">
+    <div className="h-screen w-full flex flex-col items-center bg-blue-50">
       {!generatedImage && !loading && (
-        <div className="sm:w-[40%]">
-          <h1 className="mx-12 text-center pt-[1.7rem] text-2xl font-semibold font-sans motion-preset-slide-right">
+        <div className="sm:w-[35%] h-[90%] flex flex-col items-center justify-center">
+          <h1 className="mx-12 text-center text-black pt-[1.7rem] text-2xl font-semibold font-sans motion-preset-slide-right">
             Image Uploaded <br />
             Successfully!
           </h1>
-          <div className="relative mx-12 aspect-square mt-7 rounded-lg ">
+          <div className="relative aspect-square mt-7 rounded-lg ">
             <img
               src={base64String}
-              className="w-full aspect-square rounded-lg opacity-25 object-cover motion-preset-expand motion-duration-300"
+              className="w-full aspect-square rounded-lg opacity-25 border-[12px] border-green-500 object-cover motion-preset-expand motion-duration-300"
             />
             <div className="w-[80%] h-[80%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center justify-center">
               <CheckCircle2Icon
@@ -157,16 +157,16 @@ const UploadSuccessScreen = () => {
                   transformOrigin: "center",
                 }}
               />
-              <h1 className="text-center pt-4 text-md font-semibold font-sans opacity-100 motion-preset-expand motion-duration-300">
+              <h1 className="text-center text-black pt-4 text-md font-bold font-sans opacity-100 motion-preset-expand motion-duration-300">
                 Your new Image ready
               </h1>
-              <h1 className="text-center pt-0 text-md font-semibold font-sans opacity-100 motion-preset-expand motion-duration-300">
+              <h1 className="text-center text-black pt-0 text-md font-bold font-sans opacity-100 motion-preset-expand motion-duration-300">
                 to be generated.
               </h1>
             </div>
           </div>
 
-          <div className="flex mx-12 mt-7 items-center justify-between space-x-4">
+          <div className="flex mt-7 items-center justify-between space-x-4 w-full">
             <Button
               className="w-full"
               variant="default"
@@ -187,7 +187,7 @@ const UploadSuccessScreen = () => {
 
       {loading && (
         <div className="w-full flex flex-col items-center justify-center h-full pt-[1.7rem]">
-          <h1 className="mb-6 mx-auto text-center animate-pulse font-semibold font-sans text-lg">
+          <h1 className="mb-6 mx-auto text-center text-black animate-pulse font-semibold font-sans text-lg">
             Generating your image..
           </h1>
           {/* <h1>Hang on tight! This usually takes a few seconds.</h1> */}
