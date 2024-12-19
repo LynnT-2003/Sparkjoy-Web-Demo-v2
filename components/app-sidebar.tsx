@@ -279,26 +279,26 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter>
-        <div className="px-4 mb-2 flex gap-0 items-center">
+      <SidebarFooter className="bg-blue-300">
+        <div className="w-full mb-0 flex gap-0 items-center justify-center">
           {user ? (
-            <div className="w-full flex items-center">
+            <div className="w-full flex items-center py-2 ml-4">
               <Image
                 src={user.photoURL || "/default.png"} // Fallback if photoURL is not available
                 alt={user.displayName || "User"}
                 width={36} // Set desigreen width
                 height={36} // Set desigreen height
-                className="rounded-full"
+                className="rounded-full border border-white"
                 onClick={() => router.push("/Profile")}
               />
-              <h1 className="text-lg text-[#191919] ml-4">
+              <h1 className="text-base text-[#555555] ml-4">
                 {user.displayName}
               </h1>
             </div>
           ) : (
-            <div className="flex space-x-4 items-center justify-start mb-3">
-              <User2 className="w-6 h-6" />
-              <h1 className="text-base text-[#191919] ml-4">
+            <div className="flex h-full items-center justify-start my-3">
+              {/* <User2 className="w-6 h-6 text-[#101010]" /> */}
+              <h1 className="text-base text-[#191919] opacity-75">
                 User not signed in
               </h1>
             </div>
