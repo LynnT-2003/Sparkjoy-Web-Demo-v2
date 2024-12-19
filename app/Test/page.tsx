@@ -103,8 +103,8 @@ const TestPage = () => {
 
   const router = useRouter();
   return (
-    <div className="h-[100dvh] sm:h-[100vh] w-full overflow-y-hidden sm:py-12 bg-blue-50">
-      <div className="w-full relative h-[85%] flex items-center justify-center">
+    <div className="h-[100dvh] sm:h-[100vh] w-full overflow-y-hidden sm:py-12 sm:bg-blue-50">
+      <div className="w-full relative h-[90%] flex items-center justify-center">
         <Webcam
           ref={webcamRef}
           audio={false}
@@ -165,8 +165,8 @@ const TestPage = () => {
         className="hidden"
       />
 
-      <div className="w-full relative flex items-center justify-center h-[15%] ">
-        <div className="flex w-full sm:w-[70%] items-center justify-between sm:bg-blue-300 sm:py-2 rounded-xl">
+      <div className="w-full relative flex items-center justify-center h-[10%] ">
+        <div className="flex w-full sm:w-[70%] items-center justify-between sm:bg-blue-300 sm:py-2 rounded-xl sm:rounded-none sm:rounded-b-xl">
           {" "}
           <Button
             onClick={() => {
