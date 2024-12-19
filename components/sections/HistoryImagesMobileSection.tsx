@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Trash2 } from "lucide-react";
 
@@ -12,6 +13,7 @@ interface ImageObject {
 }
 
 const HistoryImagesMobileSection = () => {
+  const router = useRouter();
   const [user, setUser] = useState<User | null>(null);
   const [images, setImages] = useState<ImageObject[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -99,9 +101,16 @@ const HistoryImagesMobileSection = () => {
     }
   };
 
+  const handleImageRoute = (imageUrl: string) => {
+    const imageName = imageUrl.split("/").pop()?.split(".")[0]; // Extract the image name
+    if (imageName) {
+      router.push(`/history/${imageName}`);
+    }
+  };
+
   return (
-    <div className="w-full">
-      <h1 className="font-sans text-2xl ml-[4rem] py-[1.5rem]">
+    <div className="w-full bg-blue-50">
+      <h1 className="font-sans text-2xl ml-[4rem] py-[1.1rem] text-black">
         Image History
       </h1>
       <div className="mx-[2rem]">
@@ -120,6 +129,7 @@ const HistoryImagesMobileSection = () => {
                       <div
                         key={index}
                         className="w-[50%] h-[50%] aspect-square relative p-2"
+                        onClick={() => handleImageRoute(image.image)}
                       >
                         <div className="w-full h-full relative rounded-lg overflow-hidden group">
                           <Image
@@ -131,10 +141,10 @@ const HistoryImagesMobileSection = () => {
                             style={{ width: "100%", height: "auto" }}
                             className="group-hover:opacity-45"
                           />
-                          <Trash2
+                          {/* <Trash2
                             className="invisible absolute top-1 right-1 cursor-pointer text-red-500 group-hover:visible duration-200 ease-in-out transition-all"
                             onClick={() => handleDelete(image.image)}
-                          />
+                          /> */}
                         </div>
                       </div>
                     ))}
