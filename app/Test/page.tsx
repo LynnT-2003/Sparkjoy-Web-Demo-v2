@@ -109,15 +109,15 @@ const TestPage = () => {
           ref={webcamRef}
           audio={false}
           screenshotFormat="image/jpeg"
-          className="h-full w-full sm:w-[70%] object-cover bg-blue-100"
+          className="h-full w-full sm:w-[70%] object-cover bg-blue-100 rounded-t-xl"
         />
 
         <div className="w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-full flex items-center justify-center">
           <div className="absolute flex flex-wrap w-full aspect-square p-16 items-center justify-center gap-24">
-            <div className="sm:hidden w-1/4 h-1/4 border-t-2 border-l-2 border-white" />
-            <div className="sm:hidden w-1/4 h-1/4 border-t-2 border-r-2 border-white" />
-            <div className="sm:hidden w-1/4 h-1/4 border-b-2 border-l-2 border-white" />
-            <div className="sm:hidden w-1/4 h-1/4 border-b-2 border-r-2 border-white" />
+            <div className="sm:hidden w-[20%] h-[20%] border-t-2 border-l-2 border-blue-400" />
+            <div className="sm:hidden w-[20%] h-[20%] border-t-2 border-r-2 border-blue-400" />
+            <div className="sm:hidden w-[20%] h-[20%] border-b-2 border-l-2 border-blue-400" />
+            <div className="sm:hidden w-[20%] h-[20%] border-b-2 border-r-2 border-blue-400" />
             <h1 className="sm:hidden absolute bottom-[0.5rem] text-white text-center bg-[#294c29] py-2 px-4 rounded-full opacity-60">
               Take a clear picture
             </h1>
@@ -176,14 +176,14 @@ const TestPage = () => {
             className="w-1/3 flex items-center justify-center bg-none h-full hover:bg-[#181818]"
           >
             <div className="flex flex-col w-[3.5rem] items-center justify-center">
-              <ArrowLeft size="60%" strokeWidth={1.0} />
-              <h1 className="font-semibold mt-1 text-[0.75rem]">Cancel</h1>
+              <ArrowLeft size="50%" strokeWidth={1.0} />
+              <h1 className="font-semibold mt-0 text-[0.75rem]">Back</h1>
             </div>
           </Button>
           <div className="w-1/3 h-full flex items-center justify-center z-99">
             <Button
               onClick={handleCapture}
-              className="p-[3vh] rounded-full aspect-square bg-gray-300 border-white border-[0.4rem] "
+              className="p-[1.5rem] rounded-full aspect-square bg-gray-300 border-white border-[0.3rem] "
               variant={"ghost"}
             ></Button>
           </div>
@@ -193,7 +193,7 @@ const TestPage = () => {
             className="w-1/3 rounded-full hover:bg-[#181818]"
           >
             <ImagePlusIcon
-              size="3rem"
+              size="2.5rem"
               className="font-light"
               strokeWidth={1.0}
             />
