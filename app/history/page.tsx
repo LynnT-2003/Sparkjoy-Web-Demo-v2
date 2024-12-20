@@ -59,10 +59,10 @@ const HistoryPage = () => {
 
   return (
     <div>
-      <div className="hidden lg:block">
+      {/* <div className="hidden lg:block">
         <HistoryImagesSection homeImages={images} />
-      </div>
-      <div className="lg:hidden">
+      </div> */}
+      <div className="">
         <HistoryImagesMobileSection />
       </div>
     </div>
