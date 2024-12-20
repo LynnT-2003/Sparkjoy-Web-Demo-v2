@@ -617,7 +617,7 @@ const HomeSection = () => {
               className="mt-4 p-[1.5rem] motion-preset-fade motion-duration-2000 motion-delay-[4500ms]"
               onClick={handleStartCollecting}
             >
-              Start Collecting
+              Start Collecting 🎅🏻
             </Button>
           </div>
         </div>

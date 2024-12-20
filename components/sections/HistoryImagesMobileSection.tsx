@@ -111,7 +111,7 @@ const HistoryImagesMobileSection = () => {
   return (
     <div className="w-full bg-blue-50">
       <h1 className="font-sans text-2xl ml-[4rem] py-[1.1rem] sm:py-[1.75rem] text-black">
-        Image History
+        Image History 🎅🏻
       </h1>
       <div className="mx-[2rem]">
         {loading ? (
@@ -128,7 +128,7 @@ const HistoryImagesMobileSection = () => {
                     {[...images].reverse().map((image, index) => (
                       <div
                         key={index}
-                        className="w-[50%] h-[50%] sm:w-[25%] sm:h-[25%] md:w-[33%] md:h-[33%] aspect-square relative p-2"
+                        className="w-[50%] h-[50%] sm:w-[25%] sm:h-[25%] md:w-[33%] md:h-[33%] lg:w-[25%] lg:h-[25%] aspect-square relative p-2"
                         onClick={() => handleImageRoute(image.image)}
                       >
                         <div className="w-full h-full relative rounded-lg overflow-hidden group">
