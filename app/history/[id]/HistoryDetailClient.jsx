@@ -64,7 +64,7 @@ export default function HistoryDetailClient({ imageId }) {
         <h1 className="text-black mb-2 font-sans text-lg sm:text-2xl font-extralight">
           Created by Prismaforge 🚀
         </h1>
-        <h1 className="text-black mb-4 font-sans text-lg sm:text-md font-extralight">
+        <h1 className="hidden sm:block text-black mb-4 font-sans text-lg sm:text-md font-extralight">
           Your image is ready to be downloaded.
         </h1>
         <div className="pt-[0rem] sm:pt-0 w-[90%] sm:w-[30rem] aspect-square">
