@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
 import { CopyIcon } from "lucide-react";
 import {
   FacebookShareButton,
@@ -31,12 +32,40 @@ export default function HistoryDetailClient({ imageId }) {
     setIsCopied(false);
   };
 
-  const currentURL = window.location.href;
+  const handleDownload = () => {
+    const imageUrl = `https://res.cloudinary.com/prisma-forge/image/upload/${imageId}.png`;
+
+    // Fetch the image as a Blob
+    fetch(imageUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch image for download");
+        }
+        return response.blob(); // Convert the response to a Blob
+      })
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob); // Create a URL for the Blob
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `PrismaForge_${imageId}.png`; // Suggested file name
+        document.body.appendChild(link); // Append the link to the document
+        link.click(); // Trigger the download
+        document.body.removeChild(link); // Remove the link
+        window.URL.revokeObjectURL(url); // Revoke the Blob URL
+      })
+      .catch((error) => {
+        console.error("Download failed:", error);
+      });
+  };
+
   return (
     <div className="h-[100dvh] sm:h-screen bg-blue-50 overflow-y-hidden">
       <div className="h-full w-full flex flex-col items-center mt-[1.15rem] md:mt-[1.75rem] lg:mt-0 lg:justify-center">
-        <h1 className="text-black mb-4 font-sans text-lg sm:text-2xl font-extralight">
+        <h1 className="text-black mb-2 font-sans text-lg sm:text-2xl font-extralight">
           Created by Prismaforge 🚀
+        </h1>
+        <h1 className="text-black mb-4 font-sans text-lg sm:text-md font-extralight">
+          Your image is ready to be downloaded.
         </h1>
         <div className="pt-[0rem] sm:pt-0 w-[90%] sm:w-[30rem] aspect-square">
           <img
@@ -78,6 +107,9 @@ export default function HistoryDetailClient({ imageId }) {
             onClick={handleCopy}
           />
         </div>
+        <Button className="mt-4" onClick={handleDownload}>
+          Download now
+        </Button>
         <Snackbar
           open={isCopied}
           autoHideDuration={2000}
