@@ -175,7 +175,7 @@ const TestPage = () => {
             variant={"ghost"}
             className="w-1/3 flex items-center justify-center bg-none h-full hover:bg-[#181818]"
           >
-            <div className="flex flex-col w-[3.5rem] items-center justify-center">
+            <div className="flex flex-col w-[3.5rem] items-center justify-center text-black sm:text-white">
               <ArrowLeft size="50%" strokeWidth={1.0} />
               <h1 className="font-semibold mt-0 text-[0.75rem]">Back</h1>
             </div>
@@ -183,14 +183,14 @@ const TestPage = () => {
           <div className="w-1/3 h-full flex items-center justify-center z-99">
             <Button
               onClick={handleCapture}
-              className="p-[1.5rem] rounded-full aspect-square bg-gray-300 border-white border-[0.3rem] "
+              className="p-[1.5rem] rounded-full aspect-square bg-blue-100 border-blue-400 border-[0.2rem] sm:border-[0.3rem] "
               variant={"ghost"}
             ></Button>
           </div>
           <Button
             onClick={handleClick}
             variant={"ghost"}
-            className="w-1/3 rounded-full hover:bg-[#181818]"
+            className="w-1/3 rounded-full hover:bg-[#181818] text-black sm:text-white"
           >
             <ImagePlusIcon
               size="2.5rem"
