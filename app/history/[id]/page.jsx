@@ -34,7 +34,7 @@ export default function HistoryImagePage({ params }) {
   const currentURL = window.location.href;
 
   return (
-    <div className="h-screen bg-blue-50 overflow-y-hidden">
+    <div className="h-[100dvh] sm:h-screen bg-blue-50 overflow-y-hidden">
       <div className="h-full w-full flex flex-col items-center mt-[1.15rem] md:mt-[1.75rem] lg:mt-0 lg:justify-center">
         <h1 className="text-black mb-4 font-sans text-lg sm:text-2xl font-extralight">
           Created by Prismaforge 🚀
@@ -74,6 +74,7 @@ export default function HistoryImagePage({ params }) {
           onClose={handleClose}
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           sx={{ position: "absolute", bottom: 0 }}
+          className="hidden sm:block"
         >
           <Alert
             onClose={handleClose}
