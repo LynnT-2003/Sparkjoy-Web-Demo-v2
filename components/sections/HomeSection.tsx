@@ -192,13 +192,45 @@
 // export default MobileHomeSection;
 
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 
+import {
+  signInWithGoogle,
+  signOutUser,
+  onAuthStateChange,
+  User,
+} from "@/lib/firebase";
+import { sign } from "crypto";
+
 const HomeSection = () => {
   const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChange((user) => {
+      if (user) {
+        setUser(user);
+        console.log("User is now: ", user);
+      } else {
+        setUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleSignIn = async () => {
+    await signInWithGoogle();
+    console.log("Sign-in successful!");
+  };
+
+  const handleSignOut = async () => {
+    await signOutUser();
+    console.log("Sign-out successful!");
+  };
+
   const [getStartedClicked, setGetStartedClicked] = useState(false);
 
   const handleGetStartedClick = () => {
@@ -481,26 +513,33 @@ const HomeSection = () => {
           </h1>
 
           <Button
-            className="w-full font-sans h-[4vh] text-[1.5vh] mb-3"
+            className="w-full font-sans h-[4vh] text-[1.5vh] mb-4"
             onClick={handleGetStartedClick}
           >
             Get Started
           </Button>
-          <div
-            className="h-[5vh] w-full flex items-center justify-center space-x-2"
-            style={{ backgroundColor: "rgba(30, 30, 30, 0.8)" }}
-          >
-            <Image
-              src="/brands/google.png"
-              alt="Logo"
-              width={35}
-              height={35}
-              className="py-[1vh]"
-            />
-            <h1 className="text-[1.5vh] font-sans flex items-center justify-center">
-              Sign in With Google
-            </h1>
-          </div>
+          {user ? (
+            <div>
+              <h1 className="text-gray-700 text-sm opacity-60">Sign Out</h1>
+            </div>
+          ) : (
+            <div
+              className={`h-[5vh] w-full flex items-center justify-center space-x-2 `}
+              style={{ backgroundColor: "rgba(30, 30, 30, 0.8)" }}
+              onClick={handleSignIn}
+            >
+              <Image
+                src="/brands/google.png"
+                alt="Logo"
+                width={35}
+                height={35}
+                className="py-[1vh]"
+              />
+              <h1 className="text-[1.5vh] font-sans flex items-center justify-center">
+                Sign in With Google
+              </h1>
+            </div>
+          )}
         </div>
       </div>
 
