@@ -116,7 +116,7 @@ const HistoryImagesMobileSection = () => {
       <div className="mx-[2rem]">
         {loading ? (
           <div className="animate-pulse ease-in-out">
-            <h1>Loading...</h1>
+            <h1 className="text-black">Loading...</h1>
           </div>
         ) : (
           <div>
@@ -139,7 +139,7 @@ const HistoryImagesMobileSection = () => {
                             height={0}
                             sizes="100vw"
                             style={{ width: "100%", height: "auto" }}
-                            className="group-hover:opacity-45"
+                            className="group-hover:opacity-80"
                           />
                           {/* <Trash2
                             className="invisible absolute top-1 right-1 cursor-pointer text-red-500 group-hover:visible duration-200 ease-in-out transition-all"
@@ -151,7 +151,7 @@ const HistoryImagesMobileSection = () => {
                   </div>
                 ) : (
                   <div className="flex items-center justify-center mx-[2rem] leading-8 text-gray-400">
-                    <h1>No images generated yet.</h1>
+                    <h1 className="text-black">No images generated yet.</h1>
                   </div>
                 )}
               </div>
