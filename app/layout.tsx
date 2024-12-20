@@ -9,6 +9,7 @@ import "./globals.css";
 import { MobileSidebarItem } from "@/components/mui-mobile-drawer";
 
 import { Edit, Settings, LogOut, HomeIcon, Image, History } from "lucide-react";
+import Head from "next/head";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -28,6 +29,36 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="md:w-screen overflow-x-hidden">
+      <head>
+        <Head>
+          {/* Global Metadata */}
+          <title>PrismaForge.Ai</title>
+          <meta name="description" content="Create your own AI Characters" />
+
+          {/* Open Graph / Social Media Metadata */}
+          <meta property="og:title" content="PrismaForge.Ai" />
+          <meta
+            property="og:description"
+            content="Create your own AI Characters"
+          />
+          <meta
+            property="og:image"
+            content="https://yourwebsite.com/og-image.jpg"
+          />
+          <meta property="og:url" content="https://yourwebsite.com" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:creator" content="@yourTwitterHandle" />
+          <meta name="twitter:title" content="PrismaForge.Ai" />
+          <meta
+            name="twitter:description"
+            content="Create your own AI Characters"
+          />
+          <meta
+            name="twitter:image"
+            content="https://yourwebsite.com/og-image.jpg"
+          />
+        </Head>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased dark `}
       >
