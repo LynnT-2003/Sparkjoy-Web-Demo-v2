@@ -553,12 +553,12 @@ const HomeSection = () => {
         <div className="w-full sm:w-[50%] mt-0 sm:mt-12 flex flex-col items-center\ justify-center gap-[2.5vw] gap-y-8 z-99">
           <div className="flex items-center justify-center space-x-4">
             <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-0">
-              <div className="w-full aspect-square relative">
+              <div className="w-full aspect-square relative bg-blue-100 rounded-lg">
                 <Image
                   alt="image"
-                  className="object-cover"
+                  className="object-cover p-8"
                   layout="fill"
-                  src="/exampleChristmas/original.png"
+                  src="/steps/1.png"
                 />
               </div>
               <h1 className="mt-2 text-center text-black">
@@ -566,12 +566,12 @@ const HomeSection = () => {
               </h1>
             </div>
             <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-[1000ms]">
-              <div className="w-full  aspect-square relative">
+              <div className="w-full aspect-square relative bg-blue-100 rounded-lg">
                 <Image
                   alt="image"
-                  className="object-cover"
+                  className="object-cover p-10"
                   layout="fill"
-                  src="/exampleChristmas/loading.avif"
+                  src="/steps/2.png"
                 />
               </div>
               <h1 className="mt-2 text-center text-black">
@@ -582,12 +582,12 @@ const HomeSection = () => {
 
           <div className="flex items-center justify-center space-x-4">
             <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-[2000ms]">
-              <div className="w-full aspect-square relative">
+              <div className="w-full aspect-square relative bg-blue-100 rounded-lg">
                 <Image
                   alt="image"
-                  className="object-cover"
+                  className="object-cover p-5"
                   layout="fill"
-                  src="/exampleChristmas/transformed.png"
+                  src="/steps/3.png"
                 />
               </div>
               <h1 className="mt-2 text-center text-black">
@@ -595,12 +595,12 @@ const HomeSection = () => {
               </h1>
             </div>
             <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-[3000ms]">
-              <div className="w-full mx-0 aspect-square relative">
+              <div className="w-full aspect-square relative bg-blue-100 rounded-lg">
                 <Image
                   alt="image"
-                  className="object-cover"
+                  className="object-cover p-5"
                   layout="fill"
-                  src="/exampleChristmas/1.png"
+                  src="/steps/4.png"
                 />
               </div>
               <h1 className="mt-2 text-center text-black">
