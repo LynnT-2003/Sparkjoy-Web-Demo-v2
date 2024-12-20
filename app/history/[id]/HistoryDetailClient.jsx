@@ -45,16 +45,27 @@ export default function HistoryDetailClient({ imageId }) {
           />
         </div>
         <div className="w-[90%] sm:w-[30rem] space-x-[5%] mt-2 flex items-center justify-center bg-blue-300 py-2 rounded-b-xl">
-          <FacebookShareButton url={currentURL} hashtag="#prismaforge">
+          <FacebookShareButton
+            url={`https://prismaforge.vercel.app/history/${imageId}`}
+            hashtag="#prismaforge"
+          >
             <FacebookIcon size={32} round={true} />
           </FacebookShareButton>
-          <LineShareButton url={currentURL}>
+          <LineShareButton
+            url={`https://prismaforge.vercel.app/history/${imageId}`}
+          >
             <LineIcon size={32} round={true} />
           </LineShareButton>
-          <TwitterShareButton url={currentURL} title="PrismaForge">
+          <TwitterShareButton
+            url={`https://prismaforge.vercel.app/history/${imageId}`}
+            title="PrismaForge"
+          >
             <TwitterIcon size={32} round={true} />
           </TwitterShareButton>
-          <RedditShareButton url={currentURL} title="PrismaForge">
+          <RedditShareButton
+            url={`https://prismaforge.vercel.app/history/${imageId}`}
+            title="PrismaForge"
+          >
             <RedditIcon size={32} round={true} />
           </RedditShareButton>
         </div>
