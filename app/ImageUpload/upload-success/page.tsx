@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { User } from "firebase/auth";
 import { onAuthStateChange } from "@/lib/firebase";
 import { buildRequestBody } from "@/lib/apiServices/imageGeneration";
-
+import { CopyIcon } from "lucide-react";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -38,6 +38,7 @@ const UploadSuccessScreen = () => {
   const [base64String, setBase64String] = useState<string | null>(null);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [template, setTemplate] = useState<string | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -148,6 +149,21 @@ const UploadSuccessScreen = () => {
     setLoading(false);
   };
 
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = `data:image/png;base64,${generatedImage}`;
+    link.download = "Prismaforge_Christmas.png";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleCopy = () => {
+    const currentURL = window.location.href;
+    navigator.clipboard.writeText(currentURL);
+    setIsCopied(true);
+  };
+
   return (
     <div className="h-screen w-full flex flex-col items-center bg-blue-50">
       {!generatedImage && !loading && (
@@ -156,10 +172,10 @@ const UploadSuccessScreen = () => {
             Image Uploaded <br />
             Successfully!
           </h1>
-          <div className="relative aspect-square mt-7 rounded-lg ">
+          <div className="mx-12 relative aspect-square mt-7 rounded-lg ">
             <img
               src={base64String}
-              className="w-full aspect-square rounded-lg opacity-25 border-[12px] border-green-500 object-cover motion-preset-expand motion-duration-300"
+              className="w-full aspect-square rounded-lg opacity-25 border-[12px] border-green-700 object-cover motion-preset-expand motion-duration-300"
             />
             <div className="w-[80%] h-[80%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center justify-center">
               <CheckCircle2Icon
@@ -168,16 +184,16 @@ const UploadSuccessScreen = () => {
                   transformOrigin: "center",
                 }}
               />
-              <h1 className="text-center text-black pt-4 text-md font-bold font-sans opacity-100 motion-preset-expand motion-duration-300">
+              <h1 className="text-center text-black pt-4 text-md font-semibold font-sans opacity-100 motion-preset-expand motion-duration-300">
                 Your new Image ready
               </h1>
-              <h1 className="text-center text-black pt-0 text-md font-bold font-sans opacity-100 motion-preset-expand motion-duration-300">
+              <h1 className="text-center text-black pt-0 text-md font-semibold font-sans opacity-100 motion-preset-expand motion-duration-300">
                 to be generated.
               </h1>
             </div>
           </div>
 
-          <div className="flex mt-7 items-center justify-between space-x-4 w-full">
+          <div className="px-12 flex mt-7 items-center justify-between space-x-4 w-full">
             <Button
               className="w-full"
               variant="default"
@@ -185,11 +201,7 @@ const UploadSuccessScreen = () => {
             >
               Go Back
             </Button>
-            <Button
-              className="w-full bg-gradient-to-r from-pink-900 to-purple-900"
-              variant="secondary"
-              onClick={handleOnClickContinue}
-            >
+            <Button className="w-full" onClick={handleOnClickContinue}>
               Continue <ArrowRightIcon className="w-4 h-5 ml-2" />
             </Button>
           </div>
@@ -197,16 +209,23 @@ const UploadSuccessScreen = () => {
       )}
 
       {loading && (
-        <div className="w-full flex flex-col items-center justify-center h-full pt-[1.7rem]">
-          <h1 className="mb-6 mx-auto text-center text-black animate-pulse font-semibold font-sans text-lg">
-            Generating your image..
-          </h1>
-          {/* <h1>Hang on tight! This usually takes a few seconds.</h1> */}
-          <div className="w-[60%] sm:w-[20rem] bg-gray-100 rounded-full h-2">
-            <div
-              className="bg-blue-500 h-2 rounded-full animate-pulse"
-              style={{ width: "100%" }}
-            />
+        <div className="w-full flex flex-col items-center justify-center h-full pt-[1.7rem] text-black">
+          <div className="h-full rounded-xl p-[2vh] flex flex-col justify-center items-center">
+            <div className="w-[210px] rounded-full flex flex-col justify-center items-center ">
+              <h1 className="font-sans font-semibold text-lg">
+                Crafting your image...
+              </h1>
+              <div
+                className="mt-6 mb-3 bg-gradient-to-r from-blue-300 via-blue-500 to-blue-300 h-2 rounded-full animate-pulse"
+                style={{ width: "100%" }}
+              />
+            </div>
+            <h1 className="text-sm animate-pulse">
+              This may take up to 30 seconds.
+            </h1>
+            <h1 className="text-sm animate-pulse">
+              Please do not quit or refresh the page.
+            </h1>
           </div>
         </div>
       )}
@@ -238,7 +257,9 @@ const UploadSuccessScreen = () => {
               <Button className="w-[49%]" onClick={handleOnClickContinue}>
                 Generate Again
               </Button>
-              <Button className="w-[49%]">Save to Device</Button>
+              <Button className="w-[49%]" onClick={handleDownload}>
+                Save to Device
+              </Button>
             </div>
           </div>
           <div className="w-full space-x-[5%] mt-8 flex items-center justify-center">
@@ -263,6 +284,11 @@ const UploadSuccessScreen = () => {
             >
               <RedditIcon size={32} round={true} />
             </RedditShareButton>
+          </div>
+          <div className="flex items-center mt-4">
+            <h1 className="text-black font-sans text-[0.5rem] sm:text-xs font-extralight">
+              Support us by sharing with family and friends
+            </h1>
           </div>
         </div>
       )}
