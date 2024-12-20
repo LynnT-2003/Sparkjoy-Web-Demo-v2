@@ -7,22 +7,13 @@ export const metadata = {
   openGraph: {
     title: "History Detail - Image",
     description: "Explore the details of this image in the history.",
-    images: [
-      {
-        url: "https://img.freepik.com/free-photo/anime-night-sky-illustration_23-2151684370.jpg",
-        width: 800,
-        height: 600,
-        alt: "Image Detail",
-      },
-    ],
+    images: ["/bg/banner.png"],
   },
   twitter: {
     card: "summary_large_image",
     title: "History Detail - Image",
     description: "Explore the details of this image in the history.",
-    images: [
-      "https://img.freepik.com/free-photo/anime-night-sky-illustration_23-2151684370.jpg",
-    ],
+    images: ["/bg/banner.png"],
   },
 };
 
