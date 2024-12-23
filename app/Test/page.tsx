@@ -103,13 +103,13 @@ const TestPage = () => {
 
   const router = useRouter();
   return (
-    <div className="h-[100dvh] sm:h-[100vh] w-full overflow-y-hidden sm:py-12 sm:bg-blue-50">
+    <div className="h-[100dvh] sm:h-[100vh] w-full overflow-y-hidden sm:py-12">
       <div className="w-full relative h-[90%] flex items-center justify-center">
         <Webcam
           ref={webcamRef}
           audio={false}
           screenshotFormat="image/jpeg"
-          className="h-full w-full sm:w-[70%] object-cover bg-blue-100 rounded-t-xl"
+          className="h-full w-full sm:w-[70%] object-cover bg-blue-100 rounded-t-xl transform scale-x-[-1]"
         />
 
         <div className="w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 h-full flex items-center justify-center">
