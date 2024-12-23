@@ -91,7 +91,11 @@ export default function MobileSidebar({ children }) {
                 expanded ? "text-white" : "mt-[0.45rem] text-black"
               }`}
             >
-              {expanded ? <ChevronFirst /> : <ChevronLast />}
+              {expanded ? (
+                <ChevronFirst className="text-white" />
+              ) : (
+                <ChevronLast className="text-white" />
+              )}
             </button>
           </div>
 

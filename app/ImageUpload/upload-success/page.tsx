@@ -165,10 +165,10 @@ const UploadSuccessScreen = () => {
   };
 
   return (
-    <div className="h-screen w-full flex flex-col items-center bg-blue-50">
+    <div className="h-screen w-full flex flex-col items-center">
       {!generatedImage && !loading && (
         <div className="sm:w-[35%] h-[90%] flex flex-col items-center justify-center">
-          <h1 className="mx-12 text-center text-black pt-[1.7rem] text-2xl font-semibold font-sans motion-preset-slide-right">
+          <h1 className="mx-12 text-center text-white pt-[1.7rem] text-2xl font-semibold font-sans motion-preset-slide-right">
             Image Uploaded <br />
             Successfully!
           </h1>
@@ -184,10 +184,10 @@ const UploadSuccessScreen = () => {
                   transformOrigin: "center",
                 }}
               />
-              <h1 className="text-center text-black pt-4 text-md font-semibold font-sans opacity-100 motion-preset-expand motion-duration-300">
+              <h1 className="text-center text-white pt-4 text-md font-semibold font-sans opacity-100 motion-preset-expand motion-duration-300">
                 Your new Image ready
               </h1>
-              <h1 className="text-center text-black pt-0 text-md font-semibold font-sans opacity-100 motion-preset-expand motion-duration-300">
+              <h1 className="text-center text-white pt-0 text-md font-semibold font-sans opacity-100 motion-preset-expand motion-duration-300">
                 to be generated.
               </h1>
             </div>
@@ -209,10 +209,10 @@ const UploadSuccessScreen = () => {
       )}
 
       {loading && (
-        <div className="w-full flex flex-col items-center justify-center h-full pt-[1.7rem] text-black">
+        <div className="w-full flex flex-col items-center justify-center h-full pt-[1.7rem] text-white">
           <div className="h-full rounded-xl p-[2vh] flex flex-col justify-center items-center">
             <div className="w-[210px] rounded-full flex flex-col justify-center items-center ">
-              <h1 className="font-sans font-semibold text-lg">
+              <h1 className="font-sans font-semibold text-lg text-white">
                 Crafting your image...
               </h1>
               <div
@@ -220,10 +220,10 @@ const UploadSuccessScreen = () => {
                 style={{ width: "100%" }}
               />
             </div>
-            <h1 className="text-sm animate-pulse">
+            <h1 className="text-sm animate-pulse text-white">
               This may take up to 30 seconds.
             </h1>
-            <h1 className="text-sm animate-pulse">
+            <h1 className="text-sm animate-pulse text-white">
               Please do not quit or refresh the page.
             </h1>
           </div>
@@ -243,7 +243,7 @@ const UploadSuccessScreen = () => {
         //   </div>
         // </div>
         <div className="w-[80%] sm:w-[35%] h-[90%] flex flex-col items-center justify-center">
-          <h1 className="mx-12 text-center text-black pt-[1.7rem] text-2xl font-semibold font-sans motion-preset-slide-right">
+          <h1 className="mx-12 text-center text-white pt-[1.7rem] text-2xl font-semibold font-sans motion-preset-slide-right">
             Generation Result
           </h1>
           <div className="relative aspect-square mt-7 rounded-lg ">
@@ -286,7 +286,7 @@ const UploadSuccessScreen = () => {
             </RedditShareButton>
           </div>
           <div className="flex items-center mt-4">
-            <h1 className="text-black font-sans text-[0.5rem] sm:text-xs font-extralight">
+            <h1 className="text-white font-sans text-[0.5rem] sm:text-xs font-extralight">
               Support us by sharing with family and friends
             </h1>
           </div>

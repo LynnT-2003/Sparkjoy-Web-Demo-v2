@@ -59,21 +59,21 @@ export default function HistoryDetailClient({ imageId }) {
   };
 
   return (
-    <div className="h-[100dvh] sm:h-screen bg-blue-50 overflow-y-hidden">
+    <div className="h-[100dvh] sm:h-screen overflow-y-hidden">
       <div className="h-full w-full flex flex-col items-center mt-[1.15rem] md:mt-[1.75rem] lg:mt-0 lg:justify-center">
-        <h1 className="text-black mb-2 font-sans text-lg sm:text-2xl font-extralight">
+        <h1 className="text-white mb-2 font-sans text-lg sm:text-2xl font-extralight">
           Created by Prismaforge 🚀
         </h1>
-        <h1 className="hidden sm:block text-black mb-4 font-sans text-lg sm:text-md font-extralight">
+        <h1 className="hidden sm:block text-white mb-4 font-sans text-lg sm:text-md font-extralight">
           Your image is ready to be downloaded.
         </h1>
         <div className="pt-[0rem] sm:pt-0 w-[90%] sm:w-[30rem] aspect-square">
           <img
             src={`https://res.cloudinary.com/prisma-forge/image/upload/${imageId}.png`}
-            className="w-full aspect-square object-cover"
+            className="w-full aspect-square object-cover rounded-t-xl"
           />
         </div>
-        <div className="w-[90%] sm:w-[30rem] space-x-[5%] mt-2 flex items-center justify-center bg-blue-300 py-2 rounded-b-xl">
+        <div className="w-[90%] sm:w-[30rem] space-x-[5%] mt-0 flex items-center justify-center bg-red-200 py-2 rounded-b-xl">
           <FacebookShareButton
             url={`https://prismaforge.vercel.app/history/${imageId}`}
             hashtag="#prismaforge"
@@ -99,11 +99,11 @@ export default function HistoryDetailClient({ imageId }) {
           </RedditShareButton>
         </div>
         <div className="flex items-center mt-4">
-          <h1 className="text-black font-sans text-[0.5rem] sm:text-xs font-extralight">
+          <h1 className="text-white font-sans text-[0.5rem] sm:text-xs font-extralight">
             Support us by sharing our app with family and friends
           </h1>
           <CopyIcon
-            className="ml-2 w-4 h-4 text-black hover:cursor-pointer"
+            className="ml-2 w-4 h-4 text-white hover:cursor-pointer"
             onClick={handleCopy}
           />
         </div>

@@ -1004,7 +1004,7 @@ const Sidebar = React.forwardRef<
             // Adjust the padding for floating and inset variants.
             variant === "floating" || variant === "inset"
               ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)_+_theme(spacing.4)_+2px)]"
-              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=left]:border-r group-data-[side=right]:border-l border-white",
+              : "group-data-[collapsible=icon]:w-[--sidebar-width-icon] group-data-[side=right]:border-l border-white",
             className
           )}
           {...props}
@@ -1012,7 +1012,7 @@ const Sidebar = React.forwardRef<
           {/* Change color of sidebar here */}
           <div
             data-sidebar="sidebar"
-            className="flex h-full w-full flex-col bg-blue-200 group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
+            className="flex h-full w-full flex-col bg-[#5a1010] group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-sidebar-border group-data-[variant=floating]:shadow"
           >
             {children}
           </div>
@@ -1030,7 +1030,7 @@ const SidebarTrigger = React.forwardRef<
   const { state, toggleSidebar } = useSidebar();
 
   return (
-    <div className="pl-3 mr-2 sticky top-0 z-50 text-black">
+    <div className="pl-3 mr-2 sticky top-0 z-50 text-white">
       <div className="flex items-center">
         <Menu
           // className="cursor-pointer hover:bg-gray-700 p-1 rounded-lg"

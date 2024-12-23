@@ -109,8 +109,8 @@ const HistoryImagesMobileSection = () => {
   };
 
   return (
-    <div className="w-full bg-blue-50">
-      <h1 className="font-sans text-2xl ml-[4rem] py-[1.1rem] sm:py-[1.75rem] text-black">
+    <div className="w-full">
+      <h1 className="font-sans text-2xl ml-[4rem] py-[1.1rem] sm:py-[1.75rem] text-white font-semibold">
         Image History 🎅🏻
       </h1>
       <div className="mx-[2rem]">
@@ -156,7 +156,7 @@ const HistoryImagesMobileSection = () => {
                 )}
               </div>
             ) : (
-              <div className="flex items-center justify-center mx-[2rem] leading-8 text-gray-400">
+              <div className="flex items-center justify-center mx-[2rem] leading-8 text-gray-300">
                 <h1>
                   User not Signed In. Please Sign in to Save and View Image
                   History.

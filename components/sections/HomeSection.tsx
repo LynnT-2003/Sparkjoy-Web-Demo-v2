@@ -204,6 +204,7 @@ import {
   User,
 } from "@/lib/firebase";
 import { sign } from "crypto";
+import { LogOutIcon } from "lucide-react";
 
 const HomeSection = () => {
   const router = useRouter();
@@ -469,14 +470,26 @@ const HomeSection = () => {
       {/* Background Content */}
       <div
         className={`w-full h-screen flex flex-col items-center justify-center absolute top-0 left-0 ${
-          getStartedClicked ? "opacity-15" : "opacity-100"
+          getStartedClicked ? "opacity-60" : "opacity-100"
         }`}
       >
+        {/* <div className="opacity-100">
+          <Image
+            src="/bg/bg-red.png"
+            alt="Logo"
+            layout="fill"
+            objectFit="cover"
+          />
+        </div> */}
+        <img
+          src="/bg/bg-red-updated.jpeg"
+          className="absolute w-full h-full object-cover"
+        />
         <div className="flex w-full items-center justify-center">
           <div className="mx-5 sm:mx-0 h-[32.5dvh] flex overflow-hidden items-center justify-center py-4">
             <img
               src="/home/homeHero.png"
-              className="sm:pl-[3.5rem] sm:h-full object-cover rounded-lg motion-preset-blur-right motion-duration-700"
+              className="sm:h-full object-cover rounded-lg motion-preset-blur-right motion-duration-700"
             />
           </div>
         </div>
@@ -488,10 +501,10 @@ const HomeSection = () => {
           getStartedClicked ? "invisible" : "visible"
         }`}
       >
-        <h1 className="py-2 text-[1.5vh] sm:text-[2vh] font-sans font-extralight text-white text-center uppercase bg-black px-4 mb-6 opacity-60">
+        <h1 className="py-2 text-[1.5vh] sm:text-[2vh] font-sans font-extralight text-white text-center uppercase bg-black px-6 mb-6 opacity-60">
           Unleash your creativity
         </h1>
-        <h1 className=" font-sans font-bold text-black text-[2.5vh] sm:text-[4vh] text-center">
+        <h1 className=" font-sans font-bold text-white text-[2.5vh] sm:text-[4vh] text-center">
           Redefine yourself with
           <br />
           Baksters Christmas
@@ -506,7 +519,7 @@ const HomeSection = () => {
             getStartedClicked ? "invisible" : "visible"
           }`}
         >
-          <h1 className="font-sans font-semibold text-black text-[2.5vh] text-center mb-6">
+          <h1 className="font-sans font-semibold text-white text-[2.5vh] text-center mb-6">
             Introducing new
             <br />
             versions of yourself !
@@ -519,8 +532,8 @@ const HomeSection = () => {
             Get Started
           </Button>
           {user ? (
-            <div>
-              <h1 className="text-gray-700 text-sm opacity-60">Sign Out</h1>
+            <div className="">
+              <h1 className="text-white text-sm opacity-70">Sign Out</h1>
             </div>
           ) : (
             <div
@@ -553,7 +566,7 @@ const HomeSection = () => {
         <div className="w-full sm:w-[50%] mt-0 sm:mt-12 flex flex-col items-center\ justify-center gap-[2.5vw] gap-y-8 z-99">
           <div className="flex items-center justify-center space-x-4">
             <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-0">
-              <div className="w-full aspect-square relative bg-blue-100 rounded-lg">
+              <div className="w-full aspect-square relative bg-red-700 rounded-t-lg">
                 <Image
                   alt="image"
                   className="object-cover p-8"
@@ -561,12 +574,13 @@ const HomeSection = () => {
                   src="/steps/1.png"
                 />
               </div>
-              <h1 className="mt-2 text-center text-black">
-                Step 1: Take a photo or upload an image
+              <h1 className="w-full p-2 text-center text-white bg-emerald-700 rounded-b-lg">
+                Step 1: Capture or <br />
+                or upload an image
               </h1>
             </div>
             <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-[1000ms]">
-              <div className="w-full aspect-square relative bg-blue-100 rounded-lg">
+              <div className="w-full aspect-square relative bg-red-700 rounded-t-lg">
                 <Image
                   alt="image"
                   className="object-cover p-10"
@@ -574,15 +588,16 @@ const HomeSection = () => {
                   src="/steps/2.png"
                 />
               </div>
-              <h1 className="mt-2 text-center text-black">
-                Step 2: Wait for the magic to happen
+              <h1 className="w-full p-2 text-center text-white bg-emerald-700 rounded-b-lg">
+                Step 2: Wait for the <br />
+                magic to happen
               </h1>
             </div>
           </div>
 
           <div className="flex items-center justify-center space-x-4">
             <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-[2000ms]">
-              <div className="w-full aspect-square relative bg-blue-100 rounded-lg">
+              <div className="w-full aspect-square relative bg-red-700 rounded-t-lg">
                 <Image
                   alt="image"
                   className="object-cover p-5"
@@ -590,12 +605,12 @@ const HomeSection = () => {
                   src="/steps/3.png"
                 />
               </div>
-              <h1 className="mt-2 text-center text-black">
+              <h1 className="w-full p-2 text-center text-white bg-emerald-700 rounded-b-lg">
                 Step 3: Collect & Save your new look
               </h1>
             </div>
             <div className="w-[40%] sm:w-[15rem] flex flex-col items-center motion-preset-slide-right motion-duration-1500 motion-delay-[3000ms]">
-              <div className="w-full aspect-square relative bg-blue-100 rounded-lg">
+              <div className="w-full aspect-square relative bg-red-700 rounded-t-lg">
                 <Image
                   alt="image"
                   className="object-cover p-5"
@@ -603,8 +618,9 @@ const HomeSection = () => {
                   src="/steps/4.png"
                 />
               </div>
-              <h1 className="mt-2 text-center text-black">
-                Step 4: Keep collecting to win new variations
+              <h1 className="w-full p-2 text-center text-red-300 bg-emerald-700 rounded-b-lg">
+                Keep collecting & <br />
+                win new variations
               </h1>
             </div>
           </div>

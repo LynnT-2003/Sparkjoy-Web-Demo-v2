@@ -8,7 +8,15 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { MobileSidebarItem } from "@/components/mui-mobile-drawer";
 
-import { Edit, Settings, LogOut, HomeIcon, Image, History } from "lucide-react";
+import {
+  Edit,
+  Settings,
+  LogOut,
+  HomeIcon,
+  Image,
+  History,
+  LockIcon,
+} from "lucide-react";
 import Head from "next/head";
 
 const geistSans = localFont({
@@ -28,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="md:w-screen overflow-x-hidden">
+    <html lang="en" className="md:w-screen overflow-x-hidden bg-red-700">
       <head>
         <Head>
           {/* Global Metadata */}
@@ -79,22 +87,30 @@ export default function RootLayout({
                   route={"/"}
                   onClick={""}
                 />
-                <MobileSidebarItem
-                  icon={<Edit />}
-                  text="Text Prompt"
-                  active={false}
-                  alert={false}
-                  route={"/Prompt"}
-                  onClick={""}
-                />
-                <MobileSidebarItem
+                {/* <MobileSidebarItem
                   icon={<Image />}
                   text="Templates"
                   active={false}
                   alert={false}
                   route={"/ImageUpload"}
                   onClick={""}
+                /> */}
+                <MobileSidebarItem
+                  icon={<Image />}
+                  text="Media"
+                  active={false}
+                  alert={false}
+                  route={"/Test"}
+                  onClick={""}
                 />
+                {/* <MobileSidebarItem
+                  icon={<LockIcon />}
+                  text="Prompt"
+                  active={false}
+                  alert={false}
+                  route={""}
+                  onClick={""}
+                /> */}
                 <MobileSidebarItem
                   icon={<History />}
                   text="History"
