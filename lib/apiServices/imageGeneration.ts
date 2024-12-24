@@ -1,7 +1,7 @@
 export const buildRequestBody = (base64Image: string | null) => {
   const randomNumber = Math.floor(Math.random() * 100);
 
-  if (randomNumber < 30) {
+  if (randomNumber < 32) {
     // 30% chance for Santa
     return {
       input: {
@@ -261,7 +261,7 @@ export const buildRequestBody = (base64Image: string | null) => {
         ],
       },
     };
-  } else if (randomNumber < 60) {
+  } else if (randomNumber < 64) {
     // 30% chance for Elf
     return {
       input: {
@@ -521,7 +521,7 @@ export const buildRequestBody = (base64Image: string | null) => {
         ],
       },
     };
-  } else if (randomNumber < 90) {
+  } else if (randomNumber < 96) {
     // 30% chance for Reindeer
     return {
       input: {
